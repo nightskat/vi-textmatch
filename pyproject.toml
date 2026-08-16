@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vi-textmatch"
+version = "0.1.0"
+description = "Vietnamese text normalization and data-type aware comparison library"
+readme = "SPEC.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [
+    {name = "Tuan"}
+]
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["src"]

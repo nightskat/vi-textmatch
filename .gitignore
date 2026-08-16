@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+# vendor dispatch working files
+.agy*
+.grok*
+.codex*
+.dsh-*
