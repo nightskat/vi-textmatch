@@ -38,6 +38,9 @@ classifiers = [
 ]
 dependencies = []
 
+[project.scripts]
+vi-textmatch = "vi_textmatch.cli:main"
+
 [project.urls]
 Homepage = "https://github.com/nightskat/vi-textmatch"
 Repository = "https://github.com/nightskat/vi-textmatch"
@@ -45,3 +48,6 @@ Issues = "https://github.com/nightskat/vi-textmatch/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+vi_textmatch = ["py.typed"]

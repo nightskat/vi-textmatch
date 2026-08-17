@@ -1,5 +1,7 @@
 # vi-textmatch
 
+[![test](https://github.com/nightskat/vi-textmatch/actions/workflows/test.yml/badge.svg)](https://github.com/nightskat/vi-textmatch/actions/workflows/test.yml)
+
 Vietnamese text normalization and **type-aware** comparison. Zero dependencies, standard library only.
 
 Built for document verification — checking that a drafted contract matches the source record —
