@@ -211,3 +211,60 @@ class TestCliSubprocess(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+# --- Phản biện Grok 17/08: 5 chỗ hỏng của CLI ---------------------------------
+
+class TestGrokFindings(unittest.TestCase):
+    """Mỗi test là một ca Grok dùng để chọc thủng CLI. Giữ lại làm lưới an toàn."""
+
+    def _run(self, argv, stdin_text=None):
+        """Chạy main() thật, trả (mã thoát, stdout, stderr)."""
+        out, err = io.StringIO(), io.StringIO()
+        code = 0
+        stdin = io.StringIO(stdin_text) if stdin_text is not None else io.StringIO("")
+        with patch.object(sys, "stdout", out), patch.object(sys, "stderr", err), \
+             patch.object(sys, "stdin", stdin):
+            try:
+                main(argv)
+            except SystemExit as e:
+                code = e.code if isinstance(e.code, int) else 1
+        return code, out.getvalue(), err.getvalue()
+
+    def test_closest_honours_kind_money(self):
+        # #1 — `--kind` từng bị nhận rồi vứt: "2,5" và "2.50" là CÙNG số tiền.
+        code, out, _ = self._run(["closest", "2,5", "2.50", "zzz", "--kind", "money", "--json"])
+        self.assertEqual(json.loads(out)["matches"], ["2.50"])
+        self.assertEqual(code, 0)
+
+    def test_closest_honours_kind_date(self):
+        # #1 — cùng một ngày viết hai kiểu.
+        code, out, _ = self._run(["closest", "01/02/2026", "2026-02-01", "foo", "--kind", "date"])
+        self.assertIn("2026-02-01", out)
+        self.assertEqual(code, 0)
+
+    def test_stdin_missing_line_is_usage_error(self):
+        # #2 — hai '-' mà stdin chỉ có một dòng: từng lặng lẽ so với chuỗi rỗng
+        # và tuyên bố "KHÁC" cho một mã định danh hợp lệ.
+        code, _, err = self._run(["compare", "-", "-", "--kind", "id"], stdin_text="031234567890\n")
+        self.assertEqual(code, 2)
+        self.assertIn("stdin", err)
+
+    def test_stdin_two_lines_still_works(self):
+        code, _, _ = self._run(["compare", "-", "-", "--kind", "text"], stdin_text="Hoà\nHòa\n")
+        self.assertEqual(code, 0)
+
+    def test_top_zero_is_usage_error_not_traceback(self):
+        # #4 — từng nổ ValueError ra ngoài với mã thoát 1.
+        code, _, err = self._run(["closest", "Hoà", "Hòa", "--top", "0"])
+        self.assertEqual(code, 2)
+        self.assertIn("--top", err)
+
+    def test_closest_no_match_exits_one(self):
+        # #5 — không tìm được gì mà vẫn báo thành công.
+        code, _, _ = self._run(["closest", "zzzz", "aaaa", "bbbb", "--json"])
+        self.assertEqual(code, 1)
+
+    def test_closest_with_match_exits_zero(self):
+        code, _, _ = self._run(["closest", "Hoà", "Hòa", "Hoa"])
+        self.assertEqual(code, 0)

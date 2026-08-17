@@ -57,10 +57,19 @@ def _resolve_stdin_args(args_list: list[str]) -> list[str]:
     if dash_count == 1:
         content = sys.stdin.read().rstrip("\r\n")
         return [content if x == "-" else x for x in args_list]
-    else:
-        lines = sys.stdin.read().splitlines()
-        line_iter = iter(lines)
-        return [next(line_iter, "") if x == "-" else x for x in args_list]
+    # Nhiều '-' → mỗi cái lấy một DÒNG stdin. Thiếu dòng thì phải BÁO LỖI, không
+    # được lặng lẽ đưa chuỗi rỗng vào so sánh: `echo "$id" | … compare - - --kind id`
+    # sẽ trả "KHÁC" cho một mã định danh hoàn toàn hợp lệ (Grok 17/08).
+    lines = sys.stdin.read().splitlines()
+    if len(lines) < dash_count:
+        print(
+            f"Lỗi: cần {dash_count} dòng từ stdin cho {dash_count} tham số '-', "
+            f"nhưng chỉ đọc được {len(lines)}",
+            file=sys.stderr,
+        )
+        sys.exit(2)
+    line_iter = iter(lines)
+    return [next(line_iter) if x == "-" else x for x in args_list]
 
 
 def create_parser() -> argparse.ArgumentParser:
@@ -68,6 +77,11 @@ def create_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="vi-textmatch",
         description="Thư viện chuẩn hoá và so khớp văn bản tiếng Việt theo kiểu dữ liệu.",
+        epilog=(
+            "Chuỗi bắt đầu bằng dấu gạch bị hiểu nhầm là cờ — đặt '--' trước nó:\n"
+            "  vi-textmatch compare --kind id -- --ma-so-1 --ma-so-1"
+        ),
+        formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     subparsers = parser.add_subparsers(dest="subcommand", required=True)
 
@@ -188,16 +202,37 @@ def main(argv: Sequence[str] | None = None) -> None:
         candidates_in = resolved[1:]
         top_n: int = args.top
 
-        matches = closest(needle_in, candidates_in, n=top_n)
+        if top_n < 1:
+            print("Lỗi: --top phải >= 1", file=sys.stderr)
+            sys.exit(2)
+
+        kind: Kind = getattr(args, "kind", None) or Kind.TEXT
+        if kind is Kind.TEXT:
+            matches = closest(needle_in, candidates_in, n=top_n)
+        else:
+            # `closest()` của thư viện chỉ biết so văn bản mềm. Với tiền/ngày/ID,
+            # "gần giống" là khái niệm sai — chỉ có TRÙNG hoặc KHÔNG. Không xử lý
+            # riêng thì `--kind money` là cờ trang trí: `2,5` và `2.50` trùng nhau
+            # mà vẫn trả về rỗng kèm mã thoát 0 (Grok 17/08).
+            matches = []
+            for cand in candidates_in:
+                try:
+                    if compare(needle_in, cand, kind=kind).match:
+                        matches.append(cand)
+                except ValueError:
+                    continue  # ứng viên không parse được thì bỏ, không làm chết cả lệnh
+                if len(matches) >= top_n:
+                    break
 
         if args.json:
-            out = {"needle": needle_in, "matches": matches}
+            out = {"needle": needle_in, "kind": kind.value.lower(), "matches": matches}
             print(json.dumps(out, ensure_ascii=False))
         else:
             for match_item in matches:
                 print(match_item)
 
-        sys.exit(0)
+        # Mã thoát nhất quán với `compare`: 0 = có khớp, 1 = không khớp.
+        sys.exit(0 if matches else 1)
 
     else:
         parser.print_help(sys.stderr)
