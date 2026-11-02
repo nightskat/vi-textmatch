@@ -1,15 +1,14 @@
 """Unit tests covering all 12 SPEC acceptance criteria and utility functions."""
 
 import sys
-
-import unittest
 import unicodedata
+import unittest
 from pathlib import Path
 
 # Add src to sys.path if running tests directly
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
-from vi_textmatch import Kind, Verdict, closest, compare, explain
+from vi_textmatch import Kind, closest, compare, explain
 
 
 class TestCompareAcceptance(unittest.TestCase):

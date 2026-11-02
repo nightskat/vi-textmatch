@@ -3,7 +3,7 @@
 import argparse
 import json
 import sys
-from typing import Sequence
+from collections.abc import Sequence
 
 from vi_textmatch.compare import Kind, Verdict, closest, compare
 from vi_textmatch.normalize import normalize
@@ -20,10 +20,10 @@ def _parse_kind(val: str) -> Kind:
     """Parse string into Kind enum (case-insensitive)."""
     try:
         return Kind(val.upper())
-    except ValueError:
+    except ValueError as err:
         raise argparse.ArgumentTypeError(
             f"kind không hợp lệ: '{val}' (chọn từ 'text', 'id', 'money', 'date')"
-        )
+        ) from err
 
 
 def _human_detail(detail: str) -> str:
@@ -254,8 +254,12 @@ def main(argv: Sequence[str] | None = None) -> None:
                     break
 
         if args.json:
-            out = {"needle": needle_in, "kind": kind.value.lower(), "matches": matches}
-            print(json.dumps(out, ensure_ascii=False))
+            out_closest: dict[str, object] = {
+                "needle": needle_in,
+                "kind": kind.value.lower(),
+                "matches": matches,
+            }
+            print(json.dumps(out_closest, ensure_ascii=False))
         else:
             for match_item in matches:
                 print(match_item)

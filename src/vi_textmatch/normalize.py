@@ -3,7 +3,8 @@
 Each step is individually callable and executed in strict numerical sequence:
 Step 1: unicodedata.normalize("NFC", s)
 Step 2: Standardize tone mark placement (via vi_textmatch.tone)
-Step 3: Whitespace cleanup (remove U+00A0 nbsp, U+200B zero-width space, collapse consecutive spaces, trim)
+Step 3: Whitespace cleanup (remove U+00A0 nbsp, U+200B zero-width space,
+        collapse consecutive spaces, trim)
 Step 4: casefold()
 """
 

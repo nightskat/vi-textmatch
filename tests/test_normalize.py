@@ -1,9 +1,8 @@
 """Unit tests for vi_textmatch.normalize and tone normalization steps."""
 
 import sys
-
-import unittest
 import unicodedata
+import unittest
 from pathlib import Path
 
 # Add src to sys.path if running tests directly

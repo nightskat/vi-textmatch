@@ -11,11 +11,12 @@ Provides:
 import difflib
 import re
 import unicodedata
+from collections.abc import Sequence
 from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal, InvalidOperation
 from enum import Enum
-from typing import Literal, Sequence
+from typing import Literal
 
 from vi_textmatch.normalize import normalize
 
