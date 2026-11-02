@@ -40,6 +40,9 @@ class Verdict:
     detail: str
 
 
+# ID separators that are ignored before exact comparison ('_' is NOT one).
+_ID_SEPARATORS_RE = re.compile(r"[\s.\-–—]+")
+
 # Strict money grammar: the full string (after stripping one allowed currency
 # marker) must match exactly one supported format.
 # VN: dot thousands + optional comma decimal, e.g. 2.500.000,50
@@ -204,14 +207,15 @@ def compare(a: str, b: str, *, kind: Kind) -> Verdict:
             )
 
     elif kind == Kind.ID:
-        clean_a = re.sub(r"[\s\-–—]+", "", unicodedata.normalize("NFC", a)).casefold()
-        clean_b = re.sub(r"[\s\-–—]+", "", unicodedata.normalize("NFC", b)).casefold()
+        # Separators ignored: whitespace, dot, hyphen, en-dash, em-dash.
+        clean_a = _ID_SEPARATORS_RE.sub("", unicodedata.normalize("NFC", a)).casefold()
+        clean_b = _ID_SEPARATORS_RE.sub("", unicodedata.normalize("NFC", b)).casefold()
 
         if clean_a == clean_b:
             return Verdict(
                 match=True,
                 level="IDENTICAL",
-                detail="ID values match exactly after cleaning whitespace and hyphens",
+                detail="ID values match exactly after cleaning whitespace, dots and hyphens",
             )
         else:
             return Verdict(

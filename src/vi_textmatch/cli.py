@@ -34,8 +34,8 @@ def _human_detail(detail: str) -> str:
         if "(typo suspected)" in rest:
             rest = rest.replace("(typo suspected)", "(nghi lỗi gõ)")
         return f"Tỉ lệ khớp: {rest}"
-    if detail == "ID values match exactly after cleaning whitespace and hyphens":
-        return "Giống nhau sau khi bỏ khoảng trắng và dấu gạch"
+    if detail == "ID values match exactly after cleaning whitespace, dots and hyphens":
+        return "Giống nhau sau khi bỏ khoảng trắng, dấu chấm và dấu gạch"
     if detail == "ID values do not match":
         return "Giá trị ID không trùng nhau"
     if detail == "Monetary values match exactly":

@@ -151,6 +151,18 @@ class TestCompareIdHyphens(unittest.TestCase):
             self.assertTrue(verdict.match)
             self.assertEqual(verdict.level, "IDENTICAL")
 
+    def test_id_dots_ignored(self) -> None:
+        """ID: dot separators are ignored (0312.345.678 == 0312345678)."""
+        for dotted in ("0312.345.678", "0312. 345 .678", "0312.345-678"):
+            verdict = compare(dotted, "0312345678", kind=Kind.ID)
+            self.assertTrue(verdict.match, dotted)
+            self.assertEqual(verdict.level, "IDENTICAL")
+
+    def test_id_dots_do_not_hide_digit_difference(self) -> None:
+        """ID: stripping dots must not make different digits match."""
+        verdict = compare("0312.345.678", "0312345679", kind=Kind.ID)
+        self.assertFalse(verdict.match)
+
     def test_id_underscore_not_stripped(self) -> None:
         """ID: '_' looks like a separator but must NOT be ignored."""
         verdict = compare("0312_3456_7890", "031234567890", kind=Kind.ID)
