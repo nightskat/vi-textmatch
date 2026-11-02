@@ -40,6 +40,8 @@ def _human_detail(detail: str) -> str:
         return "Giá trị ID không trùng nhau"
     if detail == "Monetary values match exactly":
         return "Giá trị tiền tệ trùng nhau"
+    if detail.startswith("Currencies differ"):
+        return "Khác đơn vị tiền tệ" + detail[len("Currencies differ"):]
     if detail == "Monetary values differ":
         return "Giá trị tiền tệ khác nhau"
     if detail == "Dates match exactly":

@@ -176,3 +176,21 @@ class TestUtilities(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestCompareMoneyCurrency(unittest.TestCase):
+    """MONEY: explicit, different currencies never match."""
+
+    def test_different_currencies_differ(self) -> None:
+        for a, b in (("100$", "100€"), ("100$", "100đ"), ("¥100", "100 VND")):
+            verdict = compare(a, b, kind=Kind.MONEY)
+            self.assertFalse(verdict.match, (a, b))
+            self.assertEqual(verdict.level, "DIFFERENT")
+            self.assertIn("Currencies differ", verdict.detail)
+
+    def test_same_currency_aliases_match(self) -> None:
+        for a, b in (("100đ", "100 VND"), ("100₫", "100 đồng"), ("VNĐ 100", "100đ")):
+            self.assertTrue(compare(a, b, kind=Kind.MONEY).match, (a, b))
+
+    def test_missing_marker_stays_compatible(self) -> None:
+        self.assertTrue(compare("100", "100$", kind=Kind.MONEY).match)

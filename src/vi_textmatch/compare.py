@@ -52,25 +52,44 @@ _MONEY_PLAIN_RE = re.compile(r"[+-]?\d+(?:[.,]\d+)?")
 # Allowed currency markers, longest first so "đồng" wins over "đ".
 _CURRENCY_MARKERS = ("VND", "VNĐ", "đồng", "đ", "₫", "$", "€", "¥")
 
+# Marker -> canonical currency code. Markers of the same currency are
+# interchangeable ("100đ" == "100 VND"); different currencies never match.
+_CURRENCY_CODES = {
+    "VND": "VND",
+    "VNĐ": "VND",
+    "đồng": "VND",
+    "đ": "VND",
+    "₫": "VND",
+    "$": "USD",
+    "€": "EUR",
+    "¥": "JPY",
+}
 
-def _strip_currency_marker(s: str) -> str:
-    """Remove exactly one allowed currency marker from either end."""
+
+def _strip_currency_marker(s: str) -> tuple[str, str | None]:
+    """Remove exactly one allowed currency marker from either end.
+
+    Returns the remaining number text and the canonical currency code
+    (None when the string carries no marker).
+    """
     lowered = s.casefold()
     for marker in _CURRENCY_MARKERS:
         if lowered.endswith(marker.casefold()):
-            return s[: len(s) - len(marker)].strip()
+            return s[: len(s) - len(marker)].strip(), _CURRENCY_CODES[marker]
     for marker in _CURRENCY_MARKERS:
         if lowered.startswith(marker.casefold()):
-            return s[len(marker):].strip()
-    return s
+            return s[len(marker):].strip(), _CURRENCY_CODES[marker]
+    return s, None
 
 
-def _parse_money(s: str) -> Decimal:
+def _parse_money(s: str) -> tuple[Decimal, str | None]:
     """Parse a monetary string into Decimal using a strict grammar.
 
     Accepts VN (2.500.000,50) and US (2,500,000.50) number formats, with an
     optional allowed currency prefix/suffix. Any other character or separator
     structure is rejected.
+
+    Returns (amount, canonical currency code or None).
 
     Raises ValueError if the string is not a strictly valid monetary format.
     """
@@ -79,7 +98,7 @@ def _parse_money(s: str) -> Decimal:
 
     # NFC normalize and strip leading/trailing whitespace
     s = unicodedata.normalize("NFC", s).strip()
-    s = _strip_currency_marker(s)
+    s, currency = _strip_currency_marker(s)
 
     if _MONEY_VN_RE.fullmatch(s):
         num_str = s.replace(".", "").replace(",", ".")
@@ -91,7 +110,7 @@ def _parse_money(s: str) -> Decimal:
         raise ValueError("Cannot parse MONEY: invalid number format")
 
     try:
-        return Decimal(num_str)
+        return Decimal(num_str), currency
     except InvalidOperation as err:
         raise ValueError("Cannot parse MONEY: invalid number format") from err
 
@@ -202,8 +221,17 @@ def compare(a: str, b: str, *, kind: Kind) -> Verdict:
             )
 
     elif kind == Kind.MONEY:
-        dec_a = _parse_money(a)
-        dec_b = _parse_money(b)
+        dec_a, cur_a = _parse_money(a)
+        dec_b, cur_b = _parse_money(b)
+
+        # A missing marker is "unknown currency" and stays compatible; two
+        # explicit, different currencies are never the same amount.
+        if cur_a is not None and cur_b is not None and cur_a != cur_b:
+            return Verdict(
+                match=False,
+                level="DIFFERENT",
+                detail=f"Currencies differ ({cur_a} vs {cur_b})",
+            )
 
         if dec_a == dec_b:
             return Verdict(
