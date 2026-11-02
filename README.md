@@ -62,6 +62,13 @@ compare("031234567890", "031234567891", kind=Kind.ID)
 
 compare("2.500.000.000", "2,500,000,000", kind=Kind.MONEY)   # match
 compare("2.500.000.000", "2.600.000.000", kind=Kind.MONEY)   # no match
+compare("100$", "100€", kind=Kind.MONEY)                     # no match — different currency
+
+compare("0312.345.678", "0312345678", kind=Kind.ID)           # match — dots ignored
+
+compare("02/01/2026", "2026-01-02", kind=Kind.DATE)
+# Verdict(match=False, level='AMBIGUOUS')  — 2 Jan or 1 Feb? never guessed
+compare("02/01/2026", "2026-01-02", kind=Kind.DATE, day_first=True)   # match
 ```
 
 `kind` is keyword-only and has **no default**. Calling `compare(a, b)` raises `TypeError`
@@ -72,9 +79,17 @@ rather than silently falling back to fuzzy text matching.
 | `Kind` | Method | One character apart means |
 |---|---|---|
 | `TEXT` | normalize, then `difflib` ratio | possibly a typo — graded, see below |
-| `ID` | strip separators, then **exact equality** | **a different entity** |
-| `MONEY` | parse to `Decimal`, compare values | **a different amount** |
+| `ID` | strip whitespace, `.`, `-`, `–`, `—` (not `_`), then **exact equality** | **a different entity** |
+| `MONEY` | parse to `Decimal` + currency, compare both | **a different amount** |
 | `DATE` | parse to `date`, compare values | **a different date** |
+
+- `MONEY`: markers of one currency are interchangeable (`đ`, `₫`, `VND`, `VNĐ`, `đồng`);
+  two **explicit, different** currencies (`$` vs `€`) are `DIFFERENT`. No marker = unknown
+  currency, compared by value only.
+- `DATE`: `DD/MM/YYYY` where both first parts are ≤ 12 and differ (e.g. `02/01/2026`) is
+  ambiguous → `match=False, level="AMBIGUOUS"`. Pass `day_first=True` (DD/MM) or
+  `day_first=False` (MM/DD); CLI: `--day-first` / `--month-first`. ISO `YYYY-MM-DD` and
+  strings whose first part is > 12 are never ambiguous.
 
 `TEXT` grades the difference so you can act on it:
 
@@ -129,7 +144,10 @@ understand meaning.
 ## Development
 
 ```bash
-PYTHONPATH=src python3 -m unittest discover tests
+python -m pip install -e ".[dev]"   # pytest, hypothesis, ruff, mypy (dev only; runtime has zero deps)
+ruff check src tests
+mypy
+pytest tests/ -q
 ```
 
 ## License
