@@ -1,9 +1,8 @@
 """Unit tests for vi_textmatch.normalize and tone normalization steps."""
 
 import sys
-
-import unittest
 import unicodedata
+import unittest
 from pathlib import Path
 
 # Add src to sys.path if running tests directly
@@ -106,6 +105,17 @@ class TestTonePlacementRules(unittest.TestCase):
         verdict = compare("HoÀ", "HOÀ", kind=Kind.TEXT)
         self.assertTrue(verdict.match)
         self.assertEqual(verdict.level, "IDENTICAL")
+
+
+
+class TestZeroWidthBeforeTone(unittest.TestCase):
+    """Regression (hypothesis): ZWSP inside 'oa' must not break idempotence."""
+
+    def test_zwsp_inside_pair(self) -> None:
+        from vi_textmatch import normalize
+
+        self.assertEqual(normalize("Ho\u200bà"), "hòa")
+        self.assertEqual(normalize(normalize("O\u200bÀ")), normalize("O\u200bÀ"))
 
 
 if __name__ == "__main__":

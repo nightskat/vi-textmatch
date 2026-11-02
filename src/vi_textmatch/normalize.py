@@ -3,7 +3,8 @@
 Each step is individually callable and executed in strict numerical sequence:
 Step 1: unicodedata.normalize("NFC", s)
 Step 2: Standardize tone mark placement (via vi_textmatch.tone)
-Step 3: Whitespace cleanup (remove U+00A0 nbsp, U+200B zero-width space, collapse consecutive spaces, trim)
+Step 3: Whitespace cleanup (remove U+00A0 nbsp, U+200B zero-width space,
+        collapse consecutive spaces, trim)
 Step 4: casefold()
 """
 
@@ -42,6 +43,10 @@ def normalize_case(s: str) -> str:
 def normalize(s: str) -> str:
     """Execute all 4 normalization steps in strict order (1 -> 2 -> 3 -> 4)."""
     s = normalize_unicode(s)
+    # Drop zero-width spaces BEFORE the tone step: "o\u200bà" must become
+    # "òa" in one pass, otherwise normalize() is not idempotent (found by
+    # hypothesis: the ZWSP hid the 'oa' pair from step 2, step 3 then joined it).
+    s = s.replace("\u200b", "")
     s = normalize_tone(s)
     s = normalize_whitespace(s)
     s = normalize_case(s)

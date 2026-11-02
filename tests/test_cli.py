@@ -239,9 +239,23 @@ class TestGrokFindings(unittest.TestCase):
 
     def test_closest_honours_kind_date(self):
         # #1 — cùng một ngày viết hai kiểu.
-        code, out, _ = self._run(["closest", "01/02/2026", "2026-02-01", "foo", "--kind", "date"])
-        self.assertIn("2026-02-01", out)
+        code, out, _ = self._run(["closest", "15/02/2026", "2026-02-15", "foo", "--kind", "date"])
+        self.assertIn("2026-02-15", out)
         self.assertEqual(code, 0)
+
+    def test_ambiguous_date_needs_order_flag(self):
+        # 01/02/2026 mơ hồ: không đoán; --day-first thì đọc DD/MM.
+        code, out, _ = self._run(["compare", "01/02/2026", "2026-02-01", "--kind", "date"])
+        self.assertIn("AMBIGUOUS", out)
+        self.assertEqual(code, 1)
+        code, out, _ = self._run(
+            ["compare", "01/02/2026", "2026-02-01", "--kind", "date", "--day-first"]
+        )
+        self.assertEqual(code, 0)
+        code, out, _ = self._run(
+            ["closest", "01/02/2026", "2026-02-01", "foo", "--kind", "date", "--day-first"]
+        )
+        self.assertIn("2026-02-01", out)
 
     def test_stdin_missing_line_is_usage_error(self):
         # #2 — hai '-' mà stdin chỉ có một dòng: từng lặng lẽ so với chuỗi rỗng

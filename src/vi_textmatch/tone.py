@@ -23,7 +23,6 @@ Placement rules (see research/QUY-TAC.md):
 """
 
 import re
-from typing import Dict, Tuple
 
 # Style labels are position-based, never "old"/"new": published sources use
 # those labels in opposite directions, so naming by position avoids confusion.
@@ -33,7 +32,7 @@ TONE_ON_SECOND_VOWEL: str = "tone mark on the second vowel (e.g. hoà, hoè, hu�
 # Second-vowel tone form (lowercase) -> (first-vowel tone form, plain second
 # vowel). Only the 5 Vietnamese tones exist on these vowels; both character
 # cases are handled at substitution time, so no per-case table is needed.
-TONE_PAIRS_SECOND_TO_FIRST: Dict[str, Tuple[str, str]] = {
+TONE_PAIRS_SECOND_TO_FIRST: dict[str, tuple[str, str]] = {
     # oa
     "à": ("ò", "a"),
     "á": ("ó", "a"),
