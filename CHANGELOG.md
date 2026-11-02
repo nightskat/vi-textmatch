@@ -1,9 +1,8 @@
 # Changelog
 
-## [Unreleased]
+## [0.3.0] - 2026-11-02
 
-Proposed version: **0.3.0** (minor bump — behaviour changes below). Version in
-`pyproject.toml` is intentionally not bumped yet.
+Minor bump — behaviour changes below.
 
 ### Changed (behaviour)
 - `MONEY`: two explicit, different currencies (`100$` vs `100€`) are now `DIFFERENT`
