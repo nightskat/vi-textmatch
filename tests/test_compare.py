@@ -189,9 +189,6 @@ class TestUtilities(unittest.TestCase):
         self.assertIn("Nguyễn Thị Hoa", matches)
 
 
-if __name__ == "__main__":
-    unittest.main()
-
 
 class TestCompareMoneyCurrency(unittest.TestCase):
     """MONEY: explicit, different currencies never match."""
@@ -244,3 +241,7 @@ class TestCompareDateAmbiguous(unittest.TestCase):
         )
         with self.assertRaises(ValueError):
             compare("01/13/2026", "2026-01-13", kind=Kind.DATE)
+
+
+if __name__ == "__main__":
+    unittest.main()

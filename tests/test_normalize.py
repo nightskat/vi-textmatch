@@ -107,9 +107,6 @@ class TestTonePlacementRules(unittest.TestCase):
         self.assertEqual(verdict.level, "IDENTICAL")
 
 
-if __name__ == "__main__":
-    unittest.main()
-
 
 class TestZeroWidthBeforeTone(unittest.TestCase):
     """Regression (hypothesis): ZWSP inside 'oa' must not break idempotence."""
@@ -117,5 +114,9 @@ class TestZeroWidthBeforeTone(unittest.TestCase):
     def test_zwsp_inside_pair(self) -> None:
         from vi_textmatch import normalize
 
-        self.assertEqual(normalize("Ho​à"), "hòa")
-        self.assertEqual(normalize(normalize("O​À")), normalize("O​À"))
+        self.assertEqual(normalize("Ho\u200bà"), "hòa")
+        self.assertEqual(normalize(normalize("O\u200bÀ")), normalize("O\u200bÀ"))
+
+
+if __name__ == "__main__":
+    unittest.main()
