@@ -36,7 +36,7 @@ class Kind(str, Enum):
 class Verdict:
     """Comparison verdict container."""
     match: bool
-    level: Literal["IDENTICAL", "TYPO", "DIFFERENT"]
+    level: Literal["IDENTICAL", "TYPO", "DIFFERENT", "AMBIGUOUS"]
     detail: str
 
 
@@ -118,10 +118,15 @@ def _parse_money(s: str) -> tuple[Decimal, str | None]:
         raise ValueError("Cannot parse MONEY: invalid number format") from err
 
 
-def _parse_date(s: str) -> date:
+def _parse_date(s: str, day_first: bool | None = None) -> date | None:
     """Parse date string into datetime.date object.
 
     Only four-digit years are accepted; two-digit years are rejected.
+
+    A year-last string whose first two parts are both <= 12 (e.g. 02/01/2026)
+    is ambiguous: day-month or month-day. With ``day_first=None`` it returns
+    None (ambiguous); ``True`` reads it as DD-MM-YYYY, ``False`` as MM-DD-YYYY.
+    Unambiguous strings are always read as before (YYYY-MM-DD or DD-MM-YYYY).
 
     Raises ValueError if string cannot be parsed into a valid date.
     """
@@ -145,8 +150,17 @@ def _parse_date(s: str) -> date:
         # YYYY-MM-DD
         year, month, day = int(p1), int(p2), int(p3)
     elif len(p3) == 4:
-        # DD-MM-YYYY
-        day, month, year = int(p1), int(p2), int(p3)
+        first, second, year = int(p1), int(p2), int(p3)
+        if 1 <= first <= 12 and 1 <= second <= 12 and first != second:
+            if day_first is None:
+                return None
+            if day_first:
+                day, month = first, second
+            else:
+                month, day = first, second
+        else:
+            # DD-MM-YYYY (unambiguous, or both readings give the same date)
+            day, month = first, second
     else:
         raise ValueError("Cannot parse DATE: year must be 4 digits")
 
@@ -156,13 +170,18 @@ def _parse_date(s: str) -> date:
         raise ValueError("Cannot parse DATE: out of range date values") from err
 
 
-def compare(a: str, b: str, *, kind: Kind) -> Verdict:
+def compare(
+    a: str, b: str, *, kind: Kind, day_first: bool | None = None
+) -> Verdict:
     """Compare two strings according to the specified Kind rules.
 
     Args:
         a: First input string.
         b: Second input string.
         kind: Comparison strategy (TEXT, ID, MONEY, DATE); keyword-only.
+        day_first: DATE only. How to read ambiguous dates such as 02/01/2026:
+            True = DD/MM/YYYY, False = MM/DD/YYYY, None (default) = refuse to
+            guess and return level "AMBIGUOUS" with match=False.
 
     Returns:
         Verdict containing match status (bool), level (Literal), and detail (str).
@@ -251,8 +270,15 @@ def compare(a: str, b: str, *, kind: Kind) -> Verdict:
             )
 
     elif kind == Kind.DATE:
-        date_a = _parse_date(a)
-        date_b = _parse_date(b)
+        date_a = _parse_date(a, day_first)
+        date_b = _parse_date(b, day_first)
+
+        if date_a is None or date_b is None:
+            return Verdict(
+                match=False,
+                level="AMBIGUOUS",
+                detail="Ambiguous date (day/month order unknown); pass day_first",
+            )
 
         if date_a == date_b:
             return Verdict(

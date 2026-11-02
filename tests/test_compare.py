@@ -84,7 +84,11 @@ class TestCompareAcceptance(unittest.TestCase):
 
     def test_case_11_date_format_variations(self) -> None:
         """11. DATE: 12/08/2026 vs 12-8-2026 -> match"""
+        # 12/08 is ambiguous (Aug 12 or Dec 8): refuse to guess by default.
         verdict = compare("12/08/2026", "12-8-2026", kind=Kind.DATE)
+        self.assertFalse(verdict.match)
+        self.assertEqual(verdict.level, "AMBIGUOUS")
+        verdict = compare("12/08/2026", "12-8-2026", kind=Kind.DATE, day_first=True)
         self.assertTrue(verdict.match)
         self.assertEqual(verdict.level, "IDENTICAL")
 
@@ -206,3 +210,38 @@ class TestCompareMoneyCurrency(unittest.TestCase):
 
     def test_missing_marker_stays_compatible(self) -> None:
         self.assertTrue(compare("100", "100$", kind=Kind.MONEY).match)
+
+
+class TestCompareDateAmbiguous(unittest.TestCase):
+    """DATE: ambiguous day/month order must not be guessed."""
+
+    def test_ambiguous_without_day_first(self) -> None:
+        verdict = compare("02/01/2026", "2026-01-02", kind=Kind.DATE)
+        self.assertFalse(verdict.match)
+        self.assertEqual(verdict.level, "AMBIGUOUS")
+
+    def test_day_first_true(self) -> None:
+        self.assertTrue(
+            compare("02/01/2026", "2026-01-02", kind=Kind.DATE, day_first=True).match
+        )
+
+    def test_day_first_false(self) -> None:
+        self.assertTrue(
+            compare("02/01/2026", "2026-02-01", kind=Kind.DATE, day_first=False).match
+        )
+        self.assertFalse(
+            compare("02/01/2026", "2026-01-02", kind=Kind.DATE, day_first=False).match
+        )
+
+    def test_unambiguous_unchanged(self) -> None:
+        # first part > 12 -> must be the day; ISO is never ambiguous
+        self.assertEqual(compare("25/12/2026", "2026-12-25", kind=Kind.DATE).level, "IDENTICAL")
+        self.assertEqual(compare("2026-01-02", "2026-01-02", kind=Kind.DATE).level, "IDENTICAL")
+        # day == month reads the same either way
+        self.assertEqual(compare("05/05/2026", "2026-05-05", kind=Kind.DATE).level, "IDENTICAL")
+        # day_first does not change unambiguous strings
+        self.assertTrue(
+            compare("25/12/2026", "2026-12-25", kind=Kind.DATE, day_first=False).match
+        )
+        with self.assertRaises(ValueError):
+            compare("01/13/2026", "2026-01-13", kind=Kind.DATE)
