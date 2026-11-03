@@ -3,7 +3,7 @@
 import argparse
 import json
 import sys
-from typing import Sequence
+from collections.abc import Sequence
 
 from vi_textmatch.compare import Kind, Verdict, closest, compare
 from vi_textmatch.normalize import normalize
@@ -12,6 +12,7 @@ _LEVEL_VI: dict[str, str] = {
     "IDENTICAL": "TRÙNG  (IDENTICAL)",
     "TYPO": "GẦN TRÙNG  (TYPO)",
     "DIFFERENT": "KHÁC  (DIFFERENT)",
+    "AMBIGUOUS": "MƠ HỒ  (AMBIGUOUS)",
 }
 
 
@@ -19,10 +20,10 @@ def _parse_kind(val: str) -> Kind:
     """Parse string into Kind enum (case-insensitive)."""
     try:
         return Kind(val.upper())
-    except ValueError:
+    except ValueError as err:
         raise argparse.ArgumentTypeError(
             f"kind không hợp lệ: '{val}' (chọn từ 'text', 'name', 'id', 'money', 'date')"
-        )
+        ) from err
 
 
 def _human_detail(detail: str) -> str:
@@ -34,16 +35,20 @@ def _human_detail(detail: str) -> str:
         if "(typo suspected)" in rest:
             rest = rest.replace("(typo suspected)", "(nghi lỗi gõ)")
         return f"Tỉ lệ khớp: {rest}"
-    if detail == "ID values match exactly after cleaning whitespace and hyphens":
-        return "Giống nhau sau khi bỏ khoảng trắng và dấu gạch"
+    if detail == "ID values match exactly after cleaning whitespace, dots and hyphens":
+        return "Giống nhau sau khi bỏ khoảng trắng, dấu chấm và dấu gạch"
     if detail == "ID values do not match":
         return "Giá trị ID không trùng nhau"
     if detail == "Monetary values match exactly":
         return "Giá trị tiền tệ trùng nhau"
+    if detail.startswith("Currencies differ"):
+        return "Khác đơn vị tiền tệ" + detail[len("Currencies differ"):]
     if detail == "Monetary values differ":
         return "Giá trị tiền tệ khác nhau"
     if detail == "Dates match exactly":
         return "Ngày tháng trùng nhau"
+    if detail.startswith("Ambiguous date"):
+        return "Ngày mơ hồ (không rõ ngày/tháng trước); dùng --day-first hoặc --month-first"
     if detail == "Dates differ":
         return "Ngày tháng khác nhau"
     if detail == "Names are identical after normalization":
@@ -53,6 +58,26 @@ def _human_detail(detail: str) -> str:
     if detail.startswith("Name component count differs: "):
         return "Số thành phần tên khác nhau: " + detail[len("Name component count differs: "):]
     return detail
+
+
+def _add_date_order_args(p: argparse.ArgumentParser) -> None:
+    """Add --day-first / --month-first (DATE: how to read 02/01/2026)."""
+    order = p.add_mutually_exclusive_group()
+    order.add_argument(
+        "--day-first",
+        dest="day_first",
+        action="store_const",
+        const=True,
+        default=None,
+        help="DATE: đọc ngày mơ hồ theo DD/MM/YYYY",
+    )
+    order.add_argument(
+        "--month-first",
+        dest="day_first",
+        action="store_const",
+        const=False,
+        help="DATE: đọc ngày mơ hồ theo MM/DD/YYYY",
+    )
 
 
 def _resolve_stdin_args(args_list: list[str]) -> list[str]:
@@ -103,6 +128,7 @@ def create_parser() -> argparse.ArgumentParser:
         type=_parse_kind,
         help="Kiểu dữ liệu (bắt buộc): text, name, id, money, date",
     )
+    _add_date_order_args(p_compare)
     p_compare.add_argument(
         "--json", action="store_true", help="Xuất kết quả dạng JSON một dòng"
     )
@@ -134,6 +160,7 @@ def create_parser() -> argparse.ArgumentParser:
         default=None,
         help="Kiểu dữ liệu (tùy chọn): text, name, id, money, date",
     )
+    _add_date_order_args(p_closest)
     p_closest.add_argument(
         "-t",
         "--top",
@@ -163,7 +190,9 @@ def main(argv: Sequence[str] | None = None) -> None:
         kind_enum: Kind = args.kind
 
         try:
-            verdict: Verdict = compare(str_a, str_b, kind=kind_enum)
+            verdict: Verdict = compare(
+                str_a, str_b, kind=kind_enum, day_first=args.day_first
+            )
         except ValueError as err:
             print(f"Lỗi: {err}", file=sys.stderr)
             sys.exit(2)
@@ -223,7 +252,7 @@ def main(argv: Sequence[str] | None = None) -> None:
             matches = []
             for cand in candidates_in:
                 try:
-                    if compare(needle_in, cand, kind=kind).match:
+                    if compare(needle_in, cand, kind=kind, day_first=args.day_first).match:
                         matches.append(cand)
                 except ValueError:
                     continue  # ứng viên không parse được thì bỏ, không làm chết cả lệnh
@@ -231,8 +260,12 @@ def main(argv: Sequence[str] | None = None) -> None:
                     break
 
         if args.json:
-            out = {"needle": needle_in, "kind": kind.value.lower(), "matches": matches}
-            print(json.dumps(out, ensure_ascii=False))
+            out_closest: dict[str, object] = {
+                "needle": needle_in,
+                "kind": kind.value.lower(),
+                "matches": matches,
+            }
+            print(json.dumps(out_closest, ensure_ascii=False))
         else:
             for match_item in matches:
                 print(match_item)

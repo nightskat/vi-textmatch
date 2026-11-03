@@ -1,15 +1,14 @@
 """Unit tests covering all 12 SPEC acceptance criteria and utility functions."""
 
 import sys
-
-import unittest
 import unicodedata
+import unittest
 from pathlib import Path
 
 # Add src to sys.path if running tests directly
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
-from vi_textmatch import Kind, Verdict, closest, compare, explain
+from vi_textmatch import Kind, closest, compare, explain
 
 
 class TestCompareAcceptance(unittest.TestCase):
@@ -84,7 +83,11 @@ class TestCompareAcceptance(unittest.TestCase):
 
     def test_case_11_date_format_variations(self) -> None:
         """11. DATE: 12/08/2026 vs 12-8-2026 -> match"""
+        # 12/08 is ambiguous (Aug 12 or Dec 8): refuse to guess by default.
         verdict = compare("12/08/2026", "12-8-2026", kind=Kind.DATE)
+        self.assertFalse(verdict.match)
+        self.assertEqual(verdict.level, "AMBIGUOUS")
+        verdict = compare("12/08/2026", "12-8-2026", kind=Kind.DATE, day_first=True)
         self.assertTrue(verdict.match)
         self.assertEqual(verdict.level, "IDENTICAL")
 
@@ -151,6 +154,18 @@ class TestCompareIdHyphens(unittest.TestCase):
             self.assertTrue(verdict.match)
             self.assertEqual(verdict.level, "IDENTICAL")
 
+    def test_id_dots_ignored(self) -> None:
+        """ID: dot separators are ignored (0312.345.678 == 0312345678)."""
+        for dotted in ("0312.345.678", "0312. 345 .678", "0312.345-678"):
+            verdict = compare(dotted, "0312345678", kind=Kind.ID)
+            self.assertTrue(verdict.match, dotted)
+            self.assertEqual(verdict.level, "IDENTICAL")
+
+    def test_id_dots_do_not_hide_digit_difference(self) -> None:
+        """ID: stripping dots must not make different digits match."""
+        verdict = compare("0312.345.678", "0312345679", kind=Kind.ID)
+        self.assertFalse(verdict.match)
+
     def test_id_underscore_not_stripped(self) -> None:
         """ID: '_' looks like a separator but must NOT be ignored."""
         verdict = compare("0312_3456_7890", "031234567890", kind=Kind.ID)
@@ -172,6 +187,60 @@ class TestUtilities(unittest.TestCase):
         candidates = ["Trần Văn Bình", "Nguyễn Thị Hoa", "Lê Văn Cường"]
         matches = closest("Nguyễn Thị Hòa", candidates, n=2)
         self.assertIn("Nguyễn Thị Hoa", matches)
+
+
+
+class TestCompareMoneyCurrency(unittest.TestCase):
+    """MONEY: explicit, different currencies never match."""
+
+    def test_different_currencies_differ(self) -> None:
+        for a, b in (("100$", "100€"), ("100$", "100đ"), ("¥100", "100 VND")):
+            verdict = compare(a, b, kind=Kind.MONEY)
+            self.assertFalse(verdict.match, (a, b))
+            self.assertEqual(verdict.level, "DIFFERENT")
+            self.assertIn("Currencies differ", verdict.detail)
+
+    def test_same_currency_aliases_match(self) -> None:
+        for a, b in (("100đ", "100 VND"), ("100₫", "100 đồng"), ("VNĐ 100", "100đ")):
+            self.assertTrue(compare(a, b, kind=Kind.MONEY).match, (a, b))
+
+    def test_missing_marker_stays_compatible(self) -> None:
+        self.assertTrue(compare("100", "100$", kind=Kind.MONEY).match)
+
+
+class TestCompareDateAmbiguous(unittest.TestCase):
+    """DATE: ambiguous day/month order must not be guessed."""
+
+    def test_ambiguous_without_day_first(self) -> None:
+        verdict = compare("02/01/2026", "2026-01-02", kind=Kind.DATE)
+        self.assertFalse(verdict.match)
+        self.assertEqual(verdict.level, "AMBIGUOUS")
+
+    def test_day_first_true(self) -> None:
+        self.assertTrue(
+            compare("02/01/2026", "2026-01-02", kind=Kind.DATE, day_first=True).match
+        )
+
+    def test_day_first_false(self) -> None:
+        self.assertTrue(
+            compare("02/01/2026", "2026-02-01", kind=Kind.DATE, day_first=False).match
+        )
+        self.assertFalse(
+            compare("02/01/2026", "2026-01-02", kind=Kind.DATE, day_first=False).match
+        )
+
+    def test_unambiguous_unchanged(self) -> None:
+        # first part > 12 -> must be the day; ISO is never ambiguous
+        self.assertEqual(compare("25/12/2026", "2026-12-25", kind=Kind.DATE).level, "IDENTICAL")
+        self.assertEqual(compare("2026-01-02", "2026-01-02", kind=Kind.DATE).level, "IDENTICAL")
+        # day == month reads the same either way
+        self.assertEqual(compare("05/05/2026", "2026-05-05", kind=Kind.DATE).level, "IDENTICAL")
+        # day_first does not change unambiguous strings
+        self.assertTrue(
+            compare("25/12/2026", "2026-12-25", kind=Kind.DATE, day_first=False).match
+        )
+        with self.assertRaises(ValueError):
+            compare("01/13/2026", "2026-01-13", kind=Kind.DATE)
 
 
 if __name__ == "__main__":

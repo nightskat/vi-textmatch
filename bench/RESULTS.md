@@ -2,13 +2,13 @@
 
 Sinh tự động bởi `bench/run_bench.py` — phần số liệu không sửa tay; phần nhận định ở cuối cũng lấy số từ chính lần chạy này.
 
-- Chạy lúc: 2026-11-03 09:37 UTC
-- Commit: `e7b00c3` · Python 3.13.18 · rapidfuzz 3.14.6 · Linux-6.18.44-fc-v230-x86_64-with-glibc2.39
+- Chạy lúc: 2026-11-03 10:30 UTC
+- Commit: `dac2934` · Python 3.13.18 · rapidfuzz 3.14.6 · Linux-6.18.44-fc-v230-x86_64-with-glibc2.39
 - Dữ liệu: `pairs.jsonl` — **100 cặp bịa hoàn toàn**, 55 cặp bằng nhau / 45 cặp khác nhau (money 25, date 20, id 25, name 23, text 7).
 
 ## Phương pháp
 
-- `vi_textmatch`: `compare(a, b, kind=...).match`; TEXT coi `TYPO` (ratio ≥ 0.85) là match, MONEY/DATE ném lỗi khi không ép được kiểu.
+- `vi_textmatch`: `compare(a, b, kind=...).match`; TEXT coi `TYPO` (ratio ≥ 0.85) là match, MONEY/DATE ném lỗi khi không ép được kiểu; DATE gọi với `day_first=True` (dữ liệu VN, DD/MM/YYYY); NAME so từng thành phần tên, lệch là KHÁC.
 - `difflib`: `SequenceMatcher(None, a, b).ratio() >= 0.9` trên chuỗi **thô**.
 - `rapidfuzz`: `fuzz.ratio(a, b) >= 90.0` trên chuỗi **thô**.
 - Chuẩn đúng là **nghĩa**, chốt trước khi chạy: cùng một người / cùng một số tiền / cùng một ngày / cùng một định danh → `expected_equal = true`.

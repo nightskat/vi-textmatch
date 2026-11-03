@@ -65,7 +65,9 @@ Matcher = Callable[[str, str, str], tuple[bool, dict[str, Any]]]
 
 # --------------------------------------------------------------- matchers
 def m_vi_textmatch(a: str, b: str, kind: str) -> tuple[bool, dict[str, Any]]:
-    verdict = vi_compare(a, b, kind=KIND_MAP[kind])
+    # Bench data is Vietnamese: DD/MM/YYYY, so tell DATE the order (v0.3.0+).
+    extra = {"day_first": True} if kind == "date" else {}
+    verdict = vi_compare(a, b, kind=KIND_MAP[kind], **extra)
     return verdict.match, {"level": verdict.level, "detail": verdict.detail}
 
 
@@ -196,7 +198,8 @@ def build_report(
     add("## Phương pháp")
     add("")
     add("- `vi_textmatch`: `compare(a, b, kind=...).match`; TEXT coi `TYPO` (ratio ≥ 0.85) "
-        "là match, MONEY/DATE ném lỗi khi không ép được kiểu.")
+        "là match, MONEY/DATE ném lỗi khi không ép được kiểu; DATE gọi với `day_first=True` "
+        "(dữ liệu VN, DD/MM/YYYY); NAME so từng thành phần tên, lệch là KHÁC.")
     add(f"- `difflib`: `SequenceMatcher(None, a, b).ratio() >= {DIFFLIB_CUTOFF}` trên chuỗi **thô**.")
     add(f"- `rapidfuzz`: `fuzz.ratio(a, b) >= {RAPIDFUZZ_CUTOFF}` trên chuỗi **thô**.")
     add("- Chuẩn đúng là **nghĩa**, chốt trước khi chạy: cùng một người / cùng một số tiền / "

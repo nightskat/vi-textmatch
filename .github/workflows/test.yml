@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.11", "3.12", "3.13"]
+        python-version: ["3.11", "3.12", "3.13", "3.14"]
 
     steps:
       - uses: actions/checkout@v4
@@ -21,8 +21,26 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install test dependencies
-        run: python -m pip install pytest
+      - name: Install package + dev tools
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install ".[dev]"
+
+      - name: Smoke test installed CLI
+        # Run outside the checkout so the INSTALLED package is used, not src/.
+        working-directory: ${{ runner.temp }}
+        run: |
+          python -c "import vi_textmatch, sys; print(vi_textmatch.__file__)"
+          vi-textmatch normalize "Nguyễn Thị Hoà"
+          vi-textmatch compare "0312.345.678" "0312345678" --kind id
+          vi-textmatch compare "100$" "100€" --kind money && exit 1 || test $? -eq 1
+          vi-textmatch compare "02/01/2026" "2026-01-02" --kind date --day-first
+
+      - name: Ruff
+        run: ruff check src tests
+
+      - name: Mypy
+        run: mypy
 
       - name: Run tests
         run: pytest tests/ -q
