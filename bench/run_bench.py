@@ -56,8 +56,8 @@ except ImportError:  # pragma: no cover - environment dependent
 
 DIFFLIB_CUTOFF = 0.9
 RAPIDFUZZ_CUTOFF = 90.0
-KIND_MAP = {"text": Kind.TEXT, "id": Kind.ID, "money": Kind.MONEY, "date": Kind.DATE}
-KIND_ORDER = ("money", "date", "id", "text")
+KIND_MAP = {"text": Kind.TEXT, "name": Kind.NAME, "id": Kind.ID, "money": Kind.MONEY, "date": Kind.DATE}
+KIND_ORDER = ("money", "date", "id", "name", "text")
 
 Row = dict[str, Any]
 Matcher = Callable[[str, str, str], tuple[bool, dict[str, Any]]]
@@ -191,7 +191,7 @@ def build_report(
     add(f"- Dữ liệu: `{pairs_path.name}` — **{len(pairs)} cặp bịa hoàn toàn**, "
         f"{eq} cặp bằng nhau / {len(pairs) - eq} cặp khác nhau "
         f"(money {kinds_n['money']}, date {kinds_n['date']}, id {kinds_n['id']}, "
-        f"text {kinds_n['text']}).")
+        f"name {kinds_n['name']}, text {kinds_n['text']}).")
     add("")
     add("## Phương pháp")
     add("")
@@ -296,8 +296,9 @@ def build_report(
         f"dùng ratio: money {df_fe['money']}, date {df_fe['date']}, id {df_fe['id']}, "
         f"text {df_fe['text']}.")
     add(f"2. **`vi_textmatch` không false-equal ở money/date/id** "
-        f"({vi_fe['money']}/{vi_fe['date']}/{vi_fe['id']} cặp). Toàn bộ false-equal của nó nằm ở "
-        f"text ({vi_fe['text']} cặp), nơi ngưỡng TYPO 0.85 tự động gộp hai tên khác nhau lệch 1 dấu.")
+        f"({vi_fe['money']}/{vi_fe['date']}/{vi_fe['id']} cặp), name {vi_fe['name']} cặp. "
+        f"False-equal còn lại nằm ở text ({vi_fe['text']} cặp), nơi ngưỡng TYPO 0.85 gộp hai chuỗi "
+        f"gần giống nhưng khác nghĩa.")
     if at_boundary:
         add(f"3. **Ngưỡng 0.9 là con dao sắc.** {len(at_boundary)}/{len(df)} cặp có ratio difflib "
             f"đúng bằng 0.90 (±0.005): " +
@@ -305,7 +306,9 @@ def build_report(
                       f"{'BẰNG' if r['pred'] else 'KHÁC'}" for r in at_boundary[:3]) +
             ". Cặp khác nhau thật nằm ngay trên ngưỡng thì không nâng ngưỡng được, chỉ đổi cặp nào sai.")
     add(f"4. **False-diff của `vi_textmatch`** = {s_vi['false_diff']} cặp, phân theo kiểu: "
-        f"money {vi_fd['money']}, date {vi_fd['date']}, id {vi_fd['id']}, text {vi_fd['text']}.")
+        f"money {vi_fd['money']}, date {vi_fd['date']}, id {vi_fd['id']}, name {vi_fd['name']}, "
+        f"text {vi_fd['text']}. False-diff ở name là cố ý: tên lệch 1 chữ do gõ/OCR bị đẩy về "
+        f"KHÁC để người soát lại, thay vì đoán là cùng người.")
     add(f"5. **ERR ({len(vi_err)} cặp)** rơi vào input không ép được kiểu / ngày không tồn tại; "
         f"{len(vi_err_safe)}/{len(vi_err)} trong số đó là cặp vốn khác nhau, nên fail-closed "
         f"không gây hại — điểm money/date có một phần công của việc ném lỗi thay vì đoán.")

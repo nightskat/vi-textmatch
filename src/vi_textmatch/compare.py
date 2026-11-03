@@ -1,7 +1,7 @@
 """Data-type aware text comparison module.
 
 Provides:
-- Kind: Data types for comparison (TEXT, ID, MONEY, DATE)
+- Kind: Data types for comparison (TEXT, NAME, ID, MONEY, DATE)
 - Verdict: Result object with match status, level, and detail
 - compare(a, b, kind): Compare two strings based on Kind
 - explain(a, b): Produce character-level diff explanation
@@ -27,6 +27,7 @@ THRESHOLD_TYPO: float = 0.85
 class Kind(str, Enum):
     """Supported comparison data kinds."""
     TEXT = "TEXT"
+    NAME = "NAME"
     ID = "ID"
     MONEY = "MONEY"
     DATE = "DATE"
@@ -134,13 +135,52 @@ def _parse_date(s: str) -> date:
         raise ValueError("Cannot parse DATE: out of range date values") from err
 
 
+def _compare_name(a: str, b: str) -> Verdict:
+    """Strict per-component comparison for person names.
+
+    Only Unicode form (NFC/NFD), tone-mark placement in open syllables
+    (hoà/hòa), whitespace and letter case are forgiven. Any other difference
+    in any component -- one diacritic (Khánh/Kháng, An/Ân), one letter, a
+    missing or extra component -- is DIFFERENT, never TYPO: two names one
+    mark apart are usually two valid names, i.e. two different people.
+    """
+    if not isinstance(a, str) or not isinstance(b, str):
+        raise ValueError("NAME input must be a string")
+
+    parts_a = normalize(a).split(" ")
+    parts_b = normalize(b).split(" ")
+
+    if parts_a == parts_b:
+        return Verdict(
+            match=True,
+            level="IDENTICAL",
+            detail="Names are identical after normalization",
+        )
+
+    if len(parts_a) != len(parts_b):
+        return Verdict(
+            match=False,
+            level="DIFFERENT",
+            detail=(
+                f"Name component count differs: {len(parts_a)} vs {len(parts_b)}"
+            ),
+        )
+
+    positions = [str(i + 1) for i, (x, y) in enumerate(zip(parts_a, parts_b)) if x != y]
+    return Verdict(
+        match=False,
+        level="DIFFERENT",
+        detail=f"Name components differ at position {', '.join(positions)}",
+    )
+
+
 def compare(a: str, b: str, *, kind: Kind) -> Verdict:
     """Compare two strings according to the specified Kind rules.
 
     Args:
         a: First input string.
         b: Second input string.
-        kind: Comparison strategy (TEXT, ID, MONEY, DATE); keyword-only.
+        kind: Comparison strategy (TEXT, NAME, ID, MONEY, DATE); keyword-only.
 
     Returns:
         Verdict containing match status (bool), level (Literal), and detail (str).
@@ -183,6 +223,9 @@ def compare(a: str, b: str, *, kind: Kind) -> Verdict:
                 level="DIFFERENT",
                 detail=f"Match ratio: {ratio:.4f}",
             )
+
+    elif kind == Kind.NAME:
+        return _compare_name(a, b)
 
     elif kind == Kind.ID:
         clean_a = re.sub(r"[\s\-–—]+", "", unicodedata.normalize("NFC", a)).casefold()

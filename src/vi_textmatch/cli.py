@@ -21,7 +21,7 @@ def _parse_kind(val: str) -> Kind:
         return Kind(val.upper())
     except ValueError:
         raise argparse.ArgumentTypeError(
-            f"kind không hợp lệ: '{val}' (chọn từ 'text', 'id', 'money', 'date')"
+            f"kind không hợp lệ: '{val}' (chọn từ 'text', 'name', 'id', 'money', 'date')"
         )
 
 
@@ -46,6 +46,12 @@ def _human_detail(detail: str) -> str:
         return "Ngày tháng trùng nhau"
     if detail == "Dates differ":
         return "Ngày tháng khác nhau"
+    if detail == "Names are identical after normalization":
+        return "Tên trùng nhau sau khi chuẩn hoá"
+    if detail.startswith("Name components differ at position "):
+        return "Tên lệch ở thành phần thứ " + detail[len("Name components differ at position "):]
+    if detail.startswith("Name component count differs: "):
+        return "Số thành phần tên khác nhau: " + detail[len("Name component count differs: "):]
     return detail
 
 
@@ -95,7 +101,7 @@ def create_parser() -> argparse.ArgumentParser:
         "--kind",
         required=True,
         type=_parse_kind,
-        help="Kiểu dữ liệu (bắt buộc): text, id, money, date",
+        help="Kiểu dữ liệu (bắt buộc): text, name, id, money, date",
     )
     p_compare.add_argument(
         "--json", action="store_true", help="Xuất kết quả dạng JSON một dòng"
@@ -126,7 +132,7 @@ def create_parser() -> argparse.ArgumentParser:
         "--kind",
         type=_parse_kind,
         default=None,
-        help="Kiểu dữ liệu (tùy chọn): text, id, money, date",
+        help="Kiểu dữ liệu (tùy chọn): text, name, id, money, date",
     )
     p_closest.add_argument(
         "-t",

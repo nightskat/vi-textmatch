@@ -1,33 +1,33 @@
-{"a": "Nguyễn Thị Hòa", "b": "Nguyễn Thị Hòa", "kind": "text", "expected_equal": true, "note": "NFC vs NFD: cùng tên, khác byte"}
+{"a": "Nguyễn Thị Hòa", "b": "Nguyễn Thị Hòa", "kind": "name", "expected_equal": true, "note": "NFC vs NFD: cùng tên, khác byte"}
 {"a": "Đinh Tiên Hoàng", "b": "Đinh Tiên Hoàng", "kind": "text", "expected_equal": true, "note": "NFD trên địa danh có ký tự Đ"}
-{"a": "Hoà Văn Bình", "b": "Hòa Văn Bình", "kind": "text", "expected_equal": true, "note": "vị trí dấu thanh oà/òa, âm tiết mở"}
-{"a": "Thuỳ Dương", "b": "Thùy Dương", "kind": "text", "expected_equal": true, "note": "uỳ/ùy, âm tiết mở"}
-{"a": "Hoè Thị Lan", "b": "Hòe Thị Lan", "kind": "text", "expected_equal": true, "note": "oè/òe, âm tiết mở"}
-{"a": "Nguyễn Thị Hòa", "b": "Nguyễn  Thị   Hòa", "kind": "text", "expected_equal": true, "note": "khoảng trắng thừa"}
-{"a": "Nguyễn Thị Hòa", "b": "Nguyễn Thị Hòa", "kind": "text", "expected_equal": true, "note": "nbsp U+00A0 do Word/Excel chèn"}
-{"a": "Bùi Minh​ Châu", "b": "Bùi Minh Châu", "kind": "text", "expected_equal": true, "note": "zero-width space U+200B"}
-{"a": "Nguyễn Thị Hòa", "b": "nguyễn thị hòa", "kind": "text", "expected_equal": true, "note": "chỉ khác hoa/thường"}
-{"a": "Vũ Hoàng Nam ", "b": "Vũ Hoàng Nam", "kind": "text", "expected_equal": true, "note": "khoảng trắng cuối"}
-{"a": "Lý\tThị\tMai", "b": "Lý Thị Mai", "kind": "text", "expected_equal": true, "note": "tab thay dấu cách"}
+{"a": "Hoà Văn Bình", "b": "Hòa Văn Bình", "kind": "name", "expected_equal": true, "note": "vị trí dấu thanh oà/òa, âm tiết mở"}
+{"a": "Thuỳ Dương", "b": "Thùy Dương", "kind": "name", "expected_equal": true, "note": "uỳ/ùy, âm tiết mở"}
+{"a": "Hoè Thị Lan", "b": "Hòe Thị Lan", "kind": "name", "expected_equal": true, "note": "oè/òe, âm tiết mở"}
+{"a": "Nguyễn Thị Hòa", "b": "Nguyễn  Thị   Hòa", "kind": "name", "expected_equal": true, "note": "khoảng trắng thừa"}
+{"a": "Nguyễn Thị Hòa", "b": "Nguyễn Thị Hòa", "kind": "name", "expected_equal": true, "note": "nbsp U+00A0 do Word/Excel chèn"}
+{"a": "Bùi Minh​ Châu", "b": "Bùi Minh Châu", "kind": "name", "expected_equal": true, "note": "zero-width space U+200B"}
+{"a": "Nguyễn Thị Hòa", "b": "nguyễn thị hòa", "kind": "name", "expected_equal": true, "note": "chỉ khác hoa/thường"}
+{"a": "Vũ Hoàng Nam ", "b": "Vũ Hoàng Nam", "kind": "name", "expected_equal": true, "note": "khoảng trắng cuối"}
+{"a": "Lý\tThị\tMai", "b": "Lý Thị Mai", "kind": "name", "expected_equal": true, "note": "tab thay dấu cách"}
 {"a": "CÔNG TY TNHH THƯƠNG MẠI BÌNH AN", "b": "Công ty TNHH Thương mại Bình An", "kind": "text", "expected_equal": true, "note": "tên tổ chức, chỉ khác hoa/thường"}
 {"a": "Số 12 Ngõ 34 Phố Hoa Ban, Phường 5", "b": "Số 12  Ngõ  34  Phố Hoa Ban,  Phường 5", "kind": "text", "expected_equal": true, "note": "địa chỉ, khoảng trắng thừa"}
 {"a": "Xã Hoà Bình, Huyện Quỳnh Lưu", "b": "Xã Hòa Bình, Huyện Quỳnh Lưu", "kind": "text", "expected_equal": true, "note": "hoà→hòa trong địa danh; quỳnh phải giữ nguyên"}
-{"a": "Trịnh Công Sơnn", "b": "Trịnh Công Sơn", "kind": "text", "expected_equal": true, "note": "lặp 1 ký tự cuối (gõ/OCR)"}
-{"a": "Lương Thị Ánh Tuyế", "b": "Lương Thị Ánh Tuyết", "kind": "text", "expected_equal": true, "note": "nuốt ký tự cuối (OCR)"}
-{"a": "Hoàng Văn Quag", "b": "Hoàng Văn Quang", "kind": "text", "expected_equal": true, "note": "rơi 1 phụ âm cuối"}
-{"a": "Nguyễn Thị Hòa", "b": "Trần Văn Bình", "kind": "text", "expected_equal": false, "note": "hai người khác nhau"}
-{"a": "Lê Văn Hoàn", "b": "Lê Văn Hòa", "kind": "text", "expected_equal": false, "note": "âm tiết đóng 'hoàn' KHÔNG được đổi thành 'hòa' — hai từ khác nhau"}
-{"a": "Phạm Quốc Khánh", "b": "Phạm Quốc Kháng", "kind": "text", "expected_equal": false, "note": "lệch 1 dấu, mỗi dạng đều là tên hợp lệ → phải soát lại"}
-{"a": "Phạm Minh Khôi", "b": "Bùi Minh Khôi", "kind": "text", "expected_equal": false, "note": "họ khác — hai người, chuỗi gần như giống hệt"}
-{"a": "Nguyễn Thị Hòa", "b": "Nguyễn Thị Hồng", "kind": "text", "expected_equal": false, "note": "cùng họ + đệm, khác tên gọi"}
+{"a": "Trịnh Công Sơnn", "b": "Trịnh Công Sơn", "kind": "name", "expected_equal": true, "note": "lặp 1 ký tự cuối (gõ/OCR)"}
+{"a": "Lương Thị Ánh Tuyế", "b": "Lương Thị Ánh Tuyết", "kind": "name", "expected_equal": true, "note": "nuốt ký tự cuối (OCR)"}
+{"a": "Hoàng Văn Quag", "b": "Hoàng Văn Quang", "kind": "name", "expected_equal": true, "note": "rơi 1 phụ âm cuối"}
+{"a": "Nguyễn Thị Hòa", "b": "Trần Văn Bình", "kind": "name", "expected_equal": false, "note": "hai người khác nhau"}
+{"a": "Lê Văn Hoàn", "b": "Lê Văn Hòa", "kind": "name", "expected_equal": false, "note": "âm tiết đóng 'hoàn' KHÔNG được đổi thành 'hòa' — hai từ khác nhau"}
+{"a": "Phạm Quốc Khánh", "b": "Phạm Quốc Kháng", "kind": "name", "expected_equal": false, "note": "lệch 1 dấu, mỗi dạng đều là tên hợp lệ → phải soát lại"}
+{"a": "Phạm Minh Khôi", "b": "Bùi Minh Khôi", "kind": "name", "expected_equal": false, "note": "họ khác — hai người, chuỗi gần như giống hệt"}
+{"a": "Nguyễn Thị Hòa", "b": "Nguyễn Thị Hồng", "kind": "name", "expected_equal": false, "note": "cùng họ + đệm, khác tên gọi"}
 {"a": "Số 12 Ngõ 34 Phố Hoa Ban, Phường 5", "b": "Số 21 Ngõ 34 Phố Hoa Ban, Phường 5", "kind": "text", "expected_equal": false, "note": "số nhà 12→21, phần còn lại giống hệt"}
 {"a": "Công ty TNHH Bình Minh", "b": "Công ty CP Bình Minh", "kind": "text", "expected_equal": false, "note": "khác loại hình doanh nghiệp = khác pháp nhân"}
 {"a": "Phòng giao dịch Lê Chân", "b": "Phòng giao dịch Hồng Bàng", "kind": "text", "expected_equal": false, "note": "cùng mẫu, khác địa danh"}
-{"a": "Nguyễn Hoàng Nam", "b": "Nguyễn Hoàng Ninh", "kind": "text", "expected_equal": false, "note": "tên gọi khác — hai người"}
-{"a": "Trần Thị Bích Ngọc", "b": "Trần Thị Bích Ngà", "kind": "text", "expected_equal": false, "note": "tên gọi khác — hai người"}
-{"a": "Lê Quang Dũng", "b": "Lê Quang Hùng", "kind": "text", "expected_equal": false, "note": "tên gọi khác — hai người"}
-{"a": "Vũ Hoàng Nam", "b": "Vũ Hoàng Nga", "kind": "text", "expected_equal": false, "note": "tên gọi khác — hai người"}
-{"a": "Nguyễn Thị Thu Hà", "b": "Nguyễn Thị Thu Hằng", "kind": "text", "expected_equal": false, "note": "tên gọi khác — hai người, chuỗi gần như giống hệt"}
+{"a": "Nguyễn Hoàng Nam", "b": "Nguyễn Hoàng Ninh", "kind": "name", "expected_equal": false, "note": "tên gọi khác — hai người"}
+{"a": "Trần Thị Bích Ngọc", "b": "Trần Thị Bích Ngà", "kind": "name", "expected_equal": false, "note": "tên gọi khác — hai người"}
+{"a": "Lê Quang Dũng", "b": "Lê Quang Hùng", "kind": "name", "expected_equal": false, "note": "tên gọi khác — hai người"}
+{"a": "Vũ Hoàng Nam", "b": "Vũ Hoàng Nga", "kind": "name", "expected_equal": false, "note": "tên gọi khác — hai người"}
+{"a": "Nguyễn Thị Thu Hà", "b": "Nguyễn Thị Thu Hằng", "kind": "name", "expected_equal": false, "note": "tên gọi khác — hai người, chuỗi gần như giống hệt"}
 {"a": "1.000.000đ", "b": "1,000,000 VND", "kind": "money", "expected_equal": true, "note": "kiểu VN có 'đ' vs kiểu US có 'VND'"}
 {"a": "2.500.000.000", "b": "2,500,000,000", "kind": "money", "expected_equal": true, "note": "dấu phân nghìn VN vs US"}
 {"a": "2.500.000.000", "b": "2500000000", "kind": "money", "expected_equal": true, "note": "có phân cách vs số trơn"}
