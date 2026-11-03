@@ -22,7 +22,7 @@ def _parse_kind(val: str) -> Kind:
         return Kind(val.upper())
     except ValueError as err:
         raise argparse.ArgumentTypeError(
-            f"kind không hợp lệ: '{val}' (chọn từ 'text', 'id', 'money', 'date')"
+            f"kind không hợp lệ: '{val}' (chọn từ 'text', 'name', 'id', 'money', 'date')"
         ) from err
 
 
@@ -51,6 +51,12 @@ def _human_detail(detail: str) -> str:
         return "Ngày mơ hồ (không rõ ngày/tháng trước); dùng --day-first hoặc --month-first"
     if detail == "Dates differ":
         return "Ngày tháng khác nhau"
+    if detail == "Names are identical after normalization":
+        return "Tên trùng nhau sau khi chuẩn hoá"
+    if detail.startswith("Name components differ at position "):
+        return "Tên lệch ở thành phần thứ " + detail[len("Name components differ at position "):]
+    if detail.startswith("Name component count differs: "):
+        return "Số thành phần tên khác nhau: " + detail[len("Name component count differs: "):]
     return detail
 
 
@@ -120,7 +126,7 @@ def create_parser() -> argparse.ArgumentParser:
         "--kind",
         required=True,
         type=_parse_kind,
-        help="Kiểu dữ liệu (bắt buộc): text, id, money, date",
+        help="Kiểu dữ liệu (bắt buộc): text, name, id, money, date",
     )
     _add_date_order_args(p_compare)
     p_compare.add_argument(
@@ -152,7 +158,7 @@ def create_parser() -> argparse.ArgumentParser:
         "--kind",
         type=_parse_kind,
         default=None,
-        help="Kiểu dữ liệu (tùy chọn): text, id, money, date",
+        help="Kiểu dữ liệu (tùy chọn): text, name, id, money, date",
     )
     _add_date_order_args(p_closest)
     p_closest.add_argument(

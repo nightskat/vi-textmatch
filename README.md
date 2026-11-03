@@ -79,6 +79,7 @@ rather than silently falling back to fuzzy text matching.
 | `Kind` | Method | One character apart means |
 |---|---|---|
 | `TEXT` | normalize, then `difflib` ratio | possibly a typo — graded, see below |
+| `NAME` | normalize, then compare **each name component exactly** (diacritics kept) | **a different person** |
 | `ID` | strip whitespace, `.`, `-`, `–`, `—` (not `_`), then **exact equality** | **a different entity** |
 | `MONEY` | parse to `Decimal` + currency, compare both | **a different amount** |
 | `DATE` | parse to `date`, compare values | **a different date** |
@@ -98,6 +99,16 @@ rather than silently falling back to fuzzy text matching.
 | 1.0 | `IDENTICAL` | same string after normalization |
 | ≥ 0.85 | `TYPO` | likely a typing or OCR error — fix the text |
 | < 0.85 | `DIFFERENT` | likely the wrong record — stop and re-check |
+
+Use `NAME` for person names. `TEXT` would call `Phạm Quốc Khánh` vs `Phạm Quốc Kháng`
+(ratio 0.93) or `Nguyễn Văn An` vs `Nguyễn Văn Ân` a `TYPO`, but each spelling is a valid name —
+usually two people. `NAME` forgives only NFC/NFD, tone placement (`hoà`/`hòa`), whitespace and
+case; any other difference in any component is `DIFFERENT`, never `TYPO`:
+
+```python
+compare("NGUYỄN VĂN AN", "Nguyễn  Văn An", kind=Kind.NAME)    # IDENTICAL
+compare("Nguyễn Văn An", "Nguyễn Văn Ân",  kind=Kind.NAME)    # DIFFERENT (position 3)
+```
 
 Similarity is meaningless for identifiers and amounts, so `ID`, `MONEY` and `DATE` never use it.
 `MONEY` and `DATE` raise on input they cannot parse; they never silently degrade to string comparison.

@@ -35,6 +35,7 @@ compare(a, b, kind=...) -> Verdict(match: bool, level: str, detail: str)
 | `kind` | Cách so | Ý nghĩa khi lệch |
 |---|---|---|
 | `TEXT` (tên người, địa chỉ, diễn giải) | `normalize` rồi `difflib.SequenceMatcher.ratio()` | phân mức, xem dưới |
+| `NAME` (tên người) | `normalize` rồi so **từng thành phần tên bằng tuyệt đối** (giữ dấu) | **SAI NGƯỜI** — lệch 1 dấu/chữ là `DIFFERENT`, không có `TYPO` |
 | `ID` (CCCD, STK, số HĐ, MST, mã KH) | bỏ khoảng trắng/gạch nối rồi **so BẰNG tuyệt đối** | **SAI NGƯỜI / SAI HỒ SƠ** |
 | `MONEY` | ép `Decimal`, so **giá trị** | **SAI SỐ LIỆU** |
 | `DATE` | ép `date`, so **giá trị** | **SAI NGÀY** |
