@@ -49,13 +49,17 @@ from vi_textmatch import compare as vi_compare
 try:
     import rapidfuzz
     from rapidfuzz import fuzz as rf_fuzz
+
+    RF_VERSION = rapidfuzz.__version__
 except ImportError:  # pragma: no cover - environment dependent
+    # Optional: without rapidfuzz the rapidfuzz columns are dropped, not the run.
+    rf_fuzz = None
+    RF_VERSION = "không cài (bỏ cột rapidfuzz)"
     sys.stderr.write(
-        "rapidfuzz is required for this benchmark (install it outside the system Python):\n"
+        "rapidfuzz not installed: skipping the rapidfuzz columns. To include them:\n"
         "  python3.11 -m venv .venv && .venv/bin/pip install rapidfuzz\n"
         "  .venv/bin/python bench/run_bench.py\n"
     )
-    raise SystemExit(2)
 
 DIFFLIB_CUTOFF = 0.9
 RAPIDFUZZ_CUTOFF = 90.0
@@ -99,10 +103,14 @@ MATCHERS: list[tuple[str, Matcher]] = [
     ("difflib", m_difflib),
     ("rapidfuzz", m_rapidfuzz),
 ]
+if rf_fuzz is None:
+    MATCHERS = [m for m in MATCHERS if not m[0].startswith("rapidfuzz")]
 VARIANTS: list[tuple[str, Matcher]] = [
     ("difflib+normalize", m_difflib_norm),
     ("rapidfuzz+normalize", m_rapidfuzz_norm),
 ]
+if rf_fuzz is None:
+    VARIANTS = [m for m in VARIANTS if not m[0].startswith("rapidfuzz")]
 
 
 # ------------------------------------------------------------------ scoring
@@ -193,7 +201,7 @@ def build_report(
     add("")
     add(f"- Chạy lúc: {datetime.now().astimezone().strftime('%Y-%m-%d %H:%M %Z')}")
     add(f"- Commit: `{git_commit()}` · Python {sys.version.split()[0]} · "
-        f"rapidfuzz {rapidfuzz.__version__} · {platform.platform()}")
+        f"rapidfuzz {RF_VERSION} · {platform.platform()}")
     add(f"- Dữ liệu: `{pairs_path.name}` — **{len(pairs)} cặp bịa hoàn toàn**, "
         f"{eq} cặp bằng nhau / {len(pairs) - eq} cặp khác nhau "
         f"(money {kinds_n['money']}, date {kinds_n['date']}, id {kinds_n['id']}, "
@@ -205,7 +213,10 @@ def build_report(
         "là match, MONEY/DATE ném lỗi khi không ép được kiểu; DATE gọi với `day_first=True` "
         "(dữ liệu VN, DD/MM/YYYY); NAME so từng thành phần tên, lệch là KHÁC.")
     add(f"- `difflib`: `SequenceMatcher(None, a, b).ratio() >= {DIFFLIB_CUTOFF}` trên chuỗi **thô**.")
-    add(f"- `rapidfuzz`: `fuzz.ratio(a, b) >= {RAPIDFUZZ_CUTOFF}` trên chuỗi **thô**.")
+    if rf_fuzz is not None:
+        add(f"- `rapidfuzz`: `fuzz.ratio(a, b) >= {RAPIDFUZZ_CUTOFF}` trên chuỗi **thô**.")
+    else:
+        add("- `rapidfuzz`: **CHƯA CHẠY** — gói không có trong môi trường này.")
     add("- Chuẩn đúng là **nghĩa**, chốt trước khi chạy: cùng một người / cùng một số tiền / "
         "cùng một ngày / cùng một định danh → `expected_equal = true`.")
     add("- Ném lỗi được ghi `ERR` và tính là **không bằng** (fail-closed) — đúng hướng thư viện "
@@ -299,11 +310,11 @@ def build_report(
     # ---- observations, every number computed from this run -----------------
     vi = results["vi_textmatch"]
     df = results["difflib"]
-    rf = results["rapidfuzz"]
-    s_vi, s_df, s_rf = summarize(vi), summarize(df), summarize(rf)
+    rf = results.get("rapidfuzz")
+    s_vi, s_df = summarize(vi), summarize(df)
+    rf_fe_total = str(summarize(rf)["false_equal"]) if rf is not None else "CHƯA CHẠY"
     vi_fe = {k: summarize([r for r in vi if r["kind"] == k])["false_equal"] for k in KIND_ORDER}
     df_fe = {k: summarize([r for r in df if r["kind"] == k])["false_equal"] for k in KIND_ORDER}
-    rf_fe = {k: summarize([r for r in rf if r["kind"] == k])["false_equal"] for k in KIND_ORDER}
     vi_fd = {k: summarize([r for r in vi if r["kind"] == k])["false_diff"] for k in KIND_ORDER}
     vi_err = [r for r in vi if r["error"]]
     vi_err_safe = [r for r in vi_err if not r["expected_equal"]]
@@ -313,12 +324,12 @@ def build_report(
     ]
     diverge = sum(
         1 for d, f in zip(df, rf) if d["pred"] != f["pred"]
-    ) if len(df) == len(rf) else None
+    ) if rf is not None and len(df) == len(rf) else None
 
     add("## Nhận định (số liệu lấy từ lần chạy này)")
     add("")
     add(f"1. **Lỗi nguy hiểm tập trung ở baseline.** `vi_textmatch` có {s_vi['false_equal']} "
-        f"false-equal; difflib {s_df['false_equal']}, rapidfuzz {s_rf['false_equal']}. "
+        f"false-equal; difflib {s_df['false_equal']}, rapidfuzz {rf_fe_total}. "
         f"Baseline coi hai số tiền/ngày/định danh khác nhau là \"gần đúng\" đúng ở chỗ SPEC cấm "
         f"dùng ratio: money {df_fe['money']}, date {df_fe['date']}, id {df_fe['id']}, "
         f"text {df_fe['text']}.")
@@ -467,7 +478,7 @@ def main() -> int:
                    for k in KIND_ORDER) == len(pairs), name
 
     print(f"pairs: {len(pairs)}  ({pairs_path})")
-    print(f"python {sys.version.split()[0]}  rapidfuzz {rapidfuzz.__version__}  "
+    print(f"python {sys.version.split()[0]}  rapidfuzz {RF_VERSION}  "
           f"commit {git_commit()}")
     hdr = f"{'matcher':<22}{'acc':>8}{'correct':>10}{'FE':>5}{'FD':>5}{'ERR':>5}"
     print()

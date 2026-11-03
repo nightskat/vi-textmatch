@@ -2,8 +2,8 @@
 
 Sinh tự động bởi `bench/run_bench.py` — phần số liệu không sửa tay; phần nhận định ở cuối cũng lấy số từ chính lần chạy này.
 
-- Chạy lúc: 2026-11-03 11:12 UTC
-- Commit: `b79b647` · Python 3.13.18 · rapidfuzz 3.14.6 · Linux-6.18.44-fc-v230-x86_64-with-glibc2.39
+- Chạy lúc: 2026-11-03 14:49 UTC
+- Commit: `406a067` · Python 3.13.18 · rapidfuzz 3.14.6 · Linux-6.18.44-fc-v230-x86_64-with-glibc2.39
 - Dữ liệu: `pairs.jsonl` — **590 cặp bịa hoàn toàn**, 293 cặp bằng nhau / 297 cặp khác nhau (money 115, date 90, id 105, name 103, text 177).
 
 ## Phương pháp
