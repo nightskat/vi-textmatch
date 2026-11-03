@@ -1,8 +1,24 @@
 # Changelog
 
-## [0.3.0] - 2026-11-02
+## [0.3.0] - unreleased (not yet on PyPI)
 
 Minor bump — behaviour changes below.
+
+### Added (since the 2026-11-02 draft)
+- `Kind.NAME`: strict per-component person-name comparison (diacritics kept; any
+  component difference is `DIFFERENT`, never `TYPO`).
+- Benchmark `bench/`: 100 hand-written + generated fabricated pairs (`gen_extended.py`,
+  fixed seed; addresses, company names, contract numbers, multi-format money, dates, names),
+  labels assigned by transformation. Per-transformation table in `bench/RESULTS.md`.
+- CI `bench.yml`: on every PR, fails if `vi_textmatch` has a false-equal not listed in
+  `bench/baseline.json`; also checks `pairs.jsonl` regenerates byte-identical.
+- Docs site (MkDocs, Vietnamese + English) deployed to GitHub Pages by `docs.yml`;
+  benchmark numbers and README badge are generated in CI, not typed by hand.
+
+### Known limitations (found by the benchmark)
+- `TEXT` returns `TYPO` (`match=True`) for addresses differing in house number / street
+  and for company names differing only in legal form — use `ID` on those parts.
+- `MONEY` does not parse words (`2900 triệu`); `DATE` does not parse `ngày … tháng … năm …`.
 
 ### Changed (behaviour)
 - `MONEY`: two explicit, different currencies (`100$` vs `100€`) are now `DIFFERENT`
