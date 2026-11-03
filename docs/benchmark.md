@@ -10,7 +10,7 @@ không gõ tay. Báo cáo đầy đủ từng cặp: [`bench/RESULTS.md`](https:
 - Toàn bộ dữ liệu là **bịa**: 100 cặp viết tay + cặp sinh bằng `bench/gen_extended.py`
   (seed cố định) cho địa chỉ, tên công ty, số hợp đồng, số tiền nhiều định dạng, ngày, tên người.
 - Nhãn gán **theo phép biến đổi** (giữ nghĩa hay đổi nghĩa), không chạy thư viện để gán.
-  Có cả phép giữ nghĩa mà thư viện chưa xử lý (`P.`/`phường`, `2900 triệu`, ngày bằng chữ) —
+  Có cả phép giữ nghĩa mà thư viện chưa xử lý (`2900 triệu`, ngày bằng chữ) —
   chúng hiện thành false-diff, không bị loại ra.
 - `difflib`/`rapidfuzz`: ngưỡng 0.9 trên chuỗi thô; dòng `+normalize` chạy trên `normalize()`.
 - **false-equal** (nói BẰNG nhưng thực ra KHÁC) là lỗi nguy hiểm; CI fail nếu `vi_textmatch`

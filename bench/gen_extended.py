@@ -13,9 +13,9 @@ form, another currency, another diacritic that yields another valid name).
 This file never imports vi_textmatch, so labels cannot be fitted to it.
 
 Some "equal" transformations are deliberately outside what the library
-handles (abbreviations like "P." for "Phường", "1,5 tỷ", dates written in
-words). They stay in so the benchmark measures real-world inputs, not the
-library's comfort zone; those pairs are expected to show up as false-diff.
+handles ("2900 triệu", dates written in words). They stay in so the
+benchmark measures real-world inputs, not the library's comfort zone; those
+pairs show up as false-diff / ERR.
 
 Run:  python3 bench/gen_extended.py
 """
