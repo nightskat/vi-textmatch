@@ -1,0 +1,102 @@
+{"a": "Nguy\u1ec5n Th\u1ecb H\u00f2a", "b": "Nguye\u0302\u0303n Thi\u0323 Ho\u0300a", "kind": "text", "expected_equal": true, "note": "NFC vs NFD, c\u00f9ng m\u1ed9t t\u00ean \u2014 b\u1eaby byte, kh\u00f4ng ph\u1ea3i b\u1eaby ngh\u0129a"}
+{"a": "Ho\u00e0 V\u0103n B\u00ecnh", "b": "H\u00f2a V\u0103n B\u00ecnh", "kind": "text", "expected_equal": true, "note": "v\u1ecb tr\u00ed d\u1ea5u thanh o\u00e0 / \u00f2a, \u00e2m ti\u1ebft m\u1edf"}
+{"a": "Thu\u1ef3 D\u01b0\u01a1ng", "b": "Th\u00f9y D\u01b0\u01a1ng", "kind": "text", "expected_equal": true, "note": "u\u1ef3 / \u00f9y, \u00e2m ti\u1ebft m\u1edf"}
+{"a": "Ho\u00e8 Th\u1ecb Lan", "b": "H\u00f2e Th\u1ecb Lan", "kind": "text", "expected_equal": true, "note": "o\u00e8 / \u00f2e, \u00e2m ti\u1ebft m\u1edf"}
+{"a": "Nguy\u1ec5n Th\u1ecb H\u00f2a", "b": "Nguy\u1ec5n  Th\u1ecb   H\u00f2a", "kind": "text", "expected_equal": true, "note": "kho\u1ea3ng tr\u1eafng th\u1eeba"}
+{"a": "Nguy\u1ec5n Th\u1ecb H\u00f2a", "b": "Nguy\u1ec5n\u00a0Th\u1ecb H\u00f2a", "kind": "text", "expected_equal": true, "note": "nbsp U+00A0 do Word/Excel ch\u00e8n"}
+{"a": "Nguy\u1ec5n Th\u1ecb H\u00f2a", "b": "nguy\u1ec5n th\u1ecb h\u00f2a", "kind": "text", "expected_equal": true, "note": "kh\u00e1c hoa/th\u01b0\u1eddng"}
+{"a": "Nguy\u1ec5n Th\u1ecb H\u00f2a", "b": "Nguy\u1ec5n Th\u1ecb Hoa", "kind": "text", "expected_equal": true, "note": "thi\u1ebfu d\u1ea5u h\u1ecfi \u2014 l\u1ed7i g\u00f5, v\u1eabn c\u00f9ng ng\u01b0\u1eddi"}
+{"a": "Tr\u1ea7n V\u0103n B\u00ecnh", "b": "Tr\u1ea7n V\u0103n Binh", "kind": "text", "expected_equal": true, "note": "m\u1ea5t d\u1ea5u to\u00e0n b\u1ed9 \u00e2m ti\u1ebft cu\u1ed1i \u2014 l\u1ed7i OCR/g\u00f5"}
+{"a": "Ng\u00f4 Th\u1ecb Kim Ng\u00e2n", "b": "Ng\u00f4 Th\u1ecb Kim Ngan", "kind": "text", "expected_equal": true, "note": "m\u1ea5t d\u1ea5u '\u00e2' \u1edf t\u00ean \u0111\u1ec7m cu\u1ed1i"}
+{"a": "B\u00f9i Minh Ch\u00e2u", "b": "B\u00f9i Minh\u200b Ch\u00e2u", "kind": "text", "expected_equal": true, "note": "zero-width space U+200B"}
+{"a": "V\u0169 Ho\u00e0ng Nam", "b": "V\u0169 Ho\u00e0ng Nam ", "kind": "text", "expected_equal": true, "note": "kho\u1ea3ng tr\u1eafng cu\u1ed1i"}
+{"a": "Ph\u00f2ng giao d\u1ecbch L\u00ea Ch\u00e2n", "b": "Ph\u00f2ng Giao D\u1ecbch L\u00ea Ch\u00e2n", "kind": "text", "expected_equal": true, "note": "kh\u00e1c hoa/th\u01b0\u1eddng t\u1eebng t\u1eeb"}
+{"a": "PGBank H\u1ea3i Ph\u00f2ng", "b": "PG Bank H\u1ea3i Ph\u00f2ng", "kind": "text", "expected_equal": true, "note": "kho\u1ea3ng tr\u1eafng trong t\u00ean th\u01b0\u01a1ng hi\u1ec7u"}
+{"a": "Tr\u01b0\u1eddng THPT Nguy\u1ec5n Tr\u00e3i", "b": "Tr\u01b0\u1eddng THPT Nguy\u1ec5n Tr\u1ea3i", "kind": "text", "expected_equal": true, "note": "l\u1ed7i g\u00f5 1 k\u00fd t\u1ef1 trong t\u00ean tr\u01b0\u1eddng"}
+{"a": "Nguy\u1ec5n Th\u1ecb H\u00f2a", "b": "Tr\u1ea7n V\u0103n B\u00ecnh", "kind": "text", "expected_equal": false, "note": "hai ng\u01b0\u1eddi kh\u00e1c nhau ho\u00e0n to\u00e0n"}
+{"a": "L\u00ea V\u0103n Ho\u00e0n", "b": "L\u00ea V\u0103n H\u00f2a", "kind": "text", "expected_equal": false, "note": "\u00e2m ti\u1ebft \u0111\u00f3ng 'ho\u00e0n' kh\u00f4ng \u0111\u01b0\u1ee3c ph\u00e9p \u0111\u1ed5i th\u00e0nh 'h\u00f2a'"}
+{"a": "Ph\u00f2ng giao d\u1ecbch L\u00ea Ch\u00e2n", "b": "Ph\u00f2ng giao d\u1ecbch H\u1ed3ng B\u00e0ng", "kind": "text", "expected_equal": false, "note": "c\u00f9ng m\u1eabu, kh\u00e1c \u0111\u1ecba danh"}
+{"a": "C\u00f4ng ty TNHH B\u00ecnh Minh", "b": "C\u00f4ng ty CP B\u00ecnh Minh", "kind": "text", "expected_equal": false, "note": "kh\u00e1c lo\u1ea1i h\u00ecnh doanh nghi\u1ec7p = kh\u00e1c ph\u00e1p nh\u00e2n"}
+{"a": "Ph\u1ea1m Qu\u1ed1c Kh\u00e1nh", "b": "Ph\u1ea1m Qu\u1ed1c Kh\u00e1ng", "kind": "text", "expected_equal": false, "note": "l\u1ec7ch 1 d\u1ea5u = 2 ng\u01b0\u1eddi kh\u00e1c nhau (ratio r\u1ea5t cao)"}
+{"a": "Nguy\u1ec5n V\u0103n An", "b": "Nguy\u1ec5n V\u0103n \u00c2n", "kind": "text", "expected_equal": false, "note": "l\u1ec7ch 1 d\u1ea5u m\u0169 = 2 ng\u01b0\u1eddi kh\u00e1c nhau"}
+{"a": "L\u00fd Th\u1ecb H\u01b0\u01a1ng", "b": "L\u00fd Th\u1ecb H\u01b0\u1eddng", "kind": "text", "expected_equal": false, "note": "l\u1ec7ch 1 d\u1ea5u huy\u1ec1n = 2 ng\u01b0\u1eddi kh\u00e1c nhau"}
+{"a": "Nguy\u1ec5n Th\u1ecb H\u00f2a", "b": "Nguy\u1ec5n Th\u1ecb H\u1ed3ng", "kind": "text", "expected_equal": false, "note": "c\u00f9ng h\u1ecd + \u0111\u1ec7m, kh\u00e1c t\u00ean g\u1ecdi"}
+{"a": "S\u1ed1 12 ph\u1ed1 L\u1ea1ch Tray", "b": "So 12 pho Lach Tray", "kind": "text", "expected_equal": true, "note": "m\u1ea5t to\u00e0n b\u1ed9 d\u1ea5u \u2014 c\u00f9ng \u0111\u1ecba ch\u1ec9, OCR b\u1ecf d\u1ea5u"}
+{"a": "\u0110inh Ti\u00ean Ho\u00e0ng", "b": "\u0110inh Tie\u0302n Hoa\u0300ng", "kind": "text", "expected_equal": true, "note": "NFD tr\u00ean chu\u1ed7i \u0111\u1ecba ch\u1ec9"}
+{"a": "L\u01b0\u01a1ng V\u0103n Tu\u1ea5n", "b": "L\u01b0\u01a1ng V\u0103n Tu\u1ea5n", "kind": "text", "expected_equal": true, "note": "gi\u1ed1ng h\u1ec7t \u2014 ki\u1ec3m tra d\u01b0\u01a1ng t\u00ednh gi\u1ea3"}
+{"a": "Nguy\u1ec5n Th\u1ecb H\u00f2a", "b": "Nguy\u1ec5n Th\u1ecb H\u00f2aa", "kind": "text", "expected_equal": true, "note": "kho\u1ea3ng tr\u1eafng/k\u00fd t\u1ef1 l\u1eb7p do g\u00f5"}
+{"a": "Ho\u00e0ng Th\u1ecb Thu H\u00e0", "b": "Ho\u00e0ng Th\u1ecb Thu H\u00e0", "kind": "text", "expected_equal": true, "note": "gi\u1ed1ng h\u1ec7t"}
+{"a": "Tr\u1ecbnh C\u00f4ng S\u01a1n", "b": "Tr\u1ecbnh C\u00f4ng S\u01a1nn", "kind": "text", "expected_equal": true, "note": "l\u1eb7p 1 k\u00fd t\u1ef1 cu\u1ed1i"}
+{"a": "\u0110\u1ed7 Th\u1ecb Mai Anh", "b": "\u0110\u1ed7 Th\u1ecb Mai An", "kind": "text", "expected_equal": false, "note": "r\u01a1i m\u1ea5t ch\u1eef cu\u1ed1i = kh\u00e1c t\u00ean"}
+{"a": "1.000.000\u0111", "b": "1,000,000 VND", "kind": "money", "expected_equal": true, "note": "VN c\u00f3 h\u1eadu t\u1ed1 vs US kh\u00f4ng h\u1eadu t\u1ed1 \u2014 c\u00f9ng 1 tri\u1ec7u"}
+{"a": "2.500.000.000", "b": "2,500,000,000", "kind": "money", "expected_equal": true, "note": "d\u1ea5u ngh\u00ecn VN vs US"}
+{"a": "2.500.000.000", "b": "2.600.000.000", "kind": "money", "expected_equal": false, "note": "l\u1ec7ch 100 tri\u1ec7u, ratio v\u1eabn r\u1ea5t cao"}
+{"a": "2.500.000.000", "b": "2500000000", "kind": "money", "expected_equal": true, "note": "kh\u00f4ng ph\u00e2n c\u00e1ch"}
+{"a": "1.000.000", "b": "1.000.001", "kind": "money", "expected_equal": false, "note": "l\u1ec7ch \u0111\u00fang 1 ch\u1eef s\u1ed1 = l\u1ec7ch 1 \u0111\u1ed3ng, v\u1eabn l\u00e0 SAI"}
+{"a": "5.000.000\u0111", "b": "5.000.000 \u0111\u1ed3ng", "kind": "money", "expected_equal": true, "note": "k\u00fd hi\u1ec7u '\u0111' vs '\u0111\u1ed3ng'"}
+{"a": "5.000.000\u20ab", "b": "5.000.000 VN\u0110", "kind": "money", "expected_equal": true, "note": "\u20ab vs VN\u0110"}
+{"a": "1.250.000,50", "b": "1,250,000.50", "kind": "money", "expected_equal": true, "note": "th\u1eadp ph\u00e2n: ph\u1ea9y VN vs ch\u1ea5m US"}
+{"a": "1.250.000,50", "b": "1.250.000,5", "kind": "money", "expected_equal": true, "note": "0,50 vs 0,5 \u2014 c\u00f9ng gi\u00e1 tr\u1ecb"}
+{"a": "1.250.000,50", "b": "1.250.000,55", "kind": "money", "expected_equal": false, "note": "l\u1ec7ch 5 xu"}
+{"a": "0", "b": "0\u0111", "kind": "money", "expected_equal": true, "note": "s\u1ed1 0 c\u00f3/kh\u00f4ng h\u1eadu t\u1ed1"}
+{"a": "10.000.000", "b": "10.000.000,00", "kind": "money", "expected_equal": true, "note": "ph\u1ea7n th\u1eadp ph\u00e2n b\u1eb1ng 0"}
+{"a": "100.000", "b": "1.000.000", "kind": "money", "expected_equal": false, "note": "thi\u1ebfu 1 s\u1ed1 0 = sai 10 l\u1ea7n"}
+{"a": "50.000.000", "b": "50,000,001", "kind": "money", "expected_equal": false, "note": "l\u1ec7ch 1 \u0111\u1ed3ng"}
+{"a": "1.000.000", "b": "1.000.000.000", "kind": "money", "expected_equal": false, "note": "l\u1ec7ch 1000 l\u1ea7n"}
+{"a": "-2.000.000", "b": "-2.000.000\u0111", "kind": "money", "expected_equal": true, "note": "s\u1ed1 \u00e2m c\u00f3 h\u1eadu t\u1ed1"}
+{"a": "2.000.000", "b": "-2.000.000", "kind": "money", "expected_equal": false, "note": "kh\u00e1c d\u1ea5u = ghi c\u00f3 vs ghi n\u1ee3"}
+{"a": "1.000.000", "b": "1.000.000\u0111 ", "kind": "money", "expected_equal": true, "note": "kho\u1ea3ng tr\u1eafng sau h\u1eadu t\u1ed1"}
+{"a": " 1.000.000 ", "b": "1,000,000", "kind": "money", "expected_equal": true, "note": "kho\u1ea3ng tr\u1eafng hai \u0111\u1ea7u"}
+{"a": "2.500", "b": "2.500.000", "kind": "money", "expected_equal": false, "note": "2.500 \u0111\u1ecdc ki\u1ec3u VN = 2.500 \u0111\u1ed3ng, kh\u00f4ng ph\u1ea3i 2,5 tri\u1ec7u"}
+{"a": "999.999", "b": "999.998", "kind": "money", "expected_equal": false, "note": "l\u1ec7ch 1 \u0111\u1ed3ng"}
+{"a": "1.000.000", "b": "1.000.000 vn\u0111", "kind": "money", "expected_equal": true, "note": "h\u1eadu t\u1ed1 ch\u1eef th\u01b0\u1eddng"}
+{"a": "3.000.000", "b": "3,000,000.00", "kind": "money", "expected_equal": true, "note": "US + th\u1eadp ph\u00e2n .00"}
+{"a": "7.500.000", "b": "7.500.000 ", "kind": "money", "expected_equal": true, "note": "kho\u1ea3ng tr\u1eafng cu\u1ed1i"}
+{"a": "12.000.000", "b": "12.000.00", "kind": "money", "expected_equal": false, "note": "\u0111\u1ecbnh d\u1ea1ng sai \u2014 k\u1ef3 v\u1ecdng n\u00e9m l\u1ed7i, kh\u00f4ng \u00e2m th\u1ea7m so chu\u1ed7i"}
+{"a": "2.000.000,0", "b": "2.000.000", "kind": "money", "expected_equal": true, "note": "\u0111u\u00f4i ,0"}
+{"a": "150.000.000", "b": "150.000,000", "kind": "money", "expected_equal": false, "note": "b\u1eaby ph\u1ea9y th\u1eadp ph\u00e2n: 150.000,000 = 150.000 \u0111\u1ed3ng, kh\u00f4ng ph\u1ea3i 150 tri\u1ec7u"}
+{"a": "4.500.000", "b": "4.500.001", "kind": "money", "expected_equal": false, "note": "l\u1ec7ch 1 \u0111\u1ed3ng"}
+{"a": "01/02/2026", "b": "1-2-2026", "kind": "date", "expected_equal": true, "note": "thi\u1ebfu s\u1ed1 0 + \u0111\u1ed5i d\u1ea5u ph\u00e2n c\u00e1ch"}
+{"a": "12/08/2026", "b": "12-8-2026", "kind": "date", "expected_equal": true, "note": "DD/MM/YYYY vs D-M-YYYY"}
+{"a": "12/08/2026", "b": "2026-08-12", "kind": "date", "expected_equal": true, "note": "DD/MM/YYYY vs ISO YYYY-MM-DD"}
+{"a": "2026-01-15", "b": "15/01/2026", "kind": "date", "expected_equal": true, "note": "ISO vs DD/MM"}
+{"a": "12/08/2026", "b": "12/08/2025", "kind": "date", "expected_equal": false, "note": "l\u1ec7ch 1 n\u0103m"}
+{"a": "05/06/2026", "b": "05/06/2027", "kind": "date", "expected_equal": false, "note": "l\u1ec7ch 1 n\u0103m, chu\u1ed7i ch\u1ec9 kh\u00e1c 1 k\u00fd t\u1ef1 \u2014 b\u1eaby ng\u01b0\u1ee1ng 0.9"}
+{"a": "10/10/2026", "b": "10-11-2026", "kind": "date", "expected_equal": false, "note": "l\u1ec7ch 1 th\u00e1ng, chu\u1ed7i ch\u1ec9 kh\u00e1c 1 k\u00fd t\u1ef1"}
+{"a": "01/02/2026", "b": "02/01/2026", "kind": "date", "expected_equal": false, "note": "ho\u00e1n v\u1ecb ng\u00e0y/th\u00e1ng \u2014 c\u00f9ng t\u1eadp k\u00fd t\u1ef1, kh\u00e1c ng\u00e0y"}
+{"a": "1/2/2026", "b": "01/02/2026", "kind": "date", "expected_equal": true, "note": "thi\u1ebfu s\u1ed1 0 hai v\u1ebf"}
+{"a": "31/12/2025", "b": "31-12-2025", "kind": "date", "expected_equal": true, "note": "\u0111\u1ed5i d\u1ea5u ph\u00e2n c\u00e1ch"}
+{"a": "31/12/2025", "b": "31/12/2024", "kind": "date", "expected_equal": false, "note": "l\u1ec7ch 1 n\u0103m"}
+{"a": "2026-01-15", "b": "2026-01-16", "kind": "date", "expected_equal": false, "note": "l\u1ec7ch 1 ng\u00e0y"}
+{"a": "01.02.2026", "b": "1.2.2026", "kind": "date", "expected_equal": true, "note": "d\u1ea5u ch\u1ea5m + thi\u1ebfu s\u1ed1 0"}
+{"a": "01 02 2026", "b": "01/02/2026", "kind": "date", "expected_equal": true, "note": "d\u1ea5u c\u00e1ch vs d\u1ea5u g\u1ea1ch ch\u00e9o"}
+{"a": "29/02/2024", "b": "29-2-2024", "kind": "date", "expected_equal": true, "note": "n\u0103m nhu\u1eadn h\u1ee3p l\u1ec7"}
+{"a": "29/02/2025", "b": "29/02/2025", "kind": "date", "expected_equal": false, "note": "ng\u00e0y kh\u00f4ng t\u1ed3n t\u1ea1i \u2014 k\u1ef3 v\u1ecdng n\u00e9m l\u1ed7i, kh\u00f4ng \u00e2m th\u1ea7m 'b\u1eb1ng'"}
+{"a": "15/07/2026", "b": "15/7/2026 ", "kind": "date", "expected_equal": true, "note": "kho\u1ea3ng tr\u1eafng cu\u1ed1i"}
+{"a": "15/07/2026", "b": "15/ 07/2026", "kind": "date", "expected_equal": true, "note": "d\u1ea5u c\u00e1ch sau g\u1ea1ch ch\u00e9o"}
+{"a": "08/03/2026", "b": "09/03/2026", "kind": "date", "expected_equal": false, "note": "l\u1ec7ch 1 ng\u00e0y"}
+{"a": "20/11/2026", "b": "20/11/2026", "kind": "date", "expected_equal": true, "note": "gi\u1ed1ng h\u1ec7t"}
+{"a": "30/06/2026", "b": "30/07/2026", "kind": "date", "expected_equal": false, "note": "l\u1ec7ch 1 th\u00e1ng"}
+{"a": "07/09/2026", "b": "7/9/2026", "kind": "date", "expected_equal": true, "note": "thi\u1ebfu s\u1ed1 0 hai v\u1ebf"}
+{"a": "031234567890", "b": "0312 3456 7890", "kind": "id", "expected_equal": true, "note": "ch\u1ec9 kh\u00e1c kho\u1ea3ng tr\u1eafng"}
+{"a": "031234567890", "b": "031234567891", "kind": "id", "expected_equal": false, "note": "l\u1ec7ch 1 s\u1ed1 = 2 ng\u01b0\u1eddi, ratio ~0.92"}
+{"a": "031234567890", "b": "0312-3456-7890", "kind": "id", "expected_equal": true, "note": "g\u1ea1ch n\u1ed1i"}
+{"a": "031234567890", "b": "031 2345 67890", "kind": "id", "expected_equal": true, "note": "nh\u00f3m 3 ch\u1eef s\u1ed1"}
+{"a": "031234567890 ", "b": "031234567890", "kind": "id", "expected_equal": true, "note": "kho\u1ea3ng tr\u1eafng cu\u1ed1i"}
+{"a": "031234567890", "b": "03123456789O", "kind": "id", "expected_equal": false, "note": "ch\u1eef O thay s\u1ed1 0 \u2014 l\u1ed7i OCR kinh \u0111i\u1ec3n, ratio ~0.92"}
+{"a": "001099012345", "b": "001099012346", "kind": "id", "expected_equal": false, "note": "l\u1ec7ch 1 s\u1ed1 cu\u1ed1i"}
+{"a": "0312345678901", "b": "031234567890", "kind": "id", "expected_equal": false, "note": "l\u1ec7ch \u0111\u1ed9 d\u00e0i"}
+{"a": "0001234567", "b": "1234567", "kind": "id", "expected_equal": false, "note": "s\u1ed1 0 \u0111\u1ea7u c\u00f3 ngh\u0129a, kh\u00f4ng \u0111\u01b0\u1ee3c b\u1ecf"}
+{"a": "KH-2026-001", "b": "kh 2026 001", "kind": "id", "expected_equal": true, "note": "g\u1ea1ch n\u1ed1i + hoa/th\u01b0\u1eddng"}
+{"a": "KH-2026-001", "b": "KH-2026-002", "kind": "id", "expected_equal": false, "note": "l\u1ec7ch 1 s\u1ed1"}
+{"a": "KH2026 01", "b": "kh2026-01", "kind": "id", "expected_equal": true, "note": "kho\u1ea3ng tr\u1eafng vs g\u1ea1ch n\u1ed1i"}
+{"a": "HD-2026-0457", "b": "HD20260457", "kind": "id", "expected_equal": true, "note": "b\u1ecf h\u1ebft d\u1ea5u ph\u00e2n c\u00e1ch v\u1eabn c\u00f9ng s\u1ed1"}
+{"a": "HD-2026-0457", "b": "HD-2026-0458", "kind": "id", "expected_equal": false, "note": "l\u1ec7ch 1 s\u1ed1"}
+{"a": "STK-1234567890", "b": "STK 1234 5678 90", "kind": "id", "expected_equal": true, "note": "nh\u00f3m s\u1ed1 + d\u1ea5u ph\u00e2n c\u00e1ch"}
+{"a": "1234567890", "b": "1234567891", "kind": "id", "expected_equal": false, "note": "l\u1ec7ch 1 s\u1ed1"}
+{"a": "AB-12-CD", "b": "ab12cd", "kind": "id", "expected_equal": true, "note": "m\u00e3 ch\u1eef + s\u1ed1, kh\u00e1c hoa/th\u01b0\u1eddng v\u00e0 g\u1ea1ch n\u1ed1i"}
+{"a": "AB-12-CD", "b": "AB-12-CE", "kind": "id", "expected_equal": false, "note": "l\u1ec7ch 1 k\u00fd t\u1ef1 m\u00e3"}
+{"a": "MST 0101234567", "b": "0101234567", "kind": "id", "expected_equal": false, "note": "nh\u00e3n 'MST' d\u00ednh v\u00e0o m\u00e3 \u2014 th\u01b0 vi\u1ec7n kh\u00f4ng b\u1ecf nh\u00e3n (h\u1ea1n ch\u1ebf \u0111\u00e3 bi\u1ebft)"}
+{"a": "031234567890", "b": "031234567890\n", "kind": "id", "expected_equal": true, "note": "xu\u1ed1ng d\u00f2ng cu\u1ed1i"}
+{"a": "CC-2026-77", "b": "CC 2026 77", "kind": "id", "expected_equal": true, "note": "d\u1ea5u ph\u00e2n c\u00e1ch"}
+{"a": "CC-2026-77", "b": "cc-2026-71", "kind": "id", "expected_equal": false, "note": "l\u1ec7ch 1 s\u1ed1"}
