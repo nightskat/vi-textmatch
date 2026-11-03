@@ -1,6 +1,10 @@
-# Bench vi-textmatch — bàn giao (03/11/2026)
-- **Làm:** Hermes (opencode-go deepseek) dựng 102 cặp bịa + `run_bench.py`; Claude chạy lại nghiệm thu, khớp số.
-- **Kết quả:** vi_textmatch 94,1% (FE 5, FD 1, ERR 2) · difflib 45,1% (FE 23) · rapidfuzz 45,1% (FE 23).
-- **Finding:** FE còn lại toàn `text` = tên người lệch 1 dấu (Khánh/Kháng, An/Ân) → đề xuất kind `name` chặt hơn hoặc so thành phần tên. CHƯA SỬA.
-- **Chạy lại:** `PYTHONPATH=src <python có rapidfuzz> bench/run_bench.py` (thiếu rapidfuzz thì script tự bỏ cột đó).
-- **Đừng:** dùng dữ liệu thật trong pairs.jsonl; push trước khi Tuan duyệt.
+# Bench vi-textmatch — bàn giao (cập nhật 03/11/2026)
+- **Dữ liệu:** `pairs_core.jsonl` (100 cặp viết tay, nhãn kind đã chỉnh ở commit Kind.NAME) +
+  `gen_extended.py` (seed 20261103) → `pairs.jsonl`. `gen_pairs.py` là bản gốc 100 cặp, giữ để tham khảo
+  (không còn sinh `pairs.jsonl`).
+- **Số liệu:** xem `RESULTS.md` (sinh tự động) — không chép số vào đây để khỏi lệch.
+- **CI gate:** `run_bench.py --check` so false-equal với `baseline.json` theo TỪNG CẶP. Sửa được FE → chạy
+  `--update-baseline` và commit. Thêm FE mới là fail.
+- **Chạy lại:** `pip install -r bench/requirements.txt` rồi `python bench/gen_extended.py && python bench/run_bench.py`.
+  Thiếu rapidfuzz thì script **thoát mã 2** (không tự bỏ cột).
+- **Đừng:** dùng dữ liệu thật; sửa nhãn cho khớp thư viện.

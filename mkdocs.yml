@@ -1,0 +1,27 @@
+site_name: vi-textmatch
+site_url: https://nightskat.github.io/vi-textmatch/
+repo_url: https://github.com/nightskat/vi-textmatch
+site_description: Vietnamese text normalization and type-aware string comparison
+theme:
+  name: material
+  language: vi
+  features: [navigation.sections, content.code.copy]
+markdown_extensions:
+  - tables
+  - admonition
+  - pymdownx.superfences
+  - pymdownx.snippets:
+      base_path: [docs/snippets]
+      check_paths: true
+nav:
+  - Tiếng Việt:
+      - Bắt đầu nhanh: index.md
+      - Các Kind: kinds.md
+      - So sánh difflib/rapidfuzz: benchmark.md
+  - English:
+      - Quickstart: en/index.md
+      - Kinds: en/kinds.md
+      - vs difflib/rapidfuzz: en/benchmark.md
+exclude_docs: |
+  snippets/
+  requirements.txt

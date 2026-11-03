@@ -1,100 +1,590 @@
-{"a": "Nguyễn Thị Hòa", "b": "Nguyễn Thị Hòa", "kind": "name", "expected_equal": true, "note": "NFC vs NFD: cùng tên, khác byte"}
-{"a": "Đinh Tiên Hoàng", "b": "Đinh Tiên Hoàng", "kind": "text", "expected_equal": true, "note": "NFD trên địa danh có ký tự Đ"}
-{"a": "Hoà Văn Bình", "b": "Hòa Văn Bình", "kind": "name", "expected_equal": true, "note": "vị trí dấu thanh oà/òa, âm tiết mở"}
-{"a": "Thuỳ Dương", "b": "Thùy Dương", "kind": "name", "expected_equal": true, "note": "uỳ/ùy, âm tiết mở"}
-{"a": "Hoè Thị Lan", "b": "Hòe Thị Lan", "kind": "name", "expected_equal": true, "note": "oè/òe, âm tiết mở"}
-{"a": "Nguyễn Thị Hòa", "b": "Nguyễn  Thị   Hòa", "kind": "name", "expected_equal": true, "note": "khoảng trắng thừa"}
-{"a": "Nguyễn Thị Hòa", "b": "Nguyễn Thị Hòa", "kind": "name", "expected_equal": true, "note": "nbsp U+00A0 do Word/Excel chèn"}
-{"a": "Bùi Minh​ Châu", "b": "Bùi Minh Châu", "kind": "name", "expected_equal": true, "note": "zero-width space U+200B"}
-{"a": "Nguyễn Thị Hòa", "b": "nguyễn thị hòa", "kind": "name", "expected_equal": true, "note": "chỉ khác hoa/thường"}
-{"a": "Vũ Hoàng Nam ", "b": "Vũ Hoàng Nam", "kind": "name", "expected_equal": true, "note": "khoảng trắng cuối"}
-{"a": "Lý\tThị\tMai", "b": "Lý Thị Mai", "kind": "name", "expected_equal": true, "note": "tab thay dấu cách"}
-{"a": "CÔNG TY TNHH THƯƠNG MẠI BÌNH AN", "b": "Công ty TNHH Thương mại Bình An", "kind": "text", "expected_equal": true, "note": "tên tổ chức, chỉ khác hoa/thường"}
-{"a": "Số 12 Ngõ 34 Phố Hoa Ban, Phường 5", "b": "Số 12  Ngõ  34  Phố Hoa Ban,  Phường 5", "kind": "text", "expected_equal": true, "note": "địa chỉ, khoảng trắng thừa"}
-{"a": "Xã Hoà Bình, Huyện Quỳnh Lưu", "b": "Xã Hòa Bình, Huyện Quỳnh Lưu", "kind": "text", "expected_equal": true, "note": "hoà→hòa trong địa danh; quỳnh phải giữ nguyên"}
-{"a": "Trịnh Công Sơnn", "b": "Trịnh Công Sơn", "kind": "name", "expected_equal": true, "note": "lặp 1 ký tự cuối (gõ/OCR)"}
-{"a": "Lương Thị Ánh Tuyế", "b": "Lương Thị Ánh Tuyết", "kind": "name", "expected_equal": true, "note": "nuốt ký tự cuối (OCR)"}
-{"a": "Hoàng Văn Quag", "b": "Hoàng Văn Quang", "kind": "name", "expected_equal": true, "note": "rơi 1 phụ âm cuối"}
-{"a": "Nguyễn Thị Hòa", "b": "Trần Văn Bình", "kind": "name", "expected_equal": false, "note": "hai người khác nhau"}
-{"a": "Lê Văn Hoàn", "b": "Lê Văn Hòa", "kind": "name", "expected_equal": false, "note": "âm tiết đóng 'hoàn' KHÔNG được đổi thành 'hòa' — hai từ khác nhau"}
-{"a": "Phạm Quốc Khánh", "b": "Phạm Quốc Kháng", "kind": "name", "expected_equal": false, "note": "lệch 1 dấu, mỗi dạng đều là tên hợp lệ → phải soát lại"}
-{"a": "Phạm Minh Khôi", "b": "Bùi Minh Khôi", "kind": "name", "expected_equal": false, "note": "họ khác — hai người, chuỗi gần như giống hệt"}
-{"a": "Nguyễn Thị Hòa", "b": "Nguyễn Thị Hồng", "kind": "name", "expected_equal": false, "note": "cùng họ + đệm, khác tên gọi"}
-{"a": "Số 12 Ngõ 34 Phố Hoa Ban, Phường 5", "b": "Số 21 Ngõ 34 Phố Hoa Ban, Phường 5", "kind": "text", "expected_equal": false, "note": "số nhà 12→21, phần còn lại giống hệt"}
-{"a": "Công ty TNHH Bình Minh", "b": "Công ty CP Bình Minh", "kind": "text", "expected_equal": false, "note": "khác loại hình doanh nghiệp = khác pháp nhân"}
-{"a": "Phòng giao dịch Lê Chân", "b": "Phòng giao dịch Hồng Bàng", "kind": "text", "expected_equal": false, "note": "cùng mẫu, khác địa danh"}
-{"a": "Nguyễn Hoàng Nam", "b": "Nguyễn Hoàng Ninh", "kind": "name", "expected_equal": false, "note": "tên gọi khác — hai người"}
-{"a": "Trần Thị Bích Ngọc", "b": "Trần Thị Bích Ngà", "kind": "name", "expected_equal": false, "note": "tên gọi khác — hai người"}
-{"a": "Lê Quang Dũng", "b": "Lê Quang Hùng", "kind": "name", "expected_equal": false, "note": "tên gọi khác — hai người"}
-{"a": "Vũ Hoàng Nam", "b": "Vũ Hoàng Nga", "kind": "name", "expected_equal": false, "note": "tên gọi khác — hai người"}
-{"a": "Nguyễn Thị Thu Hà", "b": "Nguyễn Thị Thu Hằng", "kind": "name", "expected_equal": false, "note": "tên gọi khác — hai người, chuỗi gần như giống hệt"}
-{"a": "1.000.000đ", "b": "1,000,000 VND", "kind": "money", "expected_equal": true, "note": "kiểu VN có 'đ' vs kiểu US có 'VND'"}
-{"a": "2.500.000.000", "b": "2,500,000,000", "kind": "money", "expected_equal": true, "note": "dấu phân nghìn VN vs US"}
-{"a": "2.500.000.000", "b": "2500000000", "kind": "money", "expected_equal": true, "note": "có phân cách vs số trơn"}
-{"a": "2.500.000,50", "b": "2,500,000.50", "kind": "money", "expected_equal": true, "note": "thập phân: phẩy VN vs chấm US"}
-{"a": "1.250.000,50", "b": "1.250.000,5", "kind": "money", "expected_equal": true, "note": "0,50 vs 0,5 — cùng giá trị"}
-{"a": "5.000.000đ", "b": "5.000.000 đồng", "kind": "money", "expected_equal": true, "note": "'đ' vs 'đồng'"}
-{"a": "5.000.000₫", "b": "5.000.000 VNĐ", "kind": "money", "expected_equal": true, "note": "'₫' vs 'VNĐ'"}
-{"a": "0", "b": "0đ", "kind": "money", "expected_equal": true, "note": "số 0 có/không hậu tố"}
-{"a": "10.000.000", "b": "10.000.000,00", "kind": "money", "expected_equal": true, "note": "phần thập phân bằng 0"}
-{"a": " 1.000.000 ", "b": "1,000,000", "kind": "money", "expected_equal": true, "note": "khoảng trắng hai đầu"}
-{"a": "1.000.000", "b": "1.000.000 vnđ", "kind": "money", "expected_equal": true, "note": "hậu tố chữ thường"}
-{"a": "-2.000.000", "b": "-2.000.000đ", "kind": "money", "expected_equal": true, "note": "số âm có hậu tố"}
-{"a": "3.000.000", "b": "3,000,000.00", "kind": "money", "expected_equal": true, "note": "US + thập phân .00"}
-{"a": "100.000.000", "b": "100000000", "kind": "money", "expected_equal": true, "note": "số trơn 9 chữ số"}
-{"a": "7.000.000", "b": "7.000.000 VND", "kind": "money", "expected_equal": true, "note": "một bên có hậu tố, một bên không"}
-{"a": "1.000.000", "b": "1.000.001", "kind": "money", "expected_equal": false, "note": "lệch đúng 1 đồng"}
-{"a": "2.500.000.000", "b": "2.600.000.000", "kind": "money", "expected_equal": false, "note": "lệch 100 triệu, chuỗi vẫn rất giống"}
-{"a": "50.000.000", "b": "50,000,001", "kind": "money", "expected_equal": false, "note": "lệch 1 đồng"}
-{"a": "100.000", "b": "1.000.000", "kind": "money", "expected_equal": false, "note": "thiếu 1 số 0 = sai 10 lần"}
-{"a": "1.000.000", "b": "1.000.000.000", "kind": "money", "expected_equal": false, "note": "lệch 1000 lần, chỉ thêm 1 nhóm .000"}
-{"a": "2.000.000", "b": "-2.000.000", "kind": "money", "expected_equal": false, "note": "khác dấu = ghi có vs ghi nợ"}
-{"a": "2.500", "b": "2.500.000", "kind": "money", "expected_equal": false, "note": "kiểu VN: 2.500 = 2.500 đồng, không phải 2,5 triệu"}
-{"a": "1.250.000,50", "b": "1.250.000,55", "kind": "money", "expected_equal": false, "note": "lệch 5 xu"}
-{"a": "999.999", "b": "999.998", "kind": "money", "expected_equal": false, "note": "lệch 1 đồng"}
-{"a": "12.000.000", "b": "12.000.00", "kind": "money", "expected_equal": false, "note": "định dạng sai (nhóm 2 chữ số) — kỳ vọng ném lỗi, không âm thầm so chuỗi"}
-{"a": "01/02/2026", "b": "1-2-2026", "kind": "date", "expected_equal": true, "note": "thiếu số 0 + đổi dấu phân cách"}
-{"a": "12/08/2026", "b": "12-8-2026", "kind": "date", "expected_equal": true, "note": "DD/MM/YYYY vs D-M-YYYY"}
-{"a": "12/08/2026", "b": "2026-08-12", "kind": "date", "expected_equal": true, "note": "DD/MM/YYYY vs ISO YYYY-MM-DD"}
-{"a": "2026-01-15", "b": "15/01/2026", "kind": "date", "expected_equal": true, "note": "ISO vs DD/MM"}
-{"a": "01.02.2026", "b": "1.2.2026", "kind": "date", "expected_equal": true, "note": "dấu chấm + thiếu số 0"}
-{"a": "01 02 2026", "b": "01/02/2026", "kind": "date", "expected_equal": true, "note": "dấu cách vs dấu gạch chéo"}
-{"a": "29/02/2024", "b": "29-2-2024", "kind": "date", "expected_equal": true, "note": "29/02 năm nhuận hợp lệ"}
-{"a": "15/07/2026", "b": "15/7/2026 ", "kind": "date", "expected_equal": true, "note": "bỏ số 0 + khoảng trắng cuối"}
-{"a": "15/07/2026", "b": "15/ 07/2026", "kind": "date", "expected_equal": true, "note": "dấu cách sau gạch chéo"}
-{"a": "31/12/2025", "b": "31-12-2025", "kind": "date", "expected_equal": true, "note": "đổi dấu phân cách"}
-{"a": "07/09/2026", "b": "7/9/2026", "kind": "date", "expected_equal": true, "note": "thiếu số 0 hai vế"}
-{"a": "12/08/2026", "b": "12/08/2025", "kind": "date", "expected_equal": false, "note": "lệch 1 năm"}
-{"a": "01/02/2026", "b": "02/01/2026", "kind": "date", "expected_equal": false, "note": "hoán vị ngày/tháng — cùng tập ký tự, khác ngày"}
-{"a": "05/06/2026", "b": "06/05/2026", "kind": "date", "expected_equal": false, "note": "hoán vị ngày/tháng, chuỗi khác đúng 2 ký tự"}
-{"a": "10/10/2026", "b": "10-11-2026", "kind": "date", "expected_equal": false, "note": "lệch 1 tháng, chuỗi khác 1 ký tự"}
-{"a": "2026-01-15", "b": "2026-01-16", "kind": "date", "expected_equal": false, "note": "lệch 1 ngày"}
-{"a": "31/12/2025", "b": "31/12/2024", "kind": "date", "expected_equal": false, "note": "lệch 1 năm"}
-{"a": "30/06/2026", "b": "30/07/2026", "kind": "date", "expected_equal": false, "note": "lệch 1 tháng"}
-{"a": "08/03/2026", "b": "09/03/2026", "kind": "date", "expected_equal": false, "note": "lệch 1 ngày"}
-{"a": "29/02/2025", "b": "29-2-2025", "kind": "date", "expected_equal": false, "note": "ngày không tồn tại (2025 không nhuận) — kỳ vọng ném lỗi"}
-{"a": "031234567890", "b": "0312 3456 7890", "kind": "id", "expected_equal": true, "note": "chỉ khác khoảng trắng"}
-{"a": "031234567890", "b": "0312-3456-7890", "kind": "id", "expected_equal": true, "note": "gạch nối nhóm 4"}
-{"a": "031234567890", "b": "031 2345 67890", "kind": "id", "expected_equal": true, "note": "nhóm 3 chữ số"}
-{"a": "031234567890", "b": "0312–3456–7890", "kind": "id", "expected_equal": true, "note": "en dash thay gạch nối"}
-{"a": " 031234567890 ", "b": "031234567890", "kind": "id", "expected_equal": true, "note": "khoảng trắng đầu/cuối"}
-{"a": "031234567890\n", "b": "031234567890", "kind": "id", "expected_equal": true, "note": "xuống dòng cuối"}
-{"a": "031234567890", "b": "0312\t3456\t7890", "kind": "id", "expected_equal": true, "note": "tab thay khoảng trắng"}
-{"a": "KH-2026-001", "b": "kh 2026 001", "kind": "id", "expected_equal": true, "note": "gạch nối + hoa/thường"}
-{"a": "HD-2026-0457", "b": "HD20260457", "kind": "id", "expected_equal": true, "note": "bỏ hết dấu phân cách"}
-{"a": "STK-1234567890", "b": "STK 1234 5678 90", "kind": "id", "expected_equal": true, "note": "nhóm số + dấu phân cách"}
-{"a": "AB-12-CD", "b": "ab12cd", "kind": "id", "expected_equal": true, "note": "mã chữ + số, khác case và gạch nối"}
-{"a": "001234567890", "b": "0012 3456 7890", "kind": "id", "expected_equal": true, "note": "số 0 đứng trước được giữ"}
-{"a": "031234567890", "b": "031234567891", "kind": "id", "expected_equal": false, "note": "CCCD lệch đúng 1 số cuối — hai người"}
-{"a": "031234567890", "b": "03123456789O", "kind": "id", "expected_equal": false, "note": "chữ O thay số 0 — lỗi OCR kinh điển"}
-{"a": "031234567890", "b": "031234567980", "kind": "id", "expected_equal": false, "note": "đảo 2 chữ số — cùng độ dài"}
-{"a": "0312345678901", "b": "031234567890", "kind": "id", "expected_equal": false, "note": "lệch độ dài (thêm 1 chữ số)"}
-{"a": "001099012345", "b": "001099012346", "kind": "id", "expected_equal": false, "note": "lệch 1 số cuối"}
-{"a": "0001234567", "b": "1234567", "kind": "id", "expected_equal": false, "note": "số 0 đầu có nghĩa, không được bỏ"}
-{"a": "KH-2026-001", "b": "KH-2026-002", "kind": "id", "expected_equal": false, "note": "lệch 1 số"}
-{"a": "HD-2026-0457", "b": "HD-2026-0458", "kind": "id", "expected_equal": false, "note": "lệch 1 số"}
-{"a": "AB-12-CD", "b": "AB-12-CE", "kind": "id", "expected_equal": false, "note": "lệch 1 ký tự mã"}
-{"a": "MST 0101234567", "b": "0101234567", "kind": "id", "expected_equal": false, "note": "nhãn 'MST' chỉ có ở một bên — thư viện không bỏ nhãn (hạn chế đã biết)"}
-{"a": "031234567890", "b": "031234561290", "kind": "id", "expected_equal": false, "note": "lệch 2 chữ số ở giữa"}
-{"a": "012345678901", "b": "012345678900", "kind": "id", "expected_equal": false, "note": "lệch 1 số cuối"}
-{"a": "031234567890", "b": "041234567890", "kind": "id", "expected_equal": false, "note": "lệch chữ số đầu"}
+{"a": "Nguyễn Thị Hòa", "b": "Nguyễn Thị Hòa", "kind": "name", "expected_equal": true, "note": "NFC vs NFD: cùng tên, khác byte", "source": "core"}
+{"a": "Đinh Tiên Hoàng", "b": "Đinh Tiên Hoàng", "kind": "text", "expected_equal": true, "note": "NFD trên địa danh có ký tự Đ", "source": "core"}
+{"a": "Hoà Văn Bình", "b": "Hòa Văn Bình", "kind": "name", "expected_equal": true, "note": "vị trí dấu thanh oà/òa, âm tiết mở", "source": "core"}
+{"a": "Thuỳ Dương", "b": "Thùy Dương", "kind": "name", "expected_equal": true, "note": "uỳ/ùy, âm tiết mở", "source": "core"}
+{"a": "Hoè Thị Lan", "b": "Hòe Thị Lan", "kind": "name", "expected_equal": true, "note": "oè/òe, âm tiết mở", "source": "core"}
+{"a": "Nguyễn Thị Hòa", "b": "Nguyễn  Thị   Hòa", "kind": "name", "expected_equal": true, "note": "khoảng trắng thừa", "source": "core"}
+{"a": "Nguyễn Thị Hòa", "b": "Nguyễn Thị Hòa", "kind": "name", "expected_equal": true, "note": "nbsp U+00A0 do Word/Excel chèn", "source": "core"}
+{"a": "Bùi Minh​ Châu", "b": "Bùi Minh Châu", "kind": "name", "expected_equal": true, "note": "zero-width space U+200B", "source": "core"}
+{"a": "Nguyễn Thị Hòa", "b": "nguyễn thị hòa", "kind": "name", "expected_equal": true, "note": "chỉ khác hoa/thường", "source": "core"}
+{"a": "Vũ Hoàng Nam ", "b": "Vũ Hoàng Nam", "kind": "name", "expected_equal": true, "note": "khoảng trắng cuối", "source": "core"}
+{"a": "Lý\tThị\tMai", "b": "Lý Thị Mai", "kind": "name", "expected_equal": true, "note": "tab thay dấu cách", "source": "core"}
+{"a": "CÔNG TY TNHH THƯƠNG MẠI BÌNH AN", "b": "Công ty TNHH Thương mại Bình An", "kind": "text", "expected_equal": true, "note": "tên tổ chức, chỉ khác hoa/thường", "source": "core"}
+{"a": "Số 12 Ngõ 34 Phố Hoa Ban, Phường 5", "b": "Số 12  Ngõ  34  Phố Hoa Ban,  Phường 5", "kind": "text", "expected_equal": true, "note": "địa chỉ, khoảng trắng thừa", "source": "core"}
+{"a": "Xã Hoà Bình, Huyện Quỳnh Lưu", "b": "Xã Hòa Bình, Huyện Quỳnh Lưu", "kind": "text", "expected_equal": true, "note": "hoà→hòa trong địa danh; quỳnh phải giữ nguyên", "source": "core"}
+{"a": "Trịnh Công Sơnn", "b": "Trịnh Công Sơn", "kind": "name", "expected_equal": true, "note": "lặp 1 ký tự cuối (gõ/OCR)", "source": "core"}
+{"a": "Lương Thị Ánh Tuyế", "b": "Lương Thị Ánh Tuyết", "kind": "name", "expected_equal": true, "note": "nuốt ký tự cuối (OCR)", "source": "core"}
+{"a": "Hoàng Văn Quag", "b": "Hoàng Văn Quang", "kind": "name", "expected_equal": true, "note": "rơi 1 phụ âm cuối", "source": "core"}
+{"a": "Nguyễn Thị Hòa", "b": "Trần Văn Bình", "kind": "name", "expected_equal": false, "note": "hai người khác nhau", "source": "core"}
+{"a": "Lê Văn Hoàn", "b": "Lê Văn Hòa", "kind": "name", "expected_equal": false, "note": "âm tiết đóng 'hoàn' KHÔNG được đổi thành 'hòa' — hai từ khác nhau", "source": "core"}
+{"a": "Phạm Quốc Khánh", "b": "Phạm Quốc Kháng", "kind": "name", "expected_equal": false, "note": "lệch 1 dấu, mỗi dạng đều là tên hợp lệ → phải soát lại", "source": "core"}
+{"a": "Phạm Minh Khôi", "b": "Bùi Minh Khôi", "kind": "name", "expected_equal": false, "note": "họ khác — hai người, chuỗi gần như giống hệt", "source": "core"}
+{"a": "Nguyễn Thị Hòa", "b": "Nguyễn Thị Hồng", "kind": "name", "expected_equal": false, "note": "cùng họ + đệm, khác tên gọi", "source": "core"}
+{"a": "Số 12 Ngõ 34 Phố Hoa Ban, Phường 5", "b": "Số 21 Ngõ 34 Phố Hoa Ban, Phường 5", "kind": "text", "expected_equal": false, "note": "số nhà 12→21, phần còn lại giống hệt", "source": "core"}
+{"a": "Công ty TNHH Bình Minh", "b": "Công ty CP Bình Minh", "kind": "text", "expected_equal": false, "note": "khác loại hình doanh nghiệp = khác pháp nhân", "source": "core"}
+{"a": "Phòng giao dịch Lê Chân", "b": "Phòng giao dịch Hồng Bàng", "kind": "text", "expected_equal": false, "note": "cùng mẫu, khác địa danh", "source": "core"}
+{"a": "Nguyễn Hoàng Nam", "b": "Nguyễn Hoàng Ninh", "kind": "name", "expected_equal": false, "note": "tên gọi khác — hai người", "source": "core"}
+{"a": "Trần Thị Bích Ngọc", "b": "Trần Thị Bích Ngà", "kind": "name", "expected_equal": false, "note": "tên gọi khác — hai người", "source": "core"}
+{"a": "Lê Quang Dũng", "b": "Lê Quang Hùng", "kind": "name", "expected_equal": false, "note": "tên gọi khác — hai người", "source": "core"}
+{"a": "Vũ Hoàng Nam", "b": "Vũ Hoàng Nga", "kind": "name", "expected_equal": false, "note": "tên gọi khác — hai người", "source": "core"}
+{"a": "Nguyễn Thị Thu Hà", "b": "Nguyễn Thị Thu Hằng", "kind": "name", "expected_equal": false, "note": "tên gọi khác — hai người, chuỗi gần như giống hệt", "source": "core"}
+{"a": "1.000.000đ", "b": "1,000,000 VND", "kind": "money", "expected_equal": true, "note": "kiểu VN có 'đ' vs kiểu US có 'VND'", "source": "core"}
+{"a": "2.500.000.000", "b": "2,500,000,000", "kind": "money", "expected_equal": true, "note": "dấu phân nghìn VN vs US", "source": "core"}
+{"a": "2.500.000.000", "b": "2500000000", "kind": "money", "expected_equal": true, "note": "có phân cách vs số trơn", "source": "core"}
+{"a": "2.500.000,50", "b": "2,500,000.50", "kind": "money", "expected_equal": true, "note": "thập phân: phẩy VN vs chấm US", "source": "core"}
+{"a": "1.250.000,50", "b": "1.250.000,5", "kind": "money", "expected_equal": true, "note": "0,50 vs 0,5 — cùng giá trị", "source": "core"}
+{"a": "5.000.000đ", "b": "5.000.000 đồng", "kind": "money", "expected_equal": true, "note": "'đ' vs 'đồng'", "source": "core"}
+{"a": "5.000.000₫", "b": "5.000.000 VNĐ", "kind": "money", "expected_equal": true, "note": "'₫' vs 'VNĐ'", "source": "core"}
+{"a": "0", "b": "0đ", "kind": "money", "expected_equal": true, "note": "số 0 có/không hậu tố", "source": "core"}
+{"a": "10.000.000", "b": "10.000.000,00", "kind": "money", "expected_equal": true, "note": "phần thập phân bằng 0", "source": "core"}
+{"a": " 1.000.000 ", "b": "1,000,000", "kind": "money", "expected_equal": true, "note": "khoảng trắng hai đầu", "source": "core"}
+{"a": "1.000.000", "b": "1.000.000 vnđ", "kind": "money", "expected_equal": true, "note": "hậu tố chữ thường", "source": "core"}
+{"a": "-2.000.000", "b": "-2.000.000đ", "kind": "money", "expected_equal": true, "note": "số âm có hậu tố", "source": "core"}
+{"a": "3.000.000", "b": "3,000,000.00", "kind": "money", "expected_equal": true, "note": "US + thập phân .00", "source": "core"}
+{"a": "100.000.000", "b": "100000000", "kind": "money", "expected_equal": true, "note": "số trơn 9 chữ số", "source": "core"}
+{"a": "7.000.000", "b": "7.000.000 VND", "kind": "money", "expected_equal": true, "note": "một bên có hậu tố, một bên không", "source": "core"}
+{"a": "1.000.000", "b": "1.000.001", "kind": "money", "expected_equal": false, "note": "lệch đúng 1 đồng", "source": "core"}
+{"a": "2.500.000.000", "b": "2.600.000.000", "kind": "money", "expected_equal": false, "note": "lệch 100 triệu, chuỗi vẫn rất giống", "source": "core"}
+{"a": "50.000.000", "b": "50,000,001", "kind": "money", "expected_equal": false, "note": "lệch 1 đồng", "source": "core"}
+{"a": "100.000", "b": "1.000.000", "kind": "money", "expected_equal": false, "note": "thiếu 1 số 0 = sai 10 lần", "source": "core"}
+{"a": "1.000.000", "b": "1.000.000.000", "kind": "money", "expected_equal": false, "note": "lệch 1000 lần, chỉ thêm 1 nhóm .000", "source": "core"}
+{"a": "2.000.000", "b": "-2.000.000", "kind": "money", "expected_equal": false, "note": "khác dấu = ghi có vs ghi nợ", "source": "core"}
+{"a": "2.500", "b": "2.500.000", "kind": "money", "expected_equal": false, "note": "kiểu VN: 2.500 = 2.500 đồng, không phải 2,5 triệu", "source": "core"}
+{"a": "1.250.000,50", "b": "1.250.000,55", "kind": "money", "expected_equal": false, "note": "lệch 5 xu", "source": "core"}
+{"a": "999.999", "b": "999.998", "kind": "money", "expected_equal": false, "note": "lệch 1 đồng", "source": "core"}
+{"a": "12.000.000", "b": "12.000.00", "kind": "money", "expected_equal": false, "note": "định dạng sai (nhóm 2 chữ số) — kỳ vọng ném lỗi, không âm thầm so chuỗi", "source": "core"}
+{"a": "01/02/2026", "b": "1-2-2026", "kind": "date", "expected_equal": true, "note": "thiếu số 0 + đổi dấu phân cách", "source": "core"}
+{"a": "12/08/2026", "b": "12-8-2026", "kind": "date", "expected_equal": true, "note": "DD/MM/YYYY vs D-M-YYYY", "source": "core"}
+{"a": "12/08/2026", "b": "2026-08-12", "kind": "date", "expected_equal": true, "note": "DD/MM/YYYY vs ISO YYYY-MM-DD", "source": "core"}
+{"a": "2026-01-15", "b": "15/01/2026", "kind": "date", "expected_equal": true, "note": "ISO vs DD/MM", "source": "core"}
+{"a": "01.02.2026", "b": "1.2.2026", "kind": "date", "expected_equal": true, "note": "dấu chấm + thiếu số 0", "source": "core"}
+{"a": "01 02 2026", "b": "01/02/2026", "kind": "date", "expected_equal": true, "note": "dấu cách vs dấu gạch chéo", "source": "core"}
+{"a": "29/02/2024", "b": "29-2-2024", "kind": "date", "expected_equal": true, "note": "29/02 năm nhuận hợp lệ", "source": "core"}
+{"a": "15/07/2026", "b": "15/7/2026 ", "kind": "date", "expected_equal": true, "note": "bỏ số 0 + khoảng trắng cuối", "source": "core"}
+{"a": "15/07/2026", "b": "15/ 07/2026", "kind": "date", "expected_equal": true, "note": "dấu cách sau gạch chéo", "source": "core"}
+{"a": "31/12/2025", "b": "31-12-2025", "kind": "date", "expected_equal": true, "note": "đổi dấu phân cách", "source": "core"}
+{"a": "07/09/2026", "b": "7/9/2026", "kind": "date", "expected_equal": true, "note": "thiếu số 0 hai vế", "source": "core"}
+{"a": "12/08/2026", "b": "12/08/2025", "kind": "date", "expected_equal": false, "note": "lệch 1 năm", "source": "core"}
+{"a": "01/02/2026", "b": "02/01/2026", "kind": "date", "expected_equal": false, "note": "hoán vị ngày/tháng — cùng tập ký tự, khác ngày", "source": "core"}
+{"a": "05/06/2026", "b": "06/05/2026", "kind": "date", "expected_equal": false, "note": "hoán vị ngày/tháng, chuỗi khác đúng 2 ký tự", "source": "core"}
+{"a": "10/10/2026", "b": "10-11-2026", "kind": "date", "expected_equal": false, "note": "lệch 1 tháng, chuỗi khác 1 ký tự", "source": "core"}
+{"a": "2026-01-15", "b": "2026-01-16", "kind": "date", "expected_equal": false, "note": "lệch 1 ngày", "source": "core"}
+{"a": "31/12/2025", "b": "31/12/2024", "kind": "date", "expected_equal": false, "note": "lệch 1 năm", "source": "core"}
+{"a": "30/06/2026", "b": "30/07/2026", "kind": "date", "expected_equal": false, "note": "lệch 1 tháng", "source": "core"}
+{"a": "08/03/2026", "b": "09/03/2026", "kind": "date", "expected_equal": false, "note": "lệch 1 ngày", "source": "core"}
+{"a": "29/02/2025", "b": "29-2-2025", "kind": "date", "expected_equal": false, "note": "ngày không tồn tại (2025 không nhuận) — kỳ vọng ném lỗi", "source": "core"}
+{"a": "031234567890", "b": "0312 3456 7890", "kind": "id", "expected_equal": true, "note": "chỉ khác khoảng trắng", "source": "core"}
+{"a": "031234567890", "b": "0312-3456-7890", "kind": "id", "expected_equal": true, "note": "gạch nối nhóm 4", "source": "core"}
+{"a": "031234567890", "b": "031 2345 67890", "kind": "id", "expected_equal": true, "note": "nhóm 3 chữ số", "source": "core"}
+{"a": "031234567890", "b": "0312–3456–7890", "kind": "id", "expected_equal": true, "note": "en dash thay gạch nối", "source": "core"}
+{"a": " 031234567890 ", "b": "031234567890", "kind": "id", "expected_equal": true, "note": "khoảng trắng đầu/cuối", "source": "core"}
+{"a": "031234567890\n", "b": "031234567890", "kind": "id", "expected_equal": true, "note": "xuống dòng cuối", "source": "core"}
+{"a": "031234567890", "b": "0312\t3456\t7890", "kind": "id", "expected_equal": true, "note": "tab thay khoảng trắng", "source": "core"}
+{"a": "KH-2026-001", "b": "kh 2026 001", "kind": "id", "expected_equal": true, "note": "gạch nối + hoa/thường", "source": "core"}
+{"a": "HD-2026-0457", "b": "HD20260457", "kind": "id", "expected_equal": true, "note": "bỏ hết dấu phân cách", "source": "core"}
+{"a": "STK-1234567890", "b": "STK 1234 5678 90", "kind": "id", "expected_equal": true, "note": "nhóm số + dấu phân cách", "source": "core"}
+{"a": "AB-12-CD", "b": "ab12cd", "kind": "id", "expected_equal": true, "note": "mã chữ + số, khác case và gạch nối", "source": "core"}
+{"a": "001234567890", "b": "0012 3456 7890", "kind": "id", "expected_equal": true, "note": "số 0 đứng trước được giữ", "source": "core"}
+{"a": "031234567890", "b": "031234567891", "kind": "id", "expected_equal": false, "note": "CCCD lệch đúng 1 số cuối — hai người", "source": "core"}
+{"a": "031234567890", "b": "03123456789O", "kind": "id", "expected_equal": false, "note": "chữ O thay số 0 — lỗi OCR kinh điển", "source": "core"}
+{"a": "031234567890", "b": "031234567980", "kind": "id", "expected_equal": false, "note": "đảo 2 chữ số — cùng độ dài", "source": "core"}
+{"a": "0312345678901", "b": "031234567890", "kind": "id", "expected_equal": false, "note": "lệch độ dài (thêm 1 chữ số)", "source": "core"}
+{"a": "001099012345", "b": "001099012346", "kind": "id", "expected_equal": false, "note": "lệch 1 số cuối", "source": "core"}
+{"a": "0001234567", "b": "1234567", "kind": "id", "expected_equal": false, "note": "số 0 đầu có nghĩa, không được bỏ", "source": "core"}
+{"a": "KH-2026-001", "b": "KH-2026-002", "kind": "id", "expected_equal": false, "note": "lệch 1 số", "source": "core"}
+{"a": "HD-2026-0457", "b": "HD-2026-0458", "kind": "id", "expected_equal": false, "note": "lệch 1 số", "source": "core"}
+{"a": "AB-12-CD", "b": "AB-12-CE", "kind": "id", "expected_equal": false, "note": "lệch 1 ký tự mã", "source": "core"}
+{"a": "MST 0101234567", "b": "0101234567", "kind": "id", "expected_equal": false, "note": "nhãn 'MST' chỉ có ở một bên — thư viện không bỏ nhãn (hạn chế đã biết)", "source": "core"}
+{"a": "031234567890", "b": "031234561290", "kind": "id", "expected_equal": false, "note": "lệch 2 chữ số ở giữa", "source": "core"}
+{"a": "012345678901", "b": "012345678900", "kind": "id", "expected_equal": false, "note": "lệch 1 số cuối", "source": "core"}
+{"a": "031234567890", "b": "041234567890", "kind": "id", "expected_equal": false, "note": "lệch chữ số đầu", "source": "core"}
+{"a": "Số 23 ngõ 19 Hoàng Văn Thụ, phường Lạc Viên, quận Lê Chân, Hà Nội", "b": "  Số 23 ngõ 19 Hoàng Văn Thụ, phường Lạc Viên, quận Lê Chân,  Hà Nội ", "kind": "text", "expected_equal": true, "note": "địa chỉ thừa khoảng trắng", "source": "gen:address"}
+{"a": "Số 165 ngõ 65 Hoàng Văn Thụ, phường Vĩnh Niệm, quận Hồng Bàng, Cần Thơ", "b": "Số 165 ngõ 65 Hoàng Văn Thụ, phường Cầu Đất, quận Hồng Bàng, Cần Thơ", "kind": "text", "expected_equal": false, "note": "khác phường", "source": "gen:address"}
+{"a": "Số 19 ngõ 40 Nguyễn Trãi, phường Kênh Dương, quận Hải An, Hà Nội", "b": "  Số 19 ngõ 40 Nguyễn  Trãi, phường Kênh Dương, quận Hải An, Hà Nội ", "kind": "text", "expected_equal": true, "note": "địa chỉ thừa khoảng trắng", "source": "gen:address"}
+{"a": "Số 28 ngõ 44 Nguyễn Trãi, phường An Biên, quận Lê Chân, Cần Thơ", "b": "Số 28 ngõ 45 Nguyễn Trãi, phường An Biên, quận Lê Chân, Cần Thơ", "kind": "text", "expected_equal": false, "note": "khác số ngõ", "source": "gen:address"}
+{"a": "Số 215 ngõ 105 Hoàng Văn Thụ, phường Kênh Dương, quận Ngô Quyền, Cần Thơ", "b": "Số 215 ngõ 106 Hoàng Văn Thụ, phường Kênh Dương, quận Ngô Quyền, Cần Thơ", "kind": "text", "expected_equal": false, "note": "khác số ngõ", "source": "gen:address"}
+{"a": "Số 46 ngõ 84 Lạch Tray, phường Cầu Đất, quận Ngô Quyền, Hà Nội", "b": "Số 46 ngõ 84 Lạch Tray, phường Cầu Đất, quận Ngô Quyền, Hà Nội", "kind": "text", "expected_equal": true, "note": "địa chỉ NFC vs NFD", "source": "gen:address"}
+{"a": "Số 146 ngõ 111 Hùng Vương, phường Thượng Lý, quận Dương Kinh, Cần Thơ", "b": "Số 146 ngõ 112 Hùng Vương, phường Thượng Lý, quận Dương Kinh, Cần Thơ", "kind": "text", "expected_equal": false, "note": "khác số ngõ", "source": "gen:address"}
+{"a": "Số 229 ngõ 16 Quang Trung, phường Kênh Dương, quận Kiến An, Đà Nẵng", "b": "Số 228 ngõ 16 Quang Trung, phường Kênh Dương, quận Kiến An, Đà Nẵng", "kind": "text", "expected_equal": false, "note": "khác số nhà", "source": "gen:address"}
+{"a": "Số 138 ngõ 73 Điện Biên Phủ, phường Đằng Giang, quận Kiến An, Đà Nẵng", "b": "Số 138 ngõ 73 Điện Biên Phủ,phường Đằng Giang,quận Kiến An,Đà Nẵng", "kind": "text", "expected_equal": true, "note": "bỏ khoảng trắng sau dấu phẩy", "source": "gen:address"}
+{"a": "Số 137 ngõ 45 Ngô Quyền, phường Hòa Nghĩa, quận Lê Chân, Đà Nẵng", "b": "Số 137 ngõ 45 Lý Thường Kiệt, phường Hòa Nghĩa, quận Lê Chân, Đà Nẵng", "kind": "text", "expected_equal": false, "note": "khác tên đường", "source": "gen:address"}
+{"a": "Số 175 ngõ 25 Lê Lợi, phường An Biên, quận Lê Chân, Cần Thơ", "b": "Số 175 ngõ 25 Lê Lợi, phường An Biên, quận Lê  Chân, Cần Thơ ", "kind": "text", "expected_equal": true, "note": "địa chỉ thừa khoảng trắng", "source": "gen:address"}
+{"a": "Số 51 ngõ 111 Phạm Văn Đồng, phường An Biên, quận Hải An, Hải Phòng", "b": "SỐ 51 NGÕ 111 PHẠM VĂN ĐỒNG, PHƯỜNG AN BIÊN, QUẬN HẢI AN, HẢI PHÒNG", "kind": "text", "expected_equal": true, "note": "địa chỉ viết HOA", "source": "gen:address"}
+{"a": "Số 31 ngõ 38 Hòa Bình, phường Lạc Viên, quận Hải An, Cần Thơ", "b": "Số 31 ngõ 38 Hòa Bình,phường Lạc Viên,quận Hải An,Cần Thơ", "kind": "text", "expected_equal": true, "note": "bỏ khoảng trắng sau dấu phẩy", "source": "gen:address"}
+{"a": "Số 73 ngõ 39 Văn Cao, phường Kênh Dương, quận Ngô Quyền, Hải Phòng", "b": "Số 73 ngõ 39 Văn Cao,phường Kênh Dương,quận Ngô Quyền,Hải Phòng", "kind": "text", "expected_equal": true, "note": "bỏ khoảng trắng sau dấu phẩy", "source": "gen:address"}
+{"a": "Số 155 ngõ 40 Ngô Quyền, phường Lạc Viên, quận Hồng Bàng, Đà Nẵng", "b": "Số 155 ngõ 40 Ngô Quyền, phường Lạc Viên,  quận Hồng Bàng, Đà Nẵng ", "kind": "text", "expected_equal": true, "note": "địa chỉ thừa khoảng trắng", "source": "gen:address"}
+{"a": "Số 115 ngõ 45 Thủy Nguyên, phường Đằng Giang, quận Hồng Bàng, Cần Thơ", "b": "Số 117 ngõ 45 Thủy Nguyên, phường Đằng Giang, quận Hồng Bàng, Cần Thơ", "kind": "text", "expected_equal": false, "note": "khác số nhà", "source": "gen:address"}
+{"a": "Số 132 ngõ 96 Trần Hưng Đạo, phường Thượng Lý, quận Hồng Bàng, Hà Nội", "b": "Số 132 ngõ 96 Phạm Văn Đồng, phường Thượng Lý, quận Hồng Bàng, Hà Nội", "kind": "text", "expected_equal": false, "note": "khác tên đường", "source": "gen:address"}
+{"a": "Số 110 ngõ 55 Thủy Nguyên, phường Kênh Dương, quận Ngô Quyền, Đà Nẵng", "b": "Số 110 ngõ 55 Thủy Nguyên, P. Kênh Dương, Q. Ngô Quyền, Đà Nẵng", "kind": "text", "expected_equal": true, "note": "viết tắt P./Q. — cùng địa chỉ", "source": "gen:address"}
+{"a": "Số 85 ngõ 1 Quang Trung, phường Cầu Đất, quận Hải An, Đà Nẵng", "b": "Số 85 ngõ 1 Quang Trung, phường Đông Khê, quận Hải An, Đà Nẵng", "kind": "text", "expected_equal": false, "note": "khác phường", "source": "gen:address"}
+{"a": "Số 217 ngõ 118 Lý Thường Kiệt, phường Đằng Giang, quận Kiến An, Hà Nội", "b": "Số 216 ngõ 118 Lý Thường Kiệt, phường Đằng Giang, quận Kiến An, Hà Nội", "kind": "text", "expected_equal": false, "note": "khác số nhà", "source": "gen:address"}
+{"a": "Số 183 ngõ 43 Quang Trung, phường Lạc Viên, quận Lê Chân, Cần Thơ", "b": "Số 182 ngõ 43 Quang Trung, phường Lạc Viên, quận Lê Chân, Cần Thơ", "kind": "text", "expected_equal": false, "note": "khác số nhà", "source": "gen:address"}
+{"a": "Số 12 ngõ 105 Tô Hiệu, phường Cầu Đất, quận Ngô Quyền, Cần Thơ", "b": "Số 12 ngõ 106 Tô Hiệu, phường Cầu Đất, quận Ngô Quyền, Cần Thơ", "kind": "text", "expected_equal": false, "note": "khác số ngõ", "source": "gen:address"}
+{"a": "Số 95 ngõ 95 Thủy Nguyên, phường Kênh Dương, quận Kiến An, Đà Nẵng", "b": "Số 95 ngõ 95 Trần Hưng Đạo, phường Kênh Dương, quận Kiến An, Đà Nẵng", "kind": "text", "expected_equal": false, "note": "khác tên đường", "source": "gen:address"}
+{"a": "Số 166 ngõ 66 Lý Thường Kiệt, phường Lạc Viên, quận Kiến An, Cần Thơ", "b": "Số 165 ngõ 66 Lý Thường Kiệt, phường Lạc Viên, quận Kiến An, Cần Thơ", "kind": "text", "expected_equal": false, "note": "khác số nhà", "source": "gen:address"}
+{"a": "Số 12 ngõ 42 Quang Trung, phường Máy Tơ, quận Kiến An, Hải Phòng", "b": "Số 13 ngõ 42 Quang Trung, phường Máy Tơ, quận Kiến An, Hải Phòng", "kind": "text", "expected_equal": false, "note": "khác số nhà", "source": "gen:address"}
+{"a": "Số 132 ngõ 41 Lý Thường Kiệt, phường Đông Khê, quận Hồng Bàng, Hà Nội", "b": "SỐ 132 NGÕ 41 LÝ THƯỜNG KIỆT, PHƯỜNG ĐÔNG KHÊ, QUẬN HỒNG BÀNG, HÀ NỘI", "kind": "text", "expected_equal": true, "note": "địa chỉ viết HOA", "source": "gen:address"}
+{"a": "Số 34 ngõ 94 Lý Thường Kiệt, phường Thượng Lý, quận Dương Kinh, Hà Nội", "b": "Số 34 ngõ 94 Lý Thường Kiệt, phường Thượng Lý, quận Dương  Kinh, Hà Nội ", "kind": "text", "expected_equal": true, "note": "địa chỉ thừa khoảng trắng", "source": "gen:address"}
+{"a": "Số 6 ngõ 74 Thủy Nguyên, phường Vĩnh Niệm, quận Hồng Bàng, Đà Nẵng", "b": "Số 6 ngõ 74 Hùng Vương, phường Vĩnh Niệm, quận Hồng Bàng, Đà Nẵng", "kind": "text", "expected_equal": false, "note": "khác tên đường", "source": "gen:address"}
+{"a": "Số 173 ngõ 29 Hoàng Văn Thụ, phường An Biên, quận Lê Chân, Đà Nẵng", "b": "Số 173 ngõ 29 Hoàng Văn Thụ, phường Đằng Giang, quận Lê Chân, Đà Nẵng", "kind": "text", "expected_equal": false, "note": "khác phường", "source": "gen:address"}
+{"a": "Số 246 ngõ 61 Hoàng Văn Thụ, phường Vĩnh Niệm, quận Lê Chân, Đà Nẵng", "b": "Số 246 ngõ 61 Hoàng Văn Thụ, phường Vĩnh Niệm, quận Lê Chân, Đà Nẵng", "kind": "text", "expected_equal": true, "note": "địa chỉ NFC vs NFD", "source": "gen:address"}
+{"a": "Số 210 ngõ 13 Trần Hưng Đạo, phường Lạc Viên, quận Hải An, Hà Nội", "b": "Số 210 ngõ 13 Trần Hưng Đạo,  phường Lạc Viên, quận Hải An, Hà Nội ", "kind": "text", "expected_equal": true, "note": "địa chỉ thừa khoảng trắng", "source": "gen:address"}
+{"a": "Số 115 ngõ 40 Ngô Quyền, phường Kênh Dương, quận Hải An, Hà Nội", "b": "Số 115 ngõ 40 Ngô Quyền,phường Kênh Dương,quận Hải An,Hà Nội", "kind": "text", "expected_equal": true, "note": "bỏ khoảng trắng sau dấu phẩy", "source": "gen:address"}
+{"a": "Số 181 ngõ 107 Tô Hiệu, phường Lạc Viên, quận Hải An, Cần Thơ", "b": "SỐ 181 NGÕ 107 TÔ HIỆU, PHƯỜNG LẠC VIÊN, QUẬN HẢI AN, CẦN THƠ", "kind": "text", "expected_equal": true, "note": "địa chỉ viết HOA", "source": "gen:address"}
+{"a": "Số 105 ngõ 8 Thủy Nguyên, phường Hòa Nghĩa, quận Hồng Bàng, Đà Nẵng", "b": "Số 105 ngõ 8 Thủy Nguyên, phường Hòa Nghĩa, quận Hồng Bàng, Đà Nẵng", "kind": "text", "expected_equal": true, "note": "địa chỉ NFC vs NFD", "source": "gen:address"}
+{"a": "Số 1 ngõ 29 Trần Hưng Đạo, phường Đằng Giang, quận Lê Chân, Đà Nẵng", "b": "Số 1 ngõ 29 Trần Hưng Đạo, phường Kênh Dương, quận Lê Chân, Đà Nẵng", "kind": "text", "expected_equal": false, "note": "khác phường", "source": "gen:address"}
+{"a": "Số 250 ngõ 102 Phạm Văn Đồng, phường Máy Tơ, quận Kiến An, Hà Nội", "b": "  Số 250 ngõ 102 Phạm Văn Đồng, phường Máy Tơ, quận Kiến An, Hà  Nội ", "kind": "text", "expected_equal": true, "note": "địa chỉ thừa khoảng trắng", "source": "gen:address"}
+{"a": "Số 49 ngõ 68 Thủy Nguyên, phường Thượng Lý, quận Ngô Quyền, Đà Nẵng", "b": "Số 49 ngõ 69 Thủy Nguyên, phường Thượng Lý, quận Ngô Quyền, Đà Nẵng", "kind": "text", "expected_equal": false, "note": "khác số ngõ", "source": "gen:address"}
+{"a": "Số 150 ngõ 102 Thủy Nguyên, phường Máy Tơ, quận Hồng Bàng, Hải Phòng", "b": "SỐ 150 NGÕ 102 THỦY NGUYÊN, PHƯỜNG MÁY TƠ, QUẬN HỒNG BÀNG, HẢI PHÒNG", "kind": "text", "expected_equal": true, "note": "địa chỉ viết HOA", "source": "gen:address"}
+{"a": "Số 75 ngõ 49 Hòa Bình, phường Đông Khê, quận Hồng Bàng, Hải Phòng", "b": "Số 75 ngõ 49 Hòa Bình, phường Máy Tơ, quận Hồng Bàng, Hải Phòng", "kind": "text", "expected_equal": false, "note": "khác phường", "source": "gen:address"}
+{"a": "Số 155 ngõ 4 Lạch Tray, phường Đằng Giang, quận Ngô Quyền, Đà Nẵng", "b": "Số 155 ngõ 4 Lạch Tray, phường Máy Tơ, quận Ngô Quyền, Đà Nẵng", "kind": "text", "expected_equal": false, "note": "khác phường", "source": "gen:address"}
+{"a": "Số 35 ngõ 117 Hoàng Văn Thụ, phường Máy Tơ, quận Lê Chân, Hà Nội", "b": "Số 35 ngõ 117 Hoàng Văn Thụ,phường Máy Tơ,quận Lê Chân,Hà Nội", "kind": "text", "expected_equal": true, "note": "bỏ khoảng trắng sau dấu phẩy", "source": "gen:address"}
+{"a": "Số 58 ngõ 14 Hòa Bình, phường Vĩnh Niệm, quận Lê Chân, Hải Phòng", "b": "Số 58 ngõ 14 Hòa Bình, P. Vĩnh Niệm, Q. Lê Chân, Hải Phòng", "kind": "text", "expected_equal": true, "note": "viết tắt P./Q. — cùng địa chỉ", "source": "gen:address"}
+{"a": "Số 145 ngõ 116 Lạch Tray, phường Kênh Dương, quận Hải An, Cần Thơ", "b": "SỐ 145 NGÕ 116 LẠCH TRAY, PHƯỜNG KÊNH DƯƠNG, QUẬN HẢI AN, CẦN THƠ", "kind": "text", "expected_equal": true, "note": "địa chỉ viết HOA", "source": "gen:address"}
+{"a": "Số 214 ngõ 67 Ngô Quyền, phường Hòa Nghĩa, quận Hồng Bàng, Cần Thơ", "b": "Số 214 ngõ 67 Ngô Quyền,phường Hòa Nghĩa,quận Hồng Bàng,Cần Thơ", "kind": "text", "expected_equal": true, "note": "bỏ khoảng trắng sau dấu phẩy", "source": "gen:address"}
+{"a": "Số 118 ngõ 19 Hoàng Văn Thụ, phường An Biên, quận Hải An, Đà Nẵng", "b": "SỐ 118 NGÕ 19 HOÀNG VĂN THỤ, PHƯỜNG AN BIÊN, QUẬN HẢI AN, ĐÀ NẴNG", "kind": "text", "expected_equal": true, "note": "địa chỉ viết HOA", "source": "gen:address"}
+{"a": "Số 147 ngõ 39 Lê Lợi, phường Cầu Đất, quận Lê Chân, Cần Thơ", "b": "Số 147 ngõ 39 Lê Lợi, phường Máy Tơ, quận Lê Chân, Cần Thơ", "kind": "text", "expected_equal": false, "note": "khác phường", "source": "gen:address"}
+{"a": "Số 156 ngõ 16 Hùng Vương, phường Hòa Nghĩa, quận Hồng Bàng, Hà Nội", "b": "Số 156 ngõ 16 Hùng Vương,phường Hòa Nghĩa,quận Hồng Bàng,Hà Nội", "kind": "text", "expected_equal": true, "note": "bỏ khoảng trắng sau dấu phẩy", "source": "gen:address"}
+{"a": "Số 39 ngõ 7 Quang Trung, phường Đằng Giang, quận Kiến An, Cần Thơ", "b": "Số 39 ngõ 7 Quang Trung, phường Đằng Giang, quận Kiến An, Cần Thơ", "kind": "text", "expected_equal": true, "note": "địa chỉ NFC vs NFD", "source": "gen:address"}
+{"a": "Số 166 ngõ 111 Hòa Bình, phường Cầu Đất, quận Hải An, Đà Nẵng", "b": "  Số 166 ngõ 111 Hòa Bình, phường  Cầu Đất, quận Hải An, Đà Nẵng ", "kind": "text", "expected_equal": true, "note": "địa chỉ thừa khoảng trắng", "source": "gen:address"}
+{"a": "Số 70 ngõ 76 Ngô Quyền, phường Cầu Đất, quận Hải An, Cần Thơ", "b": "Số 70 ngõ 76 Ngô Quyền, phường Cầu Đất, quận Hải An, Cần Thơ", "kind": "text", "expected_equal": true, "note": "địa chỉ NFC vs NFD", "source": "gen:address"}
+{"a": "Số 169 ngõ 14 Hòa Bình, phường Kênh Dương, quận Hồng Bàng, Hà Nội", "b": "SỐ 169 NGÕ 14 HÒA BÌNH, PHƯỜNG KÊNH DƯƠNG, QUẬN HỒNG BÀNG, HÀ NỘI", "kind": "text", "expected_equal": true, "note": "địa chỉ viết HOA", "source": "gen:address"}
+{"a": "Số 19 ngõ 37 Văn Cao, phường Đông Khê, quận Hồng Bàng, Cần Thơ", "b": "Số 19 ngõ 38 Văn Cao, phường Đông Khê, quận Hồng Bàng, Cần Thơ", "kind": "text", "expected_equal": false, "note": "khác số ngõ", "source": "gen:address"}
+{"a": "Số 163 ngõ 5 Trần Hưng Đạo, phường Vĩnh Niệm, quận Kiến An, Hải Phòng", "b": "Số 165 ngõ 5 Trần Hưng Đạo, phường Vĩnh Niệm, quận Kiến An, Hải Phòng", "kind": "text", "expected_equal": false, "note": "khác số nhà", "source": "gen:address"}
+{"a": "Số 37 ngõ 51 Quang Trung, phường Cầu Đất, quận Ngô Quyền, Cần Thơ", "b": "Số 37 ngõ 51 Lý Thường Kiệt, phường Cầu Đất, quận Ngô Quyền, Cần Thơ", "kind": "text", "expected_equal": false, "note": "khác tên đường", "source": "gen:address"}
+{"a": "Số 39 ngõ 98 Điện Biên Phủ, phường Kênh Dương, quận Ngô Quyền, Hà Nội", "b": "Số 39 ngõ 98 Điện Biên Phủ, P. Kênh Dương, Q. Ngô Quyền, Hà Nội", "kind": "text", "expected_equal": true, "note": "viết tắt P./Q. — cùng địa chỉ", "source": "gen:address"}
+{"a": "Số 197 ngõ 70 Điện Biên Phủ, phường Đằng Giang, quận Hồng Bàng, Cần Thơ", "b": "Số 197 ngõ 70 Điện Biên Phủ, P. Đằng Giang, Q. Hồng Bàng, Cần Thơ", "kind": "text", "expected_equal": true, "note": "viết tắt P./Q. — cùng địa chỉ", "source": "gen:address"}
+{"a": "Số 217 ngõ 98 Văn Cao, phường Cầu Đất, quận Kiến An, Đà Nẵng", "b": "Số 218 ngõ 98 Văn Cao, phường Cầu Đất, quận Kiến An, Đà Nẵng", "kind": "text", "expected_equal": false, "note": "khác số nhà", "source": "gen:address"}
+{"a": "Số 57 ngõ 12 Điện Biên Phủ, phường Vĩnh Niệm, quận Hồng Bàng, Đà Nẵng", "b": "Số 57 ngõ 12 Điện Biên Phủ,phường Vĩnh Niệm,quận Hồng Bàng,Đà Nẵng", "kind": "text", "expected_equal": true, "note": "bỏ khoảng trắng sau dấu phẩy", "source": "gen:address"}
+{"a": "Số 24 ngõ 114 Phạm Văn Đồng, phường Kênh Dương, quận Dương Kinh, Hải Phòng", "b": "SỐ 24 NGÕ 114 PHẠM VĂN ĐỒNG, PHƯỜNG KÊNH DƯƠNG, QUẬN DƯƠNG KINH, HẢI PHÒNG", "kind": "text", "expected_equal": true, "note": "địa chỉ viết HOA", "source": "gen:address"}
+{"a": "Số 245 ngõ 73 Điện Biên Phủ, phường Cầu Đất, quận Hồng Bàng, Hải Phòng", "b": "Số 255 ngõ 73 Điện Biên Phủ, phường Cầu Đất, quận Hồng Bàng, Hải Phòng", "kind": "text", "expected_equal": false, "note": "khác số nhà", "source": "gen:address"}
+{"a": "Số 126 ngõ 66 Quang Trung, phường Vĩnh Niệm, quận Lê Chân, Hà Nội", "b": "Số 126 ngõ 66 Điện Biên Phủ, phường Vĩnh Niệm, quận Lê Chân, Hà Nội", "kind": "text", "expected_equal": false, "note": "khác tên đường", "source": "gen:address"}
+{"a": "Số 237 ngõ 52 Ngô Quyền, phường Vĩnh Niệm, quận Lê Chân, Cần Thơ", "b": "Số 236 ngõ 52 Ngô Quyền, phường Vĩnh Niệm, quận Lê Chân, Cần Thơ", "kind": "text", "expected_equal": false, "note": "khác số nhà", "source": "gen:address"}
+{"a": "Số 212 ngõ 16 Hòa Bình, phường Cầu Đất, quận Hồng Bàng, Hải Phòng", "b": "Số 212 ngõ 16 Hòa Bình,phường Cầu Đất,quận Hồng Bàng,Hải Phòng", "kind": "text", "expected_equal": true, "note": "bỏ khoảng trắng sau dấu phẩy", "source": "gen:address"}
+{"a": "Số 125 ngõ 92 Nguyễn Trãi, phường Cầu Đất, quận Ngô Quyền, Hải Phòng", "b": "Số 125 ngõ 93 Nguyễn Trãi, phường Cầu Đất, quận Ngô Quyền, Hải Phòng", "kind": "text", "expected_equal": false, "note": "khác số ngõ", "source": "gen:address"}
+{"a": "Số 167 ngõ 75 Văn Cao, phường Vĩnh Niệm, quận Lê Chân, Đà Nẵng", "b": "Số 168 ngõ 75 Văn Cao, phường Vĩnh Niệm, quận Lê Chân, Đà Nẵng", "kind": "text", "expected_equal": false, "note": "khác số nhà", "source": "gen:address"}
+{"a": "Số 26 ngõ 74 Hoàng Văn Thụ, phường Kênh Dương, quận Kiến An, Hải Phòng", "b": "Số 26 ngõ 74 Hoàng Văn Thụ,phường Kênh Dương,quận Kiến An,Hải Phòng", "kind": "text", "expected_equal": true, "note": "bỏ khoảng trắng sau dấu phẩy", "source": "gen:address"}
+{"a": "Số 7 ngõ 117 Hoàng Văn Thụ, phường Hòa Nghĩa, quận Hồng Bàng, Hà Nội", "b": "Số 7 ngõ 117 Trần Hưng Đạo, phường Hòa Nghĩa, quận Hồng Bàng, Hà Nội", "kind": "text", "expected_equal": false, "note": "khác tên đường", "source": "gen:address"}
+{"a": "Số 76 ngõ 102 Hoàng Văn Thụ, phường Cầu Đất, quận Dương Kinh, Hải Phòng", "b": "Số 76 ngõ 103 Hoàng Văn Thụ, phường Cầu Đất, quận Dương Kinh, Hải Phòng", "kind": "text", "expected_equal": false, "note": "khác số ngõ", "source": "gen:address"}
+{"a": "Số 40 ngõ 107 Quang Trung, phường Lạc Viên, quận Dương Kinh, Hà Nội", "b": "Số 41 ngõ 107 Quang Trung, phường Lạc Viên, quận Dương Kinh, Hà Nội", "kind": "text", "expected_equal": false, "note": "khác số nhà", "source": "gen:address"}
+{"a": "Số 27 ngõ 107 Trần Hưng Đạo, phường Máy Tơ, quận Hải An, Đà Nẵng", "b": "Số 27 ngõ 107 Trần Hưng Đạo,phường Máy Tơ,quận Hải An,Đà Nẵng", "kind": "text", "expected_equal": true, "note": "bỏ khoảng trắng sau dấu phẩy", "source": "gen:address"}
+{"a": "Số 79 ngõ 119 Thủy Nguyên, phường Đằng Giang, quận Ngô Quyền, Hải Phòng", "b": "Số 79 ngõ 119 Thủy Nguyên, P. Đằng Giang, Q. Ngô Quyền, Hải Phòng", "kind": "text", "expected_equal": true, "note": "viết tắt P./Q. — cùng địa chỉ", "source": "gen:address"}
+{"a": "Số 241 ngõ 96 Quang Trung, phường An Biên, quận Ngô Quyền, Hải Phòng", "b": "Số 240 ngõ 96 Quang Trung, phường An Biên, quận Ngô Quyền, Hải Phòng", "kind": "text", "expected_equal": false, "note": "khác số nhà", "source": "gen:address"}
+{"a": "Số 191 ngõ 53 Lý Thường Kiệt, phường Thượng Lý, quận Hồng Bàng, Hải Phòng", "b": "Số 191 ngõ 53 Lý Thường Kiệt, phường Thượng Lý, quận Hồng Bàng, Hải Phòng", "kind": "text", "expected_equal": true, "note": "địa chỉ NFC vs NFD", "source": "gen:address"}
+{"a": "Số 61 ngõ 65 Quang Trung, phường Hòa Nghĩa, quận Hồng Bàng, Hà Nội", "b": "Số 61 ngõ 65 Quang Trung, phường An Biên, quận Hồng Bàng, Hà Nội", "kind": "text", "expected_equal": false, "note": "khác phường", "source": "gen:address"}
+{"a": "Số 64 ngõ 10 Thủy Nguyên, phường Lạc Viên, quận Lê Chân, Hà Nội", "b": "Số 64 ngõ 10 Thủy Nguyên, P. Lạc Viên, Q. Lê Chân, Hà Nội", "kind": "text", "expected_equal": true, "note": "viết tắt P./Q. — cùng địa chỉ", "source": "gen:address"}
+{"a": "Số 217 ngõ 116 Hoàng Văn Thụ, phường Kênh Dương, quận Hồng Bàng, Cần Thơ", "b": "  Số 217 ngõ 116 Hoàng  Văn Thụ, phường Kênh Dương, quận Hồng Bàng, Cần Thơ ", "kind": "text", "expected_equal": true, "note": "địa chỉ thừa khoảng trắng", "source": "gen:address"}
+{"a": "Số 220 ngõ 94 Ngô Quyền, phường Cầu Đất, quận Hồng Bàng, Đà Nẵng", "b": "Số 220 ngõ 94 Lạch Tray, phường Cầu Đất, quận Hồng Bàng, Đà Nẵng", "kind": "text", "expected_equal": false, "note": "khác tên đường", "source": "gen:address"}
+{"a": "Số 138 ngõ 88 Điện Biên Phủ, phường Hòa Nghĩa, quận Ngô Quyền, Hà Nội", "b": "Số 138 ngõ 89 Điện Biên Phủ, phường Hòa Nghĩa, quận Ngô Quyền, Hà Nội", "kind": "text", "expected_equal": false, "note": "khác số ngõ", "source": "gen:address"}
+{"a": "Số 206 ngõ 22 Lê Lợi, phường Lạc Viên, quận Hồng Bàng, Cần Thơ", "b": "Số 206 ngõ 22 Lê Lợi, phường An Biên, quận Hồng Bàng, Cần Thơ", "kind": "text", "expected_equal": false, "note": "khác phường", "source": "gen:address"}
+{"a": "Số 26 ngõ 15 Lê Lợi, phường Thượng Lý, quận Lê Chân, Đà Nẵng", "b": "Số 28 ngõ 15 Lê Lợi, phường Thượng Lý, quận Lê Chân, Đà Nẵng", "kind": "text", "expected_equal": false, "note": "khác số nhà", "source": "gen:address"}
+{"a": "Số 47 ngõ 101 Lý Thường Kiệt, phường Hòa Nghĩa, quận Hồng Bàng, Cần Thơ", "b": "SỐ 47 NGÕ 101 LÝ THƯỜNG KIỆT, PHƯỜNG HÒA NGHĨA, QUẬN HỒNG BÀNG, CẦN THƠ", "kind": "text", "expected_equal": true, "note": "địa chỉ viết HOA", "source": "gen:address"}
+{"a": "Số 44 ngõ 37 Nguyễn Trãi, phường Đông Khê, quận Dương Kinh, Cần Thơ", "b": "Số 44 ngõ 37 Lý Thường Kiệt, phường Đông Khê, quận Dương Kinh, Cần Thơ", "kind": "text", "expected_equal": false, "note": "khác tên đường", "source": "gen:address"}
+{"a": "Số 247 ngõ 106 Hòa Bình, phường Kênh Dương, quận Kiến An, Đà Nẵng", "b": "Số 257 ngõ 106 Hòa Bình, phường Kênh Dương, quận Kiến An, Đà Nẵng", "kind": "text", "expected_equal": false, "note": "khác số nhà", "source": "gen:address"}
+{"a": "Số 240 ngõ 15 Hùng Vương, phường Máy Tơ, quận Dương Kinh, Cần Thơ", "b": "Số 250 ngõ 15 Hùng Vương, phường Máy Tơ, quận Dương Kinh, Cần Thơ", "kind": "text", "expected_equal": false, "note": "khác số nhà", "source": "gen:address"}
+{"a": "Số 248 ngõ 39 Lê Lợi, phường Đông Khê, quận Dương Kinh, Hải Phòng", "b": "Số 248 ngõ 40 Lê Lợi, phường Đông Khê, quận Dương Kinh, Hải Phòng", "kind": "text", "expected_equal": false, "note": "khác số ngõ", "source": "gen:address"}
+{"a": "Số 168 ngõ 7 Thủy Nguyên, phường Đằng Giang, quận Dương Kinh, Đà Nẵng", "b": "Số 168 ngõ 7 Thủy Nguyên, phường An Biên, quận Dương Kinh, Đà Nẵng", "kind": "text", "expected_equal": false, "note": "khác phường", "source": "gen:address"}
+{"a": "Số 121 ngõ 33 Lê Lợi, phường Vĩnh Niệm, quận Ngô Quyền, Cần Thơ", "b": "Số 131 ngõ 33 Lê Lợi, phường Vĩnh Niệm, quận Ngô Quyền, Cần Thơ", "kind": "text", "expected_equal": false, "note": "khác số nhà", "source": "gen:address"}
+{"a": "Số 76 ngõ 13 Trần Hưng Đạo, phường Thượng Lý, quận Ngô Quyền, Hà Nội", "b": "Số 76 ngõ 13 Trần Hưng Đạo, phường Thượng Lý, quận Ngô Quyền, Hà Nội", "kind": "text", "expected_equal": true, "note": "địa chỉ NFC vs NFD", "source": "gen:address"}
+{"a": "Số 106 ngõ 7 Quang Trung, phường Thượng Lý, quận Kiến An, Hải Phòng", "b": "Số 106 ngõ 8 Quang Trung, phường Thượng Lý, quận Kiến An, Hải Phòng", "kind": "text", "expected_equal": false, "note": "khác số ngõ", "source": "gen:address"}
+{"a": "Số 11 ngõ 41 Tô Hiệu, phường Máy Tơ, quận Kiến An, Đà Nẵng", "b": "  Số 11 ngõ 41 Tô Hiệu, phường Máy Tơ, quận Kiến An,  Đà Nẵng ", "kind": "text", "expected_equal": true, "note": "địa chỉ thừa khoảng trắng", "source": "gen:address"}
+{"a": "Công ty TNHH Hòa Lợi Thuận Phát", "b": "Công ty Cổ phần Hòa Lợi Thuận Phát", "kind": "text", "expected_equal": false, "note": "khác loại hình (TNHH/CP/MTV/DNTN)", "source": "gen:company"}
+{"a": "Công ty Cổ phần Phúc Thịnh Dịch vụ", "b": "Doanh nghiệp tư nhân Phúc Thịnh Dịch vụ", "kind": "text", "expected_equal": false, "note": "khác loại hình (TNHH/CP/MTV/DNTN)", "source": "gen:company"}
+{"a": "Công ty TNHH MTV Biển Xanh Đại Dương", "b": "CÔNG TY TNHH MTV BIỂN XANH ĐẠI DƯƠNG", "kind": "text", "expected_equal": true, "note": "tên công ty viết HOA", "source": "gen:company"}
+{"a": "Công ty Cổ phần Hoàng Gia Biển Xanh", "b": "Cty Cổ phần Hoàng Gia Biển Xanh", "kind": "text", "expected_equal": true, "note": "viết tắt Cty — cùng công ty", "source": "gen:company"}
+{"a": "Doanh nghiệp tư nhân Tân Hòa Kỹ thuật", "b": "Doanh nghiệp tư nhân Tân Hòa Kỹ thuật", "kind": "text", "expected_equal": true, "note": "tên công ty NFC vs NFD", "source": "gen:company"}
+{"a": "Công ty Cổ phần Kỹ thuật Tân Hòa", "b": "CÔNG TY CỔ PHẦN KỸ THUẬT TÂN HÒA", "kind": "text", "expected_equal": true, "note": "tên công ty viết HOA", "source": "gen:company"}
+{"a": "Công ty TNHH Thủy sản Xây dựng", "b": "  Công ty TNHH Thủy sản Xây  dựng ", "kind": "text", "expected_equal": true, "note": "tên công ty thừa khoảng trắng", "source": "gen:company"}
+{"a": "Doanh nghiệp tư nhân Đại Dương Vận tải", "b": "Doanh nghiệp tư nhân Đại Dương Biển Xanh", "kind": "text", "expected_equal": false, "note": "khác một từ trong tên", "source": "gen:company"}
+{"a": "Doanh nghiệp tư nhân Phúc Thịnh Kỹ thuật", "b": "Doanh nghiệp tư nhân Phúc Thịnh Kỹ  thuật ", "kind": "text", "expected_equal": true, "note": "tên công ty thừa khoảng trắng", "source": "gen:company"}
+{"a": "Doanh nghiệp tư nhân Đầu tư Hòa Lợi", "b": "DOANH NGHIỆP TƯ NHÂN ĐẦU TƯ HÒA LỢI", "kind": "text", "expected_equal": true, "note": "tên công ty viết HOA", "source": "gen:company"}
+{"a": "Công ty TNHH Thuận Phát Đầu tư", "b": "Công ty TNHH Thuận Phát Đầu tư", "kind": "text", "expected_equal": true, "note": "tên công ty NFC vs NFD", "source": "gen:company"}
+{"a": "Công ty TNHH Thuận Phát Thương mại", "b": "Công ty TNHH Thương mại Thuận Phát", "kind": "text", "expected_equal": false, "note": "đảo thứ tự từ trong tên", "source": "gen:company"}
+{"a": "Công ty Cổ phần Thương mại Kỹ thuật", "b": "Công ty Cổ phần Thương mại Kỹ thuật", "kind": "text", "expected_equal": true, "note": "tên công ty NFC vs NFD", "source": "gen:company"}
+{"a": "Công ty TNHH MTV Thủy sản Tân Hòa", "b": "Công ty TNHH MTV Thủy sản Tân Hòa", "kind": "text", "expected_equal": true, "note": "tên công ty NFC vs NFD", "source": "gen:company"}
+{"a": "Công ty TNHH MTV Đầu tư Minh Khoa", "b": "Công ty TNHH MTV Minh Khoa Đầu tư", "kind": "text", "expected_equal": false, "note": "đảo thứ tự từ trong tên", "source": "gen:company"}
+{"a": "Công ty TNHH MTV Đầu tư Biển Xanh", "b": "Công ty TNHH MTV Đầu tư Thuận Phát", "kind": "text", "expected_equal": false, "note": "khác một từ trong tên", "source": "gen:company"}
+{"a": "Doanh nghiệp tư nhân Xây dựng Đại Dương", "b": "Công ty TNHH MTV Xây dựng Đại Dương", "kind": "text", "expected_equal": false, "note": "khác loại hình (TNHH/CP/MTV/DNTN)", "source": "gen:company"}
+{"a": "Công ty TNHH MTV Biển Xanh Hoàng Gia", "b": "Công ty TNHH MTV Biển Xanh Tân Hòa", "kind": "text", "expected_equal": false, "note": "khác một từ trong tên", "source": "gen:company"}
+{"a": "Công ty TNHH Phúc Thịnh Dịch vụ", "b": "Công ty TNHH Dịch vụ Phúc Thịnh", "kind": "text", "expected_equal": false, "note": "đảo thứ tự từ trong tên", "source": "gen:company"}
+{"a": "Công ty Cổ phần Đại Dương Kỹ thuật", "b": "CÔNG TY CỔ PHẦN ĐẠI DƯƠNG KỸ THUẬT", "kind": "text", "expected_equal": true, "note": "tên công ty viết HOA", "source": "gen:company"}
+{"a": "Công ty Cổ phần Kỹ thuật Xây dựng", "b": "Công ty TNHH Kỹ thuật Xây dựng", "kind": "text", "expected_equal": false, "note": "khác loại hình (TNHH/CP/MTV/DNTN)", "source": "gen:company"}
+{"a": "Doanh nghiệp tư nhân Thuận Phát Thương mại", "b": "DOANH NGHIỆP TƯ NHÂN THUẬN PHÁT THƯƠNG MẠI", "kind": "text", "expected_equal": true, "note": "tên công ty viết HOA", "source": "gen:company"}
+{"a": "Công ty Cổ phần Thủy sản Dịch vụ", "b": "Công ty TNHH MTV Thủy sản Dịch vụ", "kind": "text", "expected_equal": false, "note": "khác loại hình (TNHH/CP/MTV/DNTN)", "source": "gen:company"}
+{"a": "Doanh nghiệp tư nhân Thương mại Đầu tư", "b": "DOANH NGHIỆP TƯ NHÂN THƯƠNG MẠI ĐẦU TƯ", "kind": "text", "expected_equal": true, "note": "tên công ty viết HOA", "source": "gen:company"}
+{"a": "Công ty TNHH Thương mại Phúc Thịnh", "b": "Công ty TNHH Phúc Thịnh Thương mại", "kind": "text", "expected_equal": false, "note": "đảo thứ tự từ trong tên", "source": "gen:company"}
+{"a": "Công ty TNHH Xây dựng Biển Xanh", "b": "Công ty TNHH Biển Xanh Xây dựng", "kind": "text", "expected_equal": false, "note": "đảo thứ tự từ trong tên", "source": "gen:company"}
+{"a": "Doanh nghiệp tư nhân Tân Hòa Thương mại", "b": "DOANH NGHIỆP TƯ NHÂN TÂN HÒA THƯƠNG MẠI", "kind": "text", "expected_equal": true, "note": "tên công ty viết HOA", "source": "gen:company"}
+{"a": "Doanh nghiệp tư nhân Đầu tư Hoàng Gia", "b": "  Doanh nghiệp tư nhân Đầu  tư Hoàng Gia ", "kind": "text", "expected_equal": true, "note": "tên công ty thừa khoảng trắng", "source": "gen:company"}
+{"a": "Công ty TNHH MTV Xây dựng Đầu tư", "b": "CÔNG TY TNHH MTV XÂY DỰNG ĐẦU TƯ", "kind": "text", "expected_equal": true, "note": "tên công ty viết HOA", "source": "gen:company"}
+{"a": "Doanh nghiệp tư nhân Đầu tư Biển Xanh", "b": "DOANH NGHIỆP TƯ NHÂN ĐẦU TƯ BIỂN XANH", "kind": "text", "expected_equal": true, "note": "tên công ty viết HOA", "source": "gen:company"}
+{"a": "Công ty Cổ phần Tân Hòa Biển Xanh", "b": "CÔNG TY CỔ PHẦN TÂN HÒA BIỂN XANH", "kind": "text", "expected_equal": true, "note": "tên công ty viết HOA", "source": "gen:company"}
+{"a": "Công ty Cổ phần Thủy sản Đầu tư", "b": "Công ty Cổ phần Thủy sản Dịch vụ", "kind": "text", "expected_equal": false, "note": "khác một từ trong tên", "source": "gen:company"}
+{"a": "Công ty TNHH Xây dựng Vận tải", "b": "Công ty TNHH MTV Xây dựng Vận tải", "kind": "text", "expected_equal": false, "note": "khác loại hình (TNHH/CP/MTV/DNTN)", "source": "gen:company"}
+{"a": "Công ty Cổ phần Hoàng Gia Đại Dương", "b": "Công ty Cổ phần Đại Dương Hoàng Gia", "kind": "text", "expected_equal": false, "note": "đảo thứ tự từ trong tên", "source": "gen:company"}
+{"a": "Doanh nghiệp tư nhân Xây dựng Thủy sản", "b": "  Doanh nghiệp tư nhân Xây dựng  Thủy sản ", "kind": "text", "expected_equal": true, "note": "tên công ty thừa khoảng trắng", "source": "gen:company"}
+{"a": "Doanh nghiệp tư nhân Phúc Thịnh Thuận Phát", "b": "DOANH NGHIỆP TƯ NHÂN PHÚC THỊNH THUẬN PHÁT", "kind": "text", "expected_equal": true, "note": "tên công ty viết HOA", "source": "gen:company"}
+{"a": "Doanh nghiệp tư nhân An Khánh Thương mại", "b": "Doanh nghiệp tư nhân An Khánh Thương mại", "kind": "text", "expected_equal": true, "note": "tên công ty NFC vs NFD", "source": "gen:company"}
+{"a": "Công ty TNHH Phúc Thịnh Tân Hòa", "b": "Công ty TNHH Phúc Thịnh  Tân Hòa ", "kind": "text", "expected_equal": true, "note": "tên công ty thừa khoảng trắng", "source": "gen:company"}
+{"a": "Công ty Cổ phần Đầu tư Thuận Phát", "b": "  Công ty  Cổ phần Đầu tư Thuận Phát ", "kind": "text", "expected_equal": true, "note": "tên công ty thừa khoảng trắng", "source": "gen:company"}
+{"a": "Công ty TNHH Đầu tư Tân Hòa", "b": "Công ty TNHH MTV Đầu tư Tân Hòa", "kind": "text", "expected_equal": false, "note": "khác loại hình (TNHH/CP/MTV/DNTN)", "source": "gen:company"}
+{"a": "Công ty TNHH MTV Thủy sản Hoàng Gia", "b": "  Công ty  TNHH MTV Thủy sản Hoàng Gia ", "kind": "text", "expected_equal": true, "note": "tên công ty thừa khoảng trắng", "source": "gen:company"}
+{"a": "Công ty TNHH MTV Xây dựng Kỹ thuật", "b": "Cty TNHH MTV Xây dựng Kỹ thuật", "kind": "text", "expected_equal": true, "note": "viết tắt Cty — cùng công ty", "source": "gen:company"}
+{"a": "Công ty TNHH Đầu tư Dịch vụ", "b": "Công ty TNHH Đầu tư Dịch vụ", "kind": "text", "expected_equal": true, "note": "tên công ty NFC vs NFD", "source": "gen:company"}
+{"a": "Công ty TNHH MTV Hoàng Gia Biển Xanh", "b": "Công ty TNHH MTV Hoàng Gia Biển Xanh", "kind": "text", "expected_equal": true, "note": "tên công ty NFC vs NFD", "source": "gen:company"}
+{"a": "Công ty Cổ phần Đại Dương Thương mại", "b": "Công ty Cổ phần Đại Dương Thương mại", "kind": "text", "expected_equal": true, "note": "tên công ty NFC vs NFD", "source": "gen:company"}
+{"a": "Doanh nghiệp tư nhân Thuận Phát Minh Khoa", "b": "Công ty TNHH MTV Thuận Phát Minh Khoa", "kind": "text", "expected_equal": false, "note": "khác loại hình (TNHH/CP/MTV/DNTN)", "source": "gen:company"}
+{"a": "Công ty TNHH Hoàng Gia Thuận Phát", "b": "CÔNG TY TNHH HOÀNG GIA THUẬN PHÁT", "kind": "text", "expected_equal": true, "note": "tên công ty viết HOA", "source": "gen:company"}
+{"a": "Công ty Cổ phần Dịch vụ Vận tải", "b": "Công ty TNHH MTV Dịch vụ Vận tải", "kind": "text", "expected_equal": false, "note": "khác loại hình (TNHH/CP/MTV/DNTN)", "source": "gen:company"}
+{"a": "Công ty TNHH MTV Tân Hòa Đầu tư", "b": "Công ty TNHH MTV Đầu tư Tân Hòa", "kind": "text", "expected_equal": false, "note": "đảo thứ tự từ trong tên", "source": "gen:company"}
+{"a": "Doanh nghiệp tư nhân Biển Xanh Xây dựng", "b": "Doanh nghiệp tư nhân Biển Xanh Tân Hòa", "kind": "text", "expected_equal": false, "note": "khác một từ trong tên", "source": "gen:company"}
+{"a": "Công ty Cổ phần Xây dựng Thủy sản", "b": "Công ty Cổ phần Xây dựng Hoàng Gia", "kind": "text", "expected_equal": false, "note": "khác một từ trong tên", "source": "gen:company"}
+{"a": "Công ty TNHH MTV Tân Hòa Kỹ thuật", "b": "Công ty TNHH MTV Tân Hòa Kỹ thuật", "kind": "text", "expected_equal": true, "note": "tên công ty NFC vs NFD", "source": "gen:company"}
+{"a": "Công ty Cổ phần Thuận Phát Tân Hòa", "b": "Doanh nghiệp tư nhân Thuận Phát Tân Hòa", "kind": "text", "expected_equal": false, "note": "khác loại hình (TNHH/CP/MTV/DNTN)", "source": "gen:company"}
+{"a": "Công ty TNHH MTV Biển Xanh Đại Dương", "b": "  Công ty TNHH MTV Biển  Xanh Đại Dương ", "kind": "text", "expected_equal": true, "note": "tên công ty thừa khoảng trắng", "source": "gen:company"}
+{"a": "Công ty TNHH MTV Hoàng Gia Xây dựng", "b": "Công ty TNHH Hoàng Gia Xây dựng", "kind": "text", "expected_equal": false, "note": "khác loại hình (TNHH/CP/MTV/DNTN)", "source": "gen:company"}
+{"a": "Công ty TNHH Đại Dương Vận tải", "b": "Công ty TNHH Vận tải Đại Dương", "kind": "text", "expected_equal": false, "note": "đảo thứ tự từ trong tên", "source": "gen:company"}
+{"a": "Công ty TNHH MTV Thương mại Đầu tư", "b": "  Công ty  TNHH MTV Thương mại Đầu tư ", "kind": "text", "expected_equal": true, "note": "tên công ty thừa khoảng trắng", "source": "gen:company"}
+{"a": "Công ty TNHH Kỹ thuật Thuận Phát", "b": "Công ty Cổ phần Kỹ thuật Thuận Phát", "kind": "text", "expected_equal": false, "note": "khác loại hình (TNHH/CP/MTV/DNTN)", "source": "gen:company"}
+{"a": "Doanh nghiệp tư nhân An Khánh Tân Hòa", "b": "Doanh nghiệp tư nhân An Khánh Tân Hòa", "kind": "text", "expected_equal": true, "note": "tên công ty NFC vs NFD", "source": "gen:company"}
+{"a": "Doanh nghiệp tư nhân Hòa Lợi Đầu tư", "b": "Công ty TNHH Hòa Lợi Đầu tư", "kind": "text", "expected_equal": false, "note": "khác loại hình (TNHH/CP/MTV/DNTN)", "source": "gen:company"}
+{"a": "Công ty TNHH MTV Thương mại Minh Khoa", "b": "Cty TNHH MTV Thương mại Minh Khoa", "kind": "text", "expected_equal": true, "note": "viết tắt Cty — cùng công ty", "source": "gen:company"}
+{"a": "Doanh nghiệp tư nhân Thuận Phát Kỹ thuật", "b": "Doanh nghiệp tư nhân Kỹ thuật Thuận Phát", "kind": "text", "expected_equal": false, "note": "đảo thứ tự từ trong tên", "source": "gen:company"}
+{"a": "Công ty Cổ phần Minh Khoa Thủy sản", "b": "Công ty Cổ phần Minh Khoa Đại Dương", "kind": "text", "expected_equal": false, "note": "khác một từ trong tên", "source": "gen:company"}
+{"a": "Công ty Cổ phần Hoàng Gia Xây dựng", "b": "CÔNG TY CỔ PHẦN HOÀNG GIA XÂY DỰNG", "kind": "text", "expected_equal": true, "note": "tên công ty viết HOA", "source": "gen:company"}
+{"a": "Công ty Cổ phần Tân Hòa Minh Khoa", "b": "Cty Cổ phần Tân Hòa Minh Khoa", "kind": "text", "expected_equal": true, "note": "viết tắt Cty — cùng công ty", "source": "gen:company"}
+{"a": "Công ty TNHH Hoàng Gia Thương mại", "b": "Công ty TNHH Thương mại Hoàng Gia", "kind": "text", "expected_equal": false, "note": "đảo thứ tự từ trong tên", "source": "gen:company"}
+{"a": "Công ty TNHH MTV Tân Hòa Vận tải", "b": "Công ty TNHH MTV Tân Hòa Đầu tư", "kind": "text", "expected_equal": false, "note": "khác một từ trong tên", "source": "gen:company"}
+{"a": "Công ty TNHH MTV Kỹ thuật Đại Dương", "b": "  Công ty TNHH MTV Kỹ thuật  Đại Dương ", "kind": "text", "expected_equal": true, "note": "tên công ty thừa khoảng trắng", "source": "gen:company"}
+{"a": "Doanh nghiệp tư nhân Biển Xanh Phúc Thịnh", "b": "Doanh nghiệp tư nhân Biển Xanh Phúc Thịnh", "kind": "text", "expected_equal": true, "note": "tên công ty NFC vs NFD", "source": "gen:company"}
+{"a": "Công ty TNHH Thủy sản Phúc Thịnh", "b": "Cty TNHH Thủy sản Phúc Thịnh", "kind": "text", "expected_equal": true, "note": "viết tắt Cty — cùng công ty", "source": "gen:company"}
+{"a": "Công ty TNHH An Khánh Minh Khoa", "b": "Công ty TNHH MTV An Khánh Minh Khoa", "kind": "text", "expected_equal": false, "note": "khác loại hình (TNHH/CP/MTV/DNTN)", "source": "gen:company"}
+{"a": "Doanh nghiệp tư nhân Thủy sản Kỹ thuật", "b": "Doanh nghiệp tư nhân Kỹ thuật Thủy sản", "kind": "text", "expected_equal": false, "note": "đảo thứ tự từ trong tên", "source": "gen:company"}
+{"a": "Công ty TNHH Đại Dương Phúc Thịnh", "b": "Công ty TNHH Đại Dương Phúc Thịnh", "kind": "text", "expected_equal": true, "note": "tên công ty NFC vs NFD", "source": "gen:company"}
+{"a": "Công ty TNHH Hoàng Gia Đại Dương", "b": "Công ty TNHH Đại Dương Hoàng Gia", "kind": "text", "expected_equal": false, "note": "đảo thứ tự từ trong tên", "source": "gen:company"}
+{"a": "Công ty Cổ phần Kỹ thuật Thuận Phát", "b": "Công ty Cổ phần Thuận Phát Kỹ thuật", "kind": "text", "expected_equal": false, "note": "đảo thứ tự từ trong tên", "source": "gen:company"}
+{"a": "Công ty TNHH Vận tải Thủy sản", "b": "Công ty TNHH Thủy sản Vận tải", "kind": "text", "expected_equal": false, "note": "đảo thứ tự từ trong tên", "source": "gen:company"}
+{"a": "Công ty TNHH MTV Xây dựng Hoàng Gia", "b": "Công ty TNHH MTV Hoàng Gia Xây dựng", "kind": "text", "expected_equal": false, "note": "đảo thứ tự từ trong tên", "source": "gen:company"}
+{"a": "Doanh nghiệp tư nhân Đầu tư Xây dựng", "b": "Công ty TNHH MTV Đầu tư Xây dựng", "kind": "text", "expected_equal": false, "note": "khác loại hình (TNHH/CP/MTV/DNTN)", "source": "gen:company"}
+{"a": "Công ty TNHH Đầu tư Kỹ thuật", "b": "Cty TNHH Đầu tư Kỹ thuật", "kind": "text", "expected_equal": true, "note": "viết tắt Cty — cùng công ty", "source": "gen:company"}
+{"a": "Công ty Cổ phần Hòa Lợi Biển Xanh", "b": "  Công ty  Cổ phần Hòa Lợi Biển Xanh ", "kind": "text", "expected_equal": true, "note": "tên công ty thừa khoảng trắng", "source": "gen:company"}
+{"a": "422/2026/HĐTC-PGB", "b": "423/2026/HĐTC-PGB", "kind": "id", "expected_equal": false, "note": "số HĐ lệch 1 số thứ tự", "source": "gen:contract"}
+{"a": "008/2024/PL-CN.HP", "b": "008/2024/PL - CN.HP", "kind": "id", "expected_equal": true, "note": "số HĐ: khoảng trắng quanh '-'", "source": "gen:contract"}
+{"a": "831/2026/PL-PGB", "b": "831/2026/PL–PGB", "kind": "id", "expected_equal": true, "note": "số HĐ: gạch ngang '–' thay '-'", "source": "gen:contract"}
+{"a": "780/2024/HĐMB-PGB", "b": "780/2024/HĐMB-KHDN", "kind": "id", "expected_equal": false, "note": "số HĐ khác hậu tố đơn vị", "source": "gen:contract"}
+{"a": "644/2024/PL-CN.HP", "b": "644/2024/PL–CN.HP", "kind": "id", "expected_equal": true, "note": "số HĐ: gạch ngang '–' thay '-'", "source": "gen:contract"}
+{"a": "503/2024/HĐBĐ-KHCN", "b": "503/2024/HĐBĐ-KHCN/PL01", "kind": "id", "expected_equal": false, "note": "phụ lục của HĐ ≠ HĐ gốc", "source": "gen:contract"}
+{"a": "967/2024/HĐMB-KHCN", "b": "967/2024/HĐTC-KHCN", "kind": "id", "expected_equal": false, "note": "số HĐ khác loại hợp đồng", "source": "gen:contract"}
+{"a": "583/2026/HĐTD-KHDN", "b": "583/2026/HĐTD-KHDN/PL01", "kind": "id", "expected_equal": false, "note": "phụ lục của HĐ ≠ HĐ gốc", "source": "gen:contract"}
+{"a": "367/2024/HĐTC-KHCN", "b": "367/2024/HĐTC–KHCN", "kind": "id", "expected_equal": true, "note": "số HĐ: gạch ngang '–' thay '-'", "source": "gen:contract"}
+{"a": "216/2026/HĐTC-CN.HP", "b": "216/2025/HĐTC-CN.HP", "kind": "id", "expected_equal": false, "note": "số HĐ khác năm", "source": "gen:contract"}
+{"a": "027/2026/HĐTD-CN.HP", "b": " 027/2026/HĐTD-CN.HP ", "kind": "id", "expected_equal": true, "note": "số HĐ: khoảng trắng đầu/cuối", "source": "gen:contract"}
+{"a": "952/2026/PL-KHDN", "b": "952/2026/HĐTC-KHDN", "kind": "id", "expected_equal": false, "note": "số HĐ khác loại hợp đồng", "source": "gen:contract"}
+{"a": "506/2026/HĐMB-PGB", "b": "506/2026/HĐMB-PGB/PL01", "kind": "id", "expected_equal": false, "note": "phụ lục của HĐ ≠ HĐ gốc", "source": "gen:contract"}
+{"a": "378/2024/HĐTC-PGB", "b": "378/2024/HĐTD-PGB", "kind": "id", "expected_equal": false, "note": "số HĐ khác loại hợp đồng", "source": "gen:contract"}
+{"a": "638/2026/HĐMB-PGB", "b": "638/2026/HĐMB–PGB", "kind": "id", "expected_equal": true, "note": "số HĐ: gạch ngang '–' thay '-'", "source": "gen:contract"}
+{"a": "824/2026/HĐTC-KHCN", "b": "824/2026/HĐTC - KHCN", "kind": "id", "expected_equal": true, "note": "số HĐ: khoảng trắng quanh '-'", "source": "gen:contract"}
+{"a": "773/2025/HĐTD-CN.HP", "b": "773/2025/HĐTD-PGB", "kind": "id", "expected_equal": false, "note": "số HĐ khác hậu tố đơn vị", "source": "gen:contract"}
+{"a": "143/2025/PL-PGB", "b": "143/2025/PL - PGB", "kind": "id", "expected_equal": true, "note": "số HĐ: khoảng trắng quanh '-'", "source": "gen:contract"}
+{"a": "208/2025/HĐBĐ-PGB", "b": "208/2025/HĐBĐ - PGB", "kind": "id", "expected_equal": true, "note": "số HĐ: khoảng trắng quanh '-'", "source": "gen:contract"}
+{"a": "017/2026/PL-CN.HP", "b": "017/2026/PL-CN.HP/PL01", "kind": "id", "expected_equal": false, "note": "phụ lục của HĐ ≠ HĐ gốc", "source": "gen:contract"}
+{"a": "774/2025/HĐBĐ-KHCN", "b": "774/2024/HĐBĐ-KHCN", "kind": "id", "expected_equal": false, "note": "số HĐ khác năm", "source": "gen:contract"}
+{"a": "254/2024/HĐTC-KHCN", "b": "254/2024/HĐTC-CN.HP", "kind": "id", "expected_equal": false, "note": "số HĐ khác hậu tố đơn vị", "source": "gen:contract"}
+{"a": "963/2025/HĐTD-CN.HP", "b": " 963/2025/HĐTD-CN.HP ", "kind": "id", "expected_equal": true, "note": "số HĐ: khoảng trắng đầu/cuối", "source": "gen:contract"}
+{"a": "178/2024/HĐTD-KHDN", "b": "178/2024/HĐTD–KHDN", "kind": "id", "expected_equal": true, "note": "số HĐ: gạch ngang '–' thay '-'", "source": "gen:contract"}
+{"a": "988/2025/PL-KHDN", "b": "988/2025/PL-PGB", "kind": "id", "expected_equal": false, "note": "số HĐ khác hậu tố đơn vị", "source": "gen:contract"}
+{"a": "102/2024/HĐTD-KHDN", "b": "102/2024/HĐTD-CN.HP", "kind": "id", "expected_equal": false, "note": "số HĐ khác hậu tố đơn vị", "source": "gen:contract"}
+{"a": "748/2024/HĐTD-PGB", "b": "748/2024/HĐTD - PGB", "kind": "id", "expected_equal": true, "note": "số HĐ: khoảng trắng quanh '-'", "source": "gen:contract"}
+{"a": "332/2026/HĐTD-KHDN", "b": "332/2025/HĐTD-KHDN", "kind": "id", "expected_equal": false, "note": "số HĐ khác năm", "source": "gen:contract"}
+{"a": "610/2026/HĐTC-CN.HP", "b": "610/2026/HĐTC - CN.HP", "kind": "id", "expected_equal": true, "note": "số HĐ: khoảng trắng quanh '-'", "source": "gen:contract"}
+{"a": "349/2024/HĐTD-KHCN", "b": "349/2024/HĐTD–KHCN", "kind": "id", "expected_equal": true, "note": "số HĐ: gạch ngang '–' thay '-'", "source": "gen:contract"}
+{"a": "058/2026/PL-CN.HP", "b": "059/2026/PL-CN.HP", "kind": "id", "expected_equal": false, "note": "số HĐ lệch 1 số thứ tự", "source": "gen:contract"}
+{"a": "936/2024/HĐMB-KHDN", "b": "937/2024/HĐMB-KHDN", "kind": "id", "expected_equal": false, "note": "số HĐ lệch 1 số thứ tự", "source": "gen:contract"}
+{"a": "051/2024/HĐBĐ-KHCN", "b": "051/2024/HĐBĐ-KHCN/PL01", "kind": "id", "expected_equal": false, "note": "phụ lục của HĐ ≠ HĐ gốc", "source": "gen:contract"}
+{"a": "894/2026/HĐTD-KHCN", "b": "894/2025/HĐTD-KHCN", "kind": "id", "expected_equal": false, "note": "số HĐ khác năm", "source": "gen:contract"}
+{"a": "712/2026/PL-PGB", "b": "712/2026/PL-KHCN", "kind": "id", "expected_equal": false, "note": "số HĐ khác hậu tố đơn vị", "source": "gen:contract"}
+{"a": "496/2026/HĐMB-PGB", "b": "496/2026/HĐMB–PGB", "kind": "id", "expected_equal": true, "note": "số HĐ: gạch ngang '–' thay '-'", "source": "gen:contract"}
+{"a": "040/2025/HĐTC-KHCN", "b": "040/2024/HĐTC-KHCN", "kind": "id", "expected_equal": false, "note": "số HĐ khác năm", "source": "gen:contract"}
+{"a": "566/2026/HĐBĐ-KHCN", "b": "567/2026/HĐBĐ-KHCN", "kind": "id", "expected_equal": false, "note": "số HĐ lệch 1 số thứ tự", "source": "gen:contract"}
+{"a": "742/2024/HĐTD-PGB", "b": "743/2024/HĐTD-PGB", "kind": "id", "expected_equal": false, "note": "số HĐ lệch 1 số thứ tự", "source": "gen:contract"}
+{"a": "927/2025/HĐMB-CN.HP", "b": "927/2025/HĐMB - CN.HP", "kind": "id", "expected_equal": true, "note": "số HĐ: khoảng trắng quanh '-'", "source": "gen:contract"}
+{"a": "729/2024/HĐBĐ-KHCN", "b": "729/2024/HĐBĐ–KHCN", "kind": "id", "expected_equal": true, "note": "số HĐ: gạch ngang '–' thay '-'", "source": "gen:contract"}
+{"a": "205/2026/HĐTD-KHCN", "b": "205/2026/HĐTD - KHCN", "kind": "id", "expected_equal": true, "note": "số HĐ: khoảng trắng quanh '-'", "source": "gen:contract"}
+{"a": "371/2025/HĐBĐ-CN.HP", "b": "371/2025/HĐBĐ–CN.HP", "kind": "id", "expected_equal": true, "note": "số HĐ: gạch ngang '–' thay '-'", "source": "gen:contract"}
+{"a": "478/2025/HĐTC-KHDN", "b": " 478/2025/HĐTC-KHDN ", "kind": "id", "expected_equal": true, "note": "số HĐ: khoảng trắng đầu/cuối", "source": "gen:contract"}
+{"a": "665/2026/PL-KHCN", "b": "665/2026/PL-KHCN/PL01", "kind": "id", "expected_equal": false, "note": "phụ lục của HĐ ≠ HĐ gốc", "source": "gen:contract"}
+{"a": "835/2024/HĐMB-CN.HP", "b": "835/2024/HĐMB–CN.HP", "kind": "id", "expected_equal": true, "note": "số HĐ: gạch ngang '–' thay '-'", "source": "gen:contract"}
+{"a": "261/2025/HĐMB-PGB", "b": "261/2025/HĐMB-PGB/PL01", "kind": "id", "expected_equal": false, "note": "phụ lục của HĐ ≠ HĐ gốc", "source": "gen:contract"}
+{"a": "256/2025/PL-KHDN", "b": "257/2025/PL-KHDN", "kind": "id", "expected_equal": false, "note": "số HĐ lệch 1 số thứ tự", "source": "gen:contract"}
+{"a": "396/2026/HĐTD-CN.HP", "b": "396/2026/HĐTD–CN.HP", "kind": "id", "expected_equal": true, "note": "số HĐ: gạch ngang '–' thay '-'", "source": "gen:contract"}
+{"a": "930/2026/HĐBĐ-PGB", "b": "930/2026/HĐBĐ - PGB", "kind": "id", "expected_equal": true, "note": "số HĐ: khoảng trắng quanh '-'", "source": "gen:contract"}
+{"a": "023/2025/HĐBĐ-PGB", "b": "023/2025/HĐBĐ–PGB", "kind": "id", "expected_equal": true, "note": "số HĐ: gạch ngang '–' thay '-'", "source": "gen:contract"}
+{"a": "938/2026/HĐMB-KHCN", "b": "938/2026/HĐMB - KHCN", "kind": "id", "expected_equal": true, "note": "số HĐ: khoảng trắng quanh '-'", "source": "gen:contract"}
+{"a": "143/2026/HĐMB-PGB", "b": " 143/2026/HĐMB-PGB ", "kind": "id", "expected_equal": true, "note": "số HĐ: khoảng trắng đầu/cuối", "source": "gen:contract"}
+{"a": "931/2024/PL-KHCN", "b": "931/2024/PL - KHCN", "kind": "id", "expected_equal": true, "note": "số HĐ: khoảng trắng quanh '-'", "source": "gen:contract"}
+{"a": "753/2024/HĐMB-KHDN", "b": "753/2024/HĐMB–KHDN", "kind": "id", "expected_equal": true, "note": "số HĐ: gạch ngang '–' thay '-'", "source": "gen:contract"}
+{"a": "949/2026/HĐTC-PGB", "b": "949/2026/HĐTC-PGB/PL01", "kind": "id", "expected_equal": false, "note": "phụ lục của HĐ ≠ HĐ gốc", "source": "gen:contract"}
+{"a": "743/2025/HĐBĐ-CN.HP", "b": "743/2025/HĐTD-CN.HP", "kind": "id", "expected_equal": false, "note": "số HĐ khác loại hợp đồng", "source": "gen:contract"}
+{"a": "074/2025/HĐTD-KHCN", "b": "074/2025/HĐTD-KHCN/PL01", "kind": "id", "expected_equal": false, "note": "phụ lục của HĐ ≠ HĐ gốc", "source": "gen:contract"}
+{"a": "215/2024/HĐTC-CN.HP", "b": "215/2024/HĐTC-KHDN", "kind": "id", "expected_equal": false, "note": "số HĐ khác hậu tố đơn vị", "source": "gen:contract"}
+{"a": "239/2024/HĐTD-KHDN", "b": "239/2024/PL-KHDN", "kind": "id", "expected_equal": false, "note": "số HĐ khác loại hợp đồng", "source": "gen:contract"}
+{"a": "590/2025/PL-CN.HP", "b": "590/2025/PL - CN.HP", "kind": "id", "expected_equal": true, "note": "số HĐ: khoảng trắng quanh '-'", "source": "gen:contract"}
+{"a": "842/2025/PL-KHDN", "b": "842/2025/PL-CN.HP", "kind": "id", "expected_equal": false, "note": "số HĐ khác hậu tố đơn vị", "source": "gen:contract"}
+{"a": "735/2024/PL-KHCN", "b": "735/2024/HĐTC-KHCN", "kind": "id", "expected_equal": false, "note": "số HĐ khác loại hợp đồng", "source": "gen:contract"}
+{"a": "688/2026/HĐTD-PGB", "b": "688/2025/HĐTD-PGB", "kind": "id", "expected_equal": false, "note": "số HĐ khác năm", "source": "gen:contract"}
+{"a": "301/2024/PL-KHDN", "b": "301/2024/PL - KHDN", "kind": "id", "expected_equal": true, "note": "số HĐ: khoảng trắng quanh '-'", "source": "gen:contract"}
+{"a": "583/2025/HĐMB-KHCN", "b": "583/2025/HĐMB-PGB", "kind": "id", "expected_equal": false, "note": "số HĐ khác hậu tố đơn vị", "source": "gen:contract"}
+{"a": "441/2025/HĐTD-CN.HP", "b": "441/2025/HĐTD-CN.HP/PL01", "kind": "id", "expected_equal": false, "note": "phụ lục của HĐ ≠ HĐ gốc", "source": "gen:contract"}
+{"a": "592/2025/HĐTD-CN.HP", "b": "592/2025/HĐTD-CN.HP/PL01", "kind": "id", "expected_equal": false, "note": "phụ lục của HĐ ≠ HĐ gốc", "source": "gen:contract"}
+{"a": "190/2024/HĐTD-KHCN", "b": "190/2024/HĐTD - KHCN", "kind": "id", "expected_equal": true, "note": "số HĐ: khoảng trắng quanh '-'", "source": "gen:contract"}
+{"a": "191/2025/HĐTD-KHCN", "b": "191/2025/HĐTD - KHCN", "kind": "id", "expected_equal": true, "note": "số HĐ: khoảng trắng quanh '-'", "source": "gen:contract"}
+{"a": "008/2024/HĐBĐ-KHCN", "b": "008/2024/HĐBĐ - KHCN", "kind": "id", "expected_equal": true, "note": "số HĐ: khoảng trắng quanh '-'", "source": "gen:contract"}
+{"a": "034/2024/HĐTC-CN.HP", "b": "034/2024/HĐTC - CN.HP", "kind": "id", "expected_equal": true, "note": "số HĐ: khoảng trắng quanh '-'", "source": "gen:contract"}
+{"a": "976/2024/HĐTC-KHCN", "b": " 976/2024/HĐTC-KHCN ", "kind": "id", "expected_equal": true, "note": "số HĐ: khoảng trắng đầu/cuối", "source": "gen:contract"}
+{"a": "925/2024/HĐBĐ-KHDN", "b": "925/2024/HĐBĐ-KHDN/PL01", "kind": "id", "expected_equal": false, "note": "phụ lục của HĐ ≠ HĐ gốc", "source": "gen:contract"}
+{"a": "518/2026/HĐTD-KHDN", "b": "518/2026/HĐTD–KHDN", "kind": "id", "expected_equal": true, "note": "số HĐ: gạch ngang '–' thay '-'", "source": "gen:contract"}
+{"a": "330/2025/HĐTC-CN.HP", "b": "331/2025/HĐTC-CN.HP", "kind": "id", "expected_equal": false, "note": "số HĐ lệch 1 số thứ tự", "source": "gen:contract"}
+{"a": "026/2026/HĐBĐ-PGB", "b": "026/2026/HĐTC-PGB", "kind": "id", "expected_equal": false, "note": "số HĐ khác loại hợp đồng", "source": "gen:contract"}
+{"a": "407/2026/HĐMB-CN.HP", "b": " 407/2026/HĐMB-CN.HP ", "kind": "id", "expected_equal": true, "note": "số HĐ: khoảng trắng đầu/cuối", "source": "gen:contract"}
+{"a": "745/2026/PL-KHCN", "b": "745/2026/PL - KHCN", "kind": "id", "expected_equal": true, "note": "số HĐ: khoảng trắng quanh '-'", "source": "gen:contract"}
+{"a": "401/2026/HĐBĐ-KHDN", "b": "402/2026/HĐBĐ-KHDN", "kind": "id", "expected_equal": false, "note": "số HĐ lệch 1 số thứ tự", "source": "gen:contract"}
+{"a": "755.000.000 đ", "b": "754000000đ", "kind": "money", "expected_equal": false, "note": "thiếu tiền", "source": "gen:money"}
+{"a": "46000000000đ", "b": "46,000,000,000 đồng", "kind": "money", "expected_equal": true, "note": "cùng số tiền, khác định dạng/đơn vị VND", "source": "gen:money"}
+{"a": "20,000,000,000đ", "b": "20,000,000,000$", "kind": "money", "expected_equal": false, "note": "khác loại tiền (USD vs VND)", "source": "gen:money"}
+{"a": "410000000 đ", "b": "4,100,000,000 VND", "kind": "money", "expected_equal": false, "note": "thừa một số 0", "source": "gen:money"}
+{"a": "₫81.000.000", "b": "81,000,000$", "kind": "money", "expected_equal": false, "note": "khác loại tiền (USD vs VND)", "source": "gen:money"}
+{"a": "58,000,000 VNĐ", "b": "580.000.000 VND", "kind": "money", "expected_equal": false, "note": "thừa một số 0", "source": "gen:money"}
+{"a": "22,000,000,000 VNĐ", "b": "22.000.000.000,00 đ", "kind": "money", "expected_equal": true, "note": "cùng số tiền, có phần thập phân ,00", "source": "gen:money"}
+{"a": "85,619,000 đồng", "b": "85.619.000", "kind": "money", "expected_equal": true, "note": "cùng số tiền, khác định dạng/đơn vị VND", "source": "gen:money"}
+{"a": "6.000.000.000 đồng", "b": "6.010.000.000 VND", "kind": "money", "expected_equal": false, "note": "khác số tiền", "source": "gen:money"}
+{"a": "44000000000đ", "b": "44.000.000.000,00 đ", "kind": "money", "expected_equal": true, "note": "cùng số tiền, có phần thập phân ,00", "source": "gen:money"}
+{"a": "7.700.000.000 VNĐ", "b": "8.470.000.000 đồng", "kind": "money", "expected_equal": false, "note": "khác số tiền", "source": "gen:money"}
+{"a": "3.300.000.000 VNĐ", "b": "3.300.000.000 VND", "kind": "money", "expected_equal": true, "note": "cùng số tiền, khác định dạng/đơn vị VND", "source": "gen:money"}
+{"a": "2900000000 đồng", "b": "2900 triệu", "kind": "money", "expected_equal": true, "note": "số tiền viết bằng chữ tỷ/triệu", "source": "gen:money"}
+{"a": "40.000.000.000 đ", "b": "400,000,000,000", "kind": "money", "expected_equal": false, "note": "thừa một số 0", "source": "gen:money"}
+{"a": "40.362.000 đ", "b": "40,362,000", "kind": "money", "expected_equal": true, "note": "cùng số tiền, khác định dạng/đơn vị VND", "source": "gen:money"}
+{"a": "3700000000 VNĐ", "b": "3,700,000,000$", "kind": "money", "expected_equal": false, "note": "khác loại tiền (USD vs VND)", "source": "gen:money"}
+{"a": "₫292000000", "b": "292 triệu", "kind": "money", "expected_equal": true, "note": "số tiền viết bằng chữ tỷ/triệu", "source": "gen:money"}
+{"a": "25.000.000.000 đ", "b": "25,001,000,000 VND", "kind": "money", "expected_equal": false, "note": "khác số tiền", "source": "gen:money"}
+{"a": "895000000 đồng", "b": "895.001.000 đồng", "kind": "money", "expected_equal": false, "note": "khác số tiền", "source": "gen:money"}
+{"a": "74,000,000đ", "b": "74.000.000,00 đ", "kind": "money", "expected_equal": true, "note": "cùng số tiền, có phần thập phân ,00", "source": "gen:money"}
+{"a": "26,000,000,000 VND", "b": "26 tỷ", "kind": "money", "expected_equal": true, "note": "số tiền viết bằng chữ tỷ/triệu", "source": "gen:money"}
+{"a": "475000000 đồng", "b": "4750000000 VNĐ", "kind": "money", "expected_equal": false, "note": "thừa một số 0", "source": "gen:money"}
+{"a": "76,043,000 VNĐ", "b": "76.043.000 đồng", "kind": "money", "expected_equal": true, "note": "cùng số tiền, khác định dạng/đơn vị VND", "source": "gen:money"}
+{"a": "₫742,000,000", "b": "741.000.000đ", "kind": "money", "expected_equal": false, "note": "thiếu tiền", "source": "gen:money"}
+{"a": "270.000.000 đồng", "b": "2.700.000.000 VND", "kind": "money", "expected_equal": false, "note": "thừa một số 0", "source": "gen:money"}
+{"a": "₫35.000.000.000", "b": "35.000.001.000 VNĐ", "kind": "money", "expected_equal": false, "note": "khác số tiền", "source": "gen:money"}
+{"a": "45.000.000.000 đ", "b": "45,000,000,000 đồng", "kind": "money", "expected_equal": true, "note": "cùng số tiền, khác định dạng/đơn vị VND", "source": "gen:money"}
+{"a": "28,000,000,000 đồng", "b": "28.000.000.000,00 đ", "kind": "money", "expected_equal": true, "note": "cùng số tiền, có phần thập phân ,00", "source": "gen:money"}
+{"a": "698.000.000", "b": "6,980,000,000 đồng", "kind": "money", "expected_equal": false, "note": "thừa một số 0", "source": "gen:money"}
+{"a": "97.837.000 đ", "b": "88053300", "kind": "money", "expected_equal": false, "note": "thiếu tiền", "source": "gen:money"}
+{"a": "39157000 VND", "b": "39.157.000", "kind": "money", "expected_equal": true, "note": "cùng số tiền, khác định dạng/đơn vị VND", "source": "gen:money"}
+{"a": "5000000000 VND", "b": "4,990,000,000 đ", "kind": "money", "expected_equal": false, "note": "thiếu tiền", "source": "gen:money"}
+{"a": "33,000,000,000 VNĐ", "b": "33.000.000.000,00 đ", "kind": "money", "expected_equal": true, "note": "cùng số tiền, có phần thập phân ,00", "source": "gen:money"}
+{"a": "7,000,000,000 VNĐ", "b": "7.000.000.000,00 đ", "kind": "money", "expected_equal": true, "note": "cùng số tiền, có phần thập phân ,00", "source": "gen:money"}
+{"a": "4300000000 đồng", "b": "4,300,000,000$", "kind": "money", "expected_equal": false, "note": "khác loại tiền (USD vs VND)", "source": "gen:money"}
+{"a": "8.500.000.000 VND", "b": "8500 triệu", "kind": "money", "expected_equal": true, "note": "số tiền viết bằng chữ tỷ/triệu", "source": "gen:money"}
+{"a": "800000000", "b": "800.000.000 đồng", "kind": "money", "expected_equal": true, "note": "cùng số tiền, khác định dạng/đơn vị VND", "source": "gen:money"}
+{"a": "728000000đ", "b": "7.280.000.000", "kind": "money", "expected_equal": false, "note": "thừa một số 0", "source": "gen:money"}
+{"a": "31,000,000,000 đồng", "b": "310.000.000.000", "kind": "money", "expected_equal": false, "note": "thừa một số 0", "source": "gen:money"}
+{"a": "₫2,300,000,000", "b": "2299000000 VND", "kind": "money", "expected_equal": false, "note": "thiếu tiền", "source": "gen:money"}
+{"a": "26.240.000đ", "b": "26.240.000,00 đ", "kind": "money", "expected_equal": true, "note": "cùng số tiền, có phần thập phân ,00", "source": "gen:money"}
+{"a": "63.616.000đ", "b": "63,616,000$", "kind": "money", "expected_equal": false, "note": "khác loại tiền (USD vs VND)", "source": "gen:money"}
+{"a": "2300000000 VND", "b": "2.301.000.000đ", "kind": "money", "expected_equal": false, "note": "khác số tiền", "source": "gen:money"}
+{"a": "7.700.000.000 VNĐ", "b": "77.000.000.000 đồng", "kind": "money", "expected_equal": false, "note": "thừa một số 0", "source": "gen:money"}
+{"a": "7.300.000.000đ", "b": "7,299,999,000 đồng", "kind": "money", "expected_equal": false, "note": "thiếu tiền", "source": "gen:money"}
+{"a": "7,000,000,000", "b": "70000000000đ", "kind": "money", "expected_equal": false, "note": "thừa một số 0", "source": "gen:money"}
+{"a": "41,000,000,000 VND", "b": "41.000.000.000,00 đ", "kind": "money", "expected_equal": true, "note": "cùng số tiền, có phần thập phân ,00", "source": "gen:money"}
+{"a": "32000000000 VNĐ", "b": "35,200,000,000", "kind": "money", "expected_equal": false, "note": "khác số tiền", "source": "gen:money"}
+{"a": "537000000 VNĐ", "b": "527000000 đồng", "kind": "money", "expected_equal": false, "note": "thiếu tiền", "source": "gen:money"}
+{"a": "92399000", "b": "923990000", "kind": "money", "expected_equal": false, "note": "thừa một số 0", "source": "gen:money"}
+{"a": "21000000000 VNĐ", "b": "21001000000 đồng", "kind": "money", "expected_equal": false, "note": "khác số tiền", "source": "gen:money"}
+{"a": "6000000000đ", "b": "5999999000đ", "kind": "money", "expected_equal": false, "note": "thiếu tiền", "source": "gen:money"}
+{"a": "8800000000 VNĐ", "b": "8,810,000,000 đ", "kind": "money", "expected_equal": false, "note": "khác số tiền", "source": "gen:money"}
+{"a": "5,600,000,000", "b": "5,600,000,000 đ", "kind": "money", "expected_equal": true, "note": "cùng số tiền, khác định dạng/đơn vị VND", "source": "gen:money"}
+{"a": "8200000000", "b": "8,200,000,000đ", "kind": "money", "expected_equal": true, "note": "cùng số tiền, khác định dạng/đơn vị VND", "source": "gen:money"}
+{"a": "22000000000 VND", "b": "22,000,000,000$", "kind": "money", "expected_equal": false, "note": "khác loại tiền (USD vs VND)", "source": "gen:money"}
+{"a": "8.200.000.000 VNĐ", "b": "8.200.000.000đ", "kind": "money", "expected_equal": true, "note": "cùng số tiền, khác định dạng/đơn vị VND", "source": "gen:money"}
+{"a": "1,400,000,000 đồng", "b": "1.400.000.000,00 đ", "kind": "money", "expected_equal": true, "note": "cùng số tiền, có phần thập phân ,00", "source": "gen:money"}
+{"a": "416000000 đ", "b": "416.000.000,00 đ", "kind": "money", "expected_equal": true, "note": "cùng số tiền, có phần thập phân ,00", "source": "gen:money"}
+{"a": "7,000,000,000", "b": "7 tỷ", "kind": "money", "expected_equal": true, "note": "số tiền viết bằng chữ tỷ/triệu", "source": "gen:money"}
+{"a": "16,772,000", "b": "16772000", "kind": "money", "expected_equal": true, "note": "cùng số tiền, khác định dạng/đơn vị VND", "source": "gen:money"}
+{"a": "41.914.000 đồng", "b": "31.914.000 đ", "kind": "money", "expected_equal": false, "note": "thiếu tiền", "source": "gen:money"}
+{"a": "1.000.000.000đ", "b": "1,000,000,000$", "kind": "money", "expected_equal": false, "note": "khác loại tiền (USD vs VND)", "source": "gen:money"}
+{"a": "44000000000", "b": "440,000,000,000đ", "kind": "money", "expected_equal": false, "note": "thừa một số 0", "source": "gen:money"}
+{"a": "₫7,100,000,000", "b": "7,100,001,000 đồng", "kind": "money", "expected_equal": false, "note": "khác số tiền", "source": "gen:money"}
+{"a": "60.501.000 VNĐ", "b": "60.501.000,00 đ", "kind": "money", "expected_equal": true, "note": "cùng số tiền, có phần thập phân ,00", "source": "gen:money"}
+{"a": "26,000,000,000 đ", "b": "23,400,000,000 đ", "kind": "money", "expected_equal": false, "note": "thiếu tiền", "source": "gen:money"}
+{"a": "28094000 đồng", "b": "28,094,000 VNĐ", "kind": "money", "expected_equal": true, "note": "cùng số tiền, khác định dạng/đơn vị VND", "source": "gen:money"}
+{"a": "666000000 đồng", "b": "599,400,000", "kind": "money", "expected_equal": false, "note": "thiếu tiền", "source": "gen:money"}
+{"a": "12.000.000", "b": "12,000,000 đ", "kind": "money", "expected_equal": true, "note": "cùng số tiền, khác định dạng/đơn vị VND", "source": "gen:money"}
+{"a": "7.600.000.000 VNĐ", "b": "7.600.000.000,00 đ", "kind": "money", "expected_equal": true, "note": "cùng số tiền, có phần thập phân ,00", "source": "gen:money"}
+{"a": "99,552,000 đ", "b": "99.551.000", "kind": "money", "expected_equal": false, "note": "thiếu tiền", "source": "gen:money"}
+{"a": "5.000.000.000 đ", "b": "5000000000", "kind": "money", "expected_equal": true, "note": "cùng số tiền, khác định dạng/đơn vị VND", "source": "gen:money"}
+{"a": "2,000,000,000 đồng", "b": "2,000,000,000$", "kind": "money", "expected_equal": false, "note": "khác loại tiền (USD vs VND)", "source": "gen:money"}
+{"a": "61,022,000", "b": "61.022.000,00 đ", "kind": "money", "expected_equal": true, "note": "cùng số tiền, có phần thập phân ,00", "source": "gen:money"}
+{"a": "34000000000", "b": "34.000.000.000 VNĐ", "kind": "money", "expected_equal": true, "note": "cùng số tiền, khác định dạng/đơn vị VND", "source": "gen:money"}
+{"a": "8.600.000.000 đ", "b": "8.600.000.000,00 đ", "kind": "money", "expected_equal": true, "note": "cùng số tiền, có phần thập phân ,00", "source": "gen:money"}
+{"a": "43000000000", "b": "42.990.000.000đ", "kind": "money", "expected_equal": false, "note": "thiếu tiền", "source": "gen:money"}
+{"a": "₫26000000000", "b": "26,000,001,000 VND", "kind": "money", "expected_equal": false, "note": "khác số tiền", "source": "gen:money"}
+{"a": "5.800.000.000 đ", "b": "5800 triệu", "kind": "money", "expected_equal": true, "note": "số tiền viết bằng chữ tỷ/triệu", "source": "gen:money"}
+{"a": "9,000,000,000đ", "b": "90,000,000,000 VND", "kind": "money", "expected_equal": false, "note": "thừa một số 0", "source": "gen:money"}
+{"a": "503.000.000 VND", "b": "503.000.000,00 đ", "kind": "money", "expected_equal": true, "note": "cùng số tiền, có phần thập phân ,00", "source": "gen:money"}
+{"a": "6,000,000,000 VND", "b": "6,000,000,000$", "kind": "money", "expected_equal": false, "note": "khác loại tiền (USD vs VND)", "source": "gen:money"}
+{"a": "56,335,000 đồng", "b": "56,335,000", "kind": "money", "expected_equal": true, "note": "cùng số tiền, khác định dạng/đơn vị VND", "source": "gen:money"}
+{"a": "₫9900000000", "b": "9.900.000.000 đồng", "kind": "money", "expected_equal": true, "note": "cùng số tiền, khác định dạng/đơn vị VND", "source": "gen:money"}
+{"a": "6,500,000,000 đ", "b": "6.500.000.000 đ", "kind": "money", "expected_equal": true, "note": "cùng số tiền, khác định dạng/đơn vị VND", "source": "gen:money"}
+{"a": "3.000.000.000", "b": "3.000.000.000,00 đ", "kind": "money", "expected_equal": true, "note": "cùng số tiền, có phần thập phân ,00", "source": "gen:money"}
+{"a": "8.300.000.000 VND", "b": "8.300.000.000,00 đ", "kind": "money", "expected_equal": true, "note": "cùng số tiền, có phần thập phân ,00", "source": "gen:money"}
+{"a": "6.500.000.000 VND", "b": "6500000000 đồng", "kind": "money", "expected_equal": true, "note": "cùng số tiền, khác định dạng/đơn vị VND", "source": "gen:money"}
+{"a": "49,000,000,000 VNĐ", "b": "490.000.000.000 VND", "kind": "money", "expected_equal": false, "note": "thừa một số 0", "source": "gen:money"}
+{"a": "04-04-2022", "b": "ngày 04 tháng 04 năm 2022", "kind": "date", "expected_equal": true, "note": "ngày viết bằng chữ", "source": "gen:date"}
+{"a": "02/11/2021", "b": "11/02/2021", "kind": "date", "expected_equal": false, "note": "đảo ngày/tháng — ngày khác", "source": "gen:date"}
+{"a": "20/2/2021", "b": "20.02.2021", "kind": "date", "expected_equal": true, "note": "cùng ngày, khác định dạng", "source": "gen:date"}
+{"a": "04.11.2021", "b": "11/04/2021", "kind": "date", "expected_equal": false, "note": "đảo ngày/tháng — ngày khác", "source": "gen:date"}
+{"a": "22/10/2024", "b": "22-10-2024", "kind": "date", "expected_equal": true, "note": "cùng ngày, khác định dạng", "source": "gen:date"}
+{"a": "26.02.2024", "b": "27/3/2024", "kind": "date", "expected_equal": false, "note": "lệch ~1 tháng", "source": "gen:date"}
+{"a": "14/02/2024", "b": "ngày 14 tháng 02 năm 2024", "kind": "date", "expected_equal": true, "note": "ngày viết bằng chữ", "source": "gen:date"}
+{"a": "11-09-2022", "b": "11/9/2022", "kind": "date", "expected_equal": true, "note": "cùng ngày, khác định dạng", "source": "gen:date"}
+{"a": "2022-04-29", "b": "29.04.2023", "kind": "date", "expected_equal": false, "note": "khác năm", "source": "gen:date"}
+{"a": "15.08.2022", "b": "2022-08-16", "kind": "date", "expected_equal": false, "note": "lệch 1 ngày", "source": "gen:date"}
+{"a": "2023-05-01", "b": "ngày 01 tháng 05 năm 2023", "kind": "date", "expected_equal": true, "note": "ngày viết bằng chữ", "source": "gen:date"}
+{"a": "04-07-2022", "b": "ngày 04 tháng 07 năm 2022", "kind": "date", "expected_equal": true, "note": "ngày viết bằng chữ", "source": "gen:date"}
+{"a": "07-05-2020", "b": "05/07/2020", "kind": "date", "expected_equal": false, "note": "đảo ngày/tháng — ngày khác", "source": "gen:date"}
+{"a": "26/12/2024", "b": "26-12-2025", "kind": "date", "expected_equal": false, "note": "khác năm", "source": "gen:date"}
+{"a": "13/9/2026", "b": "13-09-2026", "kind": "date", "expected_equal": true, "note": "cùng ngày, khác định dạng", "source": "gen:date"}
+{"a": "11-02-2024", "b": "11/2/2025", "kind": "date", "expected_equal": false, "note": "khác năm", "source": "gen:date"}
+{"a": "13.03.2026", "b": "13/3/2027", "kind": "date", "expected_equal": false, "note": "khác năm", "source": "gen:date"}
+{"a": "23/6/2026", "b": "23/7/2026", "kind": "date", "expected_equal": false, "note": "lệch ~1 tháng", "source": "gen:date"}
+{"a": "17.08.2025", "b": "17/08/2026", "kind": "date", "expected_equal": false, "note": "khác năm", "source": "gen:date"}
+{"a": "07-08-2022", "b": "07.08.2022", "kind": "date", "expected_equal": true, "note": "cùng ngày, khác định dạng", "source": "gen:date"}
+{"a": "2026-03-21", "b": "2026-04-20", "kind": "date", "expected_equal": false, "note": "lệch ~1 tháng", "source": "gen:date"}
+{"a": "27/8/2021", "b": "ngày 27 tháng 08 năm 2021", "kind": "date", "expected_equal": true, "note": "ngày viết bằng chữ", "source": "gen:date"}
+{"a": "2024-10-31", "b": "ngày 31 tháng 10 năm 2024", "kind": "date", "expected_equal": true, "note": "ngày viết bằng chữ", "source": "gen:date"}
+{"a": "01/09/2024", "b": "ngày 01 tháng 09 năm 2024", "kind": "date", "expected_equal": true, "note": "ngày viết bằng chữ", "source": "gen:date"}
+{"a": "26.04.2026", "b": "2026-04-26", "kind": "date", "expected_equal": true, "note": "cùng ngày, khác định dạng", "source": "gen:date"}
+{"a": "15.09.2021", "b": "15/9/2021", "kind": "date", "expected_equal": true, "note": "cùng ngày, khác định dạng", "source": "gen:date"}
+{"a": "2023-01-12", "b": "12-01-2024", "kind": "date", "expected_equal": false, "note": "khác năm", "source": "gen:date"}
+{"a": "13/4/2025", "b": "ngày 13 tháng 04 năm 2025", "kind": "date", "expected_equal": true, "note": "ngày viết bằng chữ", "source": "gen:date"}
+{"a": "22.12.2023", "b": "22/12/2024", "kind": "date", "expected_equal": false, "note": "khác năm", "source": "gen:date"}
+{"a": "10.04.2024", "b": "10/05/2024", "kind": "date", "expected_equal": false, "note": "lệch ~1 tháng", "source": "gen:date"}
+{"a": "20-07-2023", "b": "20.07.2024", "kind": "date", "expected_equal": false, "note": "khác năm", "source": "gen:date"}
+{"a": "2021-06-10", "b": "ngày 10 tháng 06 năm 2021", "kind": "date", "expected_equal": true, "note": "ngày viết bằng chữ", "source": "gen:date"}
+{"a": "23/12/2025", "b": "22-01-2026", "kind": "date", "expected_equal": false, "note": "lệch ~1 tháng", "source": "gen:date"}
+{"a": "2020-02-01", "b": "01/02/2021", "kind": "date", "expected_equal": false, "note": "khác năm", "source": "gen:date"}
+{"a": "20/10/2024", "b": "ngày 20 tháng 10 năm 2024", "kind": "date", "expected_equal": true, "note": "ngày viết bằng chữ", "source": "gen:date"}
+{"a": "2024-09-28", "b": "2024-10-28", "kind": "date", "expected_equal": false, "note": "lệch ~1 tháng", "source": "gen:date"}
+{"a": "21-01-2021", "b": "ngày 21 tháng 01 năm 2021", "kind": "date", "expected_equal": true, "note": "ngày viết bằng chữ", "source": "gen:date"}
+{"a": "19/11/2020", "b": "19/11/2021", "kind": "date", "expected_equal": false, "note": "khác năm", "source": "gen:date"}
+{"a": "16.02.2025", "b": "2026-02-16", "kind": "date", "expected_equal": false, "note": "khác năm", "source": "gen:date"}
+{"a": "21/3/2023", "b": "ngày 21 tháng 03 năm 2023", "kind": "date", "expected_equal": true, "note": "ngày viết bằng chữ", "source": "gen:date"}
+{"a": "13/07/2026", "b": "14/07/2026", "kind": "date", "expected_equal": false, "note": "lệch 1 ngày", "source": "gen:date"}
+{"a": "30-12-2024", "b": "2024-12-30", "kind": "date", "expected_equal": true, "note": "cùng ngày, khác định dạng", "source": "gen:date"}
+{"a": "01/04/2026", "b": "02.04.2026", "kind": "date", "expected_equal": false, "note": "lệch 1 ngày", "source": "gen:date"}
+{"a": "19/10/2021", "b": "19/10/2022", "kind": "date", "expected_equal": false, "note": "khác năm", "source": "gen:date"}
+{"a": "18.02.2022", "b": "18-02-2023", "kind": "date", "expected_equal": false, "note": "khác năm", "source": "gen:date"}
+{"a": "12/02/2023", "b": "12/2/2023", "kind": "date", "expected_equal": true, "note": "cùng ngày, khác định dạng", "source": "gen:date"}
+{"a": "27.07.2023", "b": "ngày 27 tháng 07 năm 2023", "kind": "date", "expected_equal": true, "note": "ngày viết bằng chữ", "source": "gen:date"}
+{"a": "15.06.2020", "b": "2021-06-15", "kind": "date", "expected_equal": false, "note": "khác năm", "source": "gen:date"}
+{"a": "08-04-2021", "b": "2021-04-08", "kind": "date", "expected_equal": true, "note": "cùng ngày, khác định dạng", "source": "gen:date"}
+{"a": "30.05.2023", "b": "2024-05-30", "kind": "date", "expected_equal": false, "note": "khác năm", "source": "gen:date"}
+{"a": "03-11-2020", "b": "2020-11-04", "kind": "date", "expected_equal": false, "note": "lệch 1 ngày", "source": "gen:date"}
+{"a": "29-06-2024", "b": "29.06.2024", "kind": "date", "expected_equal": true, "note": "cùng ngày, khác định dạng", "source": "gen:date"}
+{"a": "15/9/2022", "b": "15/09/2022", "kind": "date", "expected_equal": true, "note": "cùng ngày, khác định dạng", "source": "gen:date"}
+{"a": "27/07/2021", "b": "27-07-2022", "kind": "date", "expected_equal": false, "note": "khác năm", "source": "gen:date"}
+{"a": "13-03-2025", "b": "13/03/2025", "kind": "date", "expected_equal": true, "note": "cùng ngày, khác định dạng", "source": "gen:date"}
+{"a": "13/06/2020", "b": "2020-07-13", "kind": "date", "expected_equal": false, "note": "lệch ~1 tháng", "source": "gen:date"}
+{"a": "18.04.2024", "b": "ngày 18 tháng 04 năm 2024", "kind": "date", "expected_equal": true, "note": "ngày viết bằng chữ", "source": "gen:date"}
+{"a": "23.06.2024", "b": "2025-06-23", "kind": "date", "expected_equal": false, "note": "khác năm", "source": "gen:date"}
+{"a": "22.01.2023", "b": "23.01.2023", "kind": "date", "expected_equal": false, "note": "lệch 1 ngày", "source": "gen:date"}
+{"a": "15.04.2026", "b": "2026-04-15", "kind": "date", "expected_equal": true, "note": "cùng ngày, khác định dạng", "source": "gen:date"}
+{"a": "23-08-2022", "b": "23/08/2022", "kind": "date", "expected_equal": true, "note": "cùng ngày, khác định dạng", "source": "gen:date"}
+{"a": "23/11/2020", "b": "2020-11-23", "kind": "date", "expected_equal": true, "note": "cùng ngày, khác định dạng", "source": "gen:date"}
+{"a": "2025-05-03", "b": "3/5/2025", "kind": "date", "expected_equal": true, "note": "cùng ngày, khác định dạng", "source": "gen:date"}
+{"a": "04-10-2024", "b": "05/10/2024", "kind": "date", "expected_equal": false, "note": "lệch 1 ngày", "source": "gen:date"}
+{"a": "17/10/2024", "b": "17-10-2024", "kind": "date", "expected_equal": true, "note": "cùng ngày, khác định dạng", "source": "gen:date"}
+{"a": "13-05-2026", "b": "12/06/2026", "kind": "date", "expected_equal": false, "note": "lệch ~1 tháng", "source": "gen:date"}
+{"a": "21/04/2021", "b": "ngày 21 tháng 04 năm 2021", "kind": "date", "expected_equal": true, "note": "ngày viết bằng chữ", "source": "gen:date"}
+{"a": "24/07/2021", "b": "24.07.2021", "kind": "date", "expected_equal": true, "note": "cùng ngày, khác định dạng", "source": "gen:date"}
+{"a": "21/09/2023", "b": "2023-09-22", "kind": "date", "expected_equal": false, "note": "lệch 1 ngày", "source": "gen:date"}
+{"a": "04-04-2020", "b": "04-04-2021", "kind": "date", "expected_equal": false, "note": "khác năm", "source": "gen:date"}
+{"a": "Đỗ Quốc Toàn", "b": "ĐỖ QUỐC TOÀN", "kind": "name", "expected_equal": true, "note": "tên viết HOA", "source": "gen:name"}
+{"a": "Vũ Văn Toàn", "b": "Vũ Văn Toán", "kind": "name", "expected_equal": false, "note": "đổi 1 dấu → tên hợp lệ khác (người khác)", "source": "gen:name"}
+{"a": "Ngô Quốc Lan", "b": "Ngô Thị Lan", "kind": "name", "expected_equal": false, "note": "khác tên đệm", "source": "gen:name"}
+{"a": "Đặng Thu Tuấn", "b": "Đặng Thu Thủy", "kind": "name", "expected_equal": false, "note": "khác tên", "source": "gen:name"}
+{"a": "Hoàng Hữu Dũng", "b": "  Hoàng Hữu  Dũng ", "kind": "name", "expected_equal": true, "note": "tên thừa khoảng trắng", "source": "gen:name"}
+{"a": "Lê Minh Yến", "b": "Phạm Minh Yến", "kind": "name", "expected_equal": false, "note": "khác họ", "source": "gen:name"}
+{"a": "Hoàng Đức An", "b": "Hoàng Đức Hùng", "kind": "name", "expected_equal": false, "note": "khác tên", "source": "gen:name"}
+{"a": "Khúc Hữu Phương", "b": "Ngô Hữu Phương", "kind": "name", "expected_equal": false, "note": "khác họ", "source": "gen:name"}
+{"a": "Nguyễn Đức Hùng", "b": "Nguyễn Đức An", "kind": "name", "expected_equal": false, "note": "khác tên", "source": "gen:name"}
+{"a": "Lê Đức Hòa", "b": "LÊ ĐỨC HÒA", "kind": "name", "expected_equal": true, "note": "tên viết HOA", "source": "gen:name"}
+{"a": "Khúc Văn Khánh", "b": "  Khúc Văn Khánh  ", "kind": "name", "expected_equal": true, "note": "tên thừa khoảng trắng", "source": "gen:name"}
+{"a": "Trần Thị Nhung", "b": "Trần Ngọc Nhung", "kind": "name", "expected_equal": false, "note": "khác tên đệm", "source": "gen:name"}
+{"a": "Phạm Thu Dũng", "b": "Phạm Thu Toàn", "kind": "name", "expected_equal": false, "note": "khác tên", "source": "gen:name"}
+{"a": "Lê Quốc Nhung", "b": "Trần Quốc Nhung", "kind": "name", "expected_equal": false, "note": "khác họ", "source": "gen:name"}
+{"a": "Vũ Hữu Dũng", "b": "  Vũ  Hữu Dũng ", "kind": "name", "expected_equal": true, "note": "tên thừa khoảng trắng", "source": "gen:name"}
+{"a": "Đỗ Thị Nhung", "b": "Đỗ Thị Nhung", "kind": "name", "expected_equal": true, "note": "tên NFC vs NFD", "source": "gen:name"}
+{"a": "Khúc Thanh Tuấn", "b": "Phạm Thanh Tuấn", "kind": "name", "expected_equal": false, "note": "khác họ", "source": "gen:name"}
+{"a": "Nguyễn Thanh Thủy", "b": "Nguyễn Đức Thủy", "kind": "name", "expected_equal": false, "note": "khác tên đệm", "source": "gen:name"}
+{"a": "Nguyễn Văn An", "b": "Phạm Văn An", "kind": "name", "expected_equal": false, "note": "khác họ", "source": "gen:name"}
+{"a": "Lê Ngọc Lan", "b": "Lê Ngọc Lân", "kind": "name", "expected_equal": false, "note": "đổi 1 dấu → tên hợp lệ khác (người khác)", "source": "gen:name"}
+{"a": "Bùi Văn Khánh", "b": "  Bùi Văn  Khánh ", "kind": "name", "expected_equal": true, "note": "tên thừa khoảng trắng", "source": "gen:name"}
+{"a": "Bùi Văn Hoè", "b": "Vũ Văn Hoè", "kind": "name", "expected_equal": false, "note": "khác họ", "source": "gen:name"}
+{"a": "Lê Thị Thụy", "b": "Lê Thị  Thụy ", "kind": "name", "expected_equal": true, "note": "tên thừa khoảng trắng", "source": "gen:name"}
+{"a": "Nguyễn Văn Tuấn", "b": "Nguyễn Văn Tuân", "kind": "name", "expected_equal": false, "note": "đổi 1 dấu → tên hợp lệ khác (người khác)", "source": "gen:name"}
+{"a": "Nguyễn Thu Hòa", "b": "Lê Thu Hòa", "kind": "name", "expected_equal": false, "note": "khác họ", "source": "gen:name"}
+{"a": "Vũ Thu An", "b": "  Vũ Thu  An ", "kind": "name", "expected_equal": true, "note": "tên thừa khoảng trắng", "source": "gen:name"}
+{"a": "Hoàng Thị Dũng", "b": "Hoàng Thu Dũng", "kind": "name", "expected_equal": false, "note": "khác tên đệm", "source": "gen:name"}
+{"a": "Bùi Thanh Phương", "b": "Ngô Thanh Phương", "kind": "name", "expected_equal": false, "note": "khác họ", "source": "gen:name"}
+{"a": "Khúc Văn Hùng", "b": "Khúc Văn Hùng", "kind": "name", "expected_equal": true, "note": "tên NFC vs NFD", "source": "gen:name"}
+{"a": "Đỗ Hữu Tuấn", "b": "Đỗ Hữu Tuấn", "kind": "name", "expected_equal": true, "note": "tên NFC vs NFD", "source": "gen:name"}
+{"a": "Vũ Minh Thụy", "b": "Vũ Ngọc Thụy", "kind": "name", "expected_equal": false, "note": "khác tên đệm", "source": "gen:name"}
+{"a": "Hoàng Thị Nhung", "b": "Trần Thị Nhung", "kind": "name", "expected_equal": false, "note": "khác họ", "source": "gen:name"}
+{"a": "Bùi Thanh Bình", "b": "Bùi Thanh Phương", "kind": "name", "expected_equal": false, "note": "khác tên", "source": "gen:name"}
+{"a": "Ngô Ngọc Nhung", "b": "Ngô Ngọc An", "kind": "name", "expected_equal": false, "note": "khác tên", "source": "gen:name"}
+{"a": "Trần Thu Dũng", "b": "Trần Thị Dũng", "kind": "name", "expected_equal": false, "note": "khác tên đệm", "source": "gen:name"}
+{"a": "Đặng Thị Phương", "b": "Đặng Thị Phương", "kind": "name", "expected_equal": true, "note": "tên NFC vs NFD", "source": "gen:name"}
+{"a": "Trần Minh Lan", "b": "TRẦN MINH LAN", "kind": "name", "expected_equal": true, "note": "tên viết HOA", "source": "gen:name"}
+{"a": "Nguyễn Ngọc Bình", "b": "Nguyễn Ngọc Bình", "kind": "name", "expected_equal": true, "note": "tên NFC vs NFD", "source": "gen:name"}
+{"a": "Vũ Văn Yến", "b": "VŨ VĂN YẾN", "kind": "name", "expected_equal": true, "note": "tên viết HOA", "source": "gen:name"}
+{"a": "Đặng Minh Lan", "b": "  Đặng Minh  Lan ", "kind": "name", "expected_equal": true, "note": "tên thừa khoảng trắng", "source": "gen:name"}
+{"a": "Ngô Hữu Thụy", "b": "Ngô Thị Thụy", "kind": "name", "expected_equal": false, "note": "khác tên đệm", "source": "gen:name"}
+{"a": "Đỗ Thị Dũng", "b": "Lê Thị Dũng", "kind": "name", "expected_equal": false, "note": "khác họ", "source": "gen:name"}
+{"a": "Vũ Hữu Lan", "b": "Vũ Hữu Lân", "kind": "name", "expected_equal": false, "note": "đổi 1 dấu → tên hợp lệ khác (người khác)", "source": "gen:name"}
+{"a": "Hoàng Minh Thụy", "b": "Hoàng Minh Thủy", "kind": "name", "expected_equal": false, "note": "khác tên", "source": "gen:name"}
+{"a": "Hoàng Văn Nhung", "b": "Hoàng Văn Nhung", "kind": "name", "expected_equal": true, "note": "tên NFC vs NFD", "source": "gen:name"}
+{"a": "Đặng Ngọc Lan", "b": "Đặng Ngọc Lan", "kind": "name", "expected_equal": true, "note": "tên NFC vs NFD", "source": "gen:name"}
+{"a": "Trần Thị Hòa", "b": "TRẦN THỊ HÒA", "kind": "name", "expected_equal": true, "note": "tên viết HOA", "source": "gen:name"}
+{"a": "Nguyễn Thanh Thụy", "b": "  Nguyễn Thanh Thụy  ", "kind": "name", "expected_equal": true, "note": "tên thừa khoảng trắng", "source": "gen:name"}
+{"a": "Nguyễn Văn Hoè", "b": "NGUYỄN VĂN HOÈ", "kind": "name", "expected_equal": true, "note": "tên viết HOA", "source": "gen:name"}
+{"a": "Đỗ Văn Thủy", "b": "  Đỗ  Văn Thủy ", "kind": "name", "expected_equal": true, "note": "tên thừa khoảng trắng", "source": "gen:name"}
+{"a": "Đỗ Thanh Hòa", "b": "ĐỖ THANH HÒA", "kind": "name", "expected_equal": true, "note": "tên viết HOA", "source": "gen:name"}
+{"a": "Đỗ Quốc Hòa", "b": "Đỗ Quốc Hòa", "kind": "name", "expected_equal": true, "note": "tên NFC vs NFD", "source": "gen:name"}
+{"a": "Hoàng Minh Khánh", "b": "Hoàng Minh Khánh", "kind": "name", "expected_equal": true, "note": "tên NFC vs NFD", "source": "gen:name"}
+{"a": "Khúc Thị Lan", "b": "Hoàng Thị Lan", "kind": "name", "expected_equal": false, "note": "khác họ", "source": "gen:name"}
+{"a": "Bùi Ngọc Tuấn", "b": "Bùi Quốc Tuấn", "kind": "name", "expected_equal": false, "note": "khác tên đệm", "source": "gen:name"}
+{"a": "Đỗ Văn Bình", "b": "  Đỗ  Văn Bình ", "kind": "name", "expected_equal": true, "note": "tên thừa khoảng trắng", "source": "gen:name"}
+{"a": "Phạm Thanh Nhung", "b": "Phạm Đức Nhung", "kind": "name", "expected_equal": false, "note": "khác tên đệm", "source": "gen:name"}
+{"a": "Ngô Văn Toàn", "b": "Đỗ Văn Toàn", "kind": "name", "expected_equal": false, "note": "khác họ", "source": "gen:name"}
+{"a": "Ngô Đức Tuấn", "b": "Ngô Đức An", "kind": "name", "expected_equal": false, "note": "khác tên", "source": "gen:name"}
+{"a": "Đặng Văn An", "b": "Đặng Văn Ân", "kind": "name", "expected_equal": false, "note": "đổi 1 dấu → tên hợp lệ khác (người khác)", "source": "gen:name"}
+{"a": "Bùi Quốc Dũng", "b": "BÙI QUỐC DŨNG", "kind": "name", "expected_equal": true, "note": "tên viết HOA", "source": "gen:name"}
+{"a": "Ngô Văn Hòa", "b": "Ngô Văn Hoà", "kind": "name", "expected_equal": true, "note": "tên dấu thanh kiểu cũ (oà/uỷ)", "source": "gen:name"}
+{"a": "Lê Thị Lan", "b": "LÊ THỊ LAN", "kind": "name", "expected_equal": true, "note": "tên viết HOA", "source": "gen:name"}
+{"a": "Phạm Quốc Thủy", "b": "Phạm Thu Thủy", "kind": "name", "expected_equal": false, "note": "khác tên đệm", "source": "gen:name"}
+{"a": "Bùi Thị Hùng", "b": "Bùi Thị Thủy", "kind": "name", "expected_equal": false, "note": "khác tên", "source": "gen:name"}
+{"a": "Vũ Thị Phương", "b": "Trần Thị Phương", "kind": "name", "expected_equal": false, "note": "khác họ", "source": "gen:name"}
+{"a": "Đặng Quốc Dũng", "b": "ĐẶNG QUỐC DŨNG", "kind": "name", "expected_equal": true, "note": "tên viết HOA", "source": "gen:name"}
+{"a": "Đặng Ngọc Lan", "b": "  Đặng Ngọc  Lan ", "kind": "name", "expected_equal": true, "note": "tên thừa khoảng trắng", "source": "gen:name"}
+{"a": "Ngô Hữu Tuấn", "b": "Ngô Hữu Tuân", "kind": "name", "expected_equal": false, "note": "đổi 1 dấu → tên hợp lệ khác (người khác)", "source": "gen:name"}
+{"a": "Bùi Văn Nhung", "b": "  Bùi  Văn Nhung ", "kind": "name", "expected_equal": true, "note": "tên thừa khoảng trắng", "source": "gen:name"}
+{"a": "Đỗ Đức Hòa", "b": "ĐỖ ĐỨC HÒA", "kind": "name", "expected_equal": true, "note": "tên viết HOA", "source": "gen:name"}
+{"a": "Phạm Văn An", "b": "  Phạm Văn An  ", "kind": "name", "expected_equal": true, "note": "tên thừa khoảng trắng", "source": "gen:name"}
+{"a": "Đỗ Thị Phương", "b": "Đỗ  Thị Phương ", "kind": "name", "expected_equal": true, "note": "tên thừa khoảng trắng", "source": "gen:name"}
+{"a": "Khúc Minh Tuấn", "b": "Hoàng Minh Tuấn", "kind": "name", "expected_equal": false, "note": "khác họ", "source": "gen:name"}
+{"a": "Ngô Minh Hòa", "b": "NGÔ MINH HÒA", "kind": "name", "expected_equal": true, "note": "tên viết HOA", "source": "gen:name"}
+{"a": "Đặng Minh Bình", "b": "Đặng Minh Bình", "kind": "name", "expected_equal": true, "note": "tên NFC vs NFD", "source": "gen:name"}
+{"a": "Hoàng Văn Phương", "b": "Hoàng Văn  Phương ", "kind": "name", "expected_equal": true, "note": "tên thừa khoảng trắng", "source": "gen:name"}
+{"a": "Nguyễn Thị Thủy", "b": "Nguyễn Thị An", "kind": "name", "expected_equal": false, "note": "khác tên", "source": "gen:name"}
+{"a": "Bùi Minh Lan", "b": "Bùi Đức Lan", "kind": "name", "expected_equal": false, "note": "khác tên đệm", "source": "gen:name"}
+{"a": "Đặng Văn Toàn", "b": "Đặng Văn Hoè", "kind": "name", "expected_equal": false, "note": "khác tên", "source": "gen:name"}

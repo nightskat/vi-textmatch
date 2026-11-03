@@ -28,20 +28,23 @@ from __future__ import annotations
 
 import argparse
 import difflib
+import hashlib
 import json
 import platform
 import subprocess
 import sys
 from collections import Counter
+from collections.abc import Callable
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Callable
+from typing import Any
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parent
 sys.path.insert(0, str(REPO / "src"))
 
-from vi_textmatch import Kind, compare as vi_compare, normalize  # noqa: E402
+from vi_textmatch import Kind, normalize  # noqa: E402
+from vi_textmatch import compare as vi_compare
 
 try:
     import rapidfuzz
@@ -118,6 +121,7 @@ def run(fn: Matcher, pairs: list[Row]) -> list[Row]:
                 "kind": p["kind"],
                 "expected_equal": p["expected_equal"],
                 "note": p["note"],
+                "source": p.get("source", "core"),
                 "pred": bool(pred),
                 "correct": bool(pred) == p["expected_equal"],
                 "error": err,
@@ -214,10 +218,30 @@ def build_report(
     add("")
     add("| matcher | accuracy | đúng | false-equal ⚠ | false-diff | ERR |")
     add("|---|---|---|---|---|---|")
-    for name, rows in results.items():
+    for name, rows in list(results.items()) + list(variants.items()):
         s = summarize(rows)
         add(f"| `{name}` | {pct(s['accuracy'])} | {s['correct']}/{s['n']} | "
             f"**{s['false_equal']}** | {s['false_diff']} | {s['errors']} |")
+    add("")
+    add("`+normalize` = cùng thước đo chuỗi nhưng chạy trên `normalize()` (baseline mạnh hơn, "
+        "để so sánh công bằng).")
+    add("")
+    add("## Theo nguồn / mẫu biến đổi (`vi_textmatch`)")
+    add("")
+    add("Cặp sinh tự động được gán nhãn theo phép biến đổi; bảng này cho thấy thư viện "
+        "mạnh/yếu ở phép nào, tránh để vài mẫu dễ kéo điểm tổng.")
+    add("")
+    add("| nguồn | ghi chú (phép biến đổi) | nhãn | n | đúng | FE | FD |")
+    add("|---|---|---|---|---|---|---|")
+    groups: dict[tuple[str, str, bool], list[Row]] = {}
+    for p, r in zip(pairs, results["vi_textmatch"]):
+        if p.get("source", "core") == "core":
+            continue
+        groups.setdefault((p["source"], p["note"], p["expected_equal"]), []).append(r)
+    for (src, note, exp), rows in sorted(groups.items()):
+        s = summarize(rows)
+        add(f"| {src} | {cell(note)} | {'BẰNG' if exp else 'KHÁC'} | {s['n']} | {s['correct']} | "
+            f"{s['false_equal']} | {s['false_diff']} |")
     add("")
 
     def kind_table(title: str, metric: str, fmt: Callable[[Any], str]) -> None:
@@ -298,10 +322,10 @@ def build_report(
         f"Baseline coi hai số tiền/ngày/định danh khác nhau là \"gần đúng\" đúng ở chỗ SPEC cấm "
         f"dùng ratio: money {df_fe['money']}, date {df_fe['date']}, id {df_fe['id']}, "
         f"text {df_fe['text']}.")
-    add(f"2. **`vi_textmatch` không false-equal ở money/date/id** "
-        f"({vi_fe['money']}/{vi_fe['date']}/{vi_fe['id']} cặp), name {vi_fe['name']} cặp. "
-        f"False-equal còn lại nằm ở text ({vi_fe['text']} cặp), nơi ngưỡng TYPO 0.85 gộp hai chuỗi "
-        f"gần giống nhưng khác nghĩa.")
+    add(f"2. **False-equal của `vi_textmatch` theo kiểu:** money {vi_fe['money']}, "
+        f"date {vi_fe['date']}, id {vi_fe['id']}, name {vi_fe['name']}, text {vi_fe['text']}. "
+        f"Ở text, ngưỡng TYPO 0.85 gộp hai chuỗi gần giống nhưng khác nghĩa (địa chỉ khác số "
+        f"nhà, công ty khác loại hình) — TEXT không phải kiểu an toàn cho địa chỉ/pháp nhân.")
     if at_boundary:
         add(f"3. **Ngưỡng 0.9 là con dao sắc.** {len(at_boundary)}/{len(df)} cặp có ratio difflib "
             f"đúng bằng 0.90 (±0.005): " +
@@ -329,7 +353,9 @@ def build_report(
 
     add("## Giới hạn")
     add("")
-    add("- 100 cặp là mẫu nhỏ, do một người đặt nhãn; nhãn text phụ thuộc quan điểm \"hai tên lệch "
+    n_core = sum(1 for p in pairs if p.get("source", "core") == "core")
+    add(f"- {n_core} cặp viết tay + {len(pairs) - n_core} cặp sinh tự động (`gen_extended.py`, "
+        "seed cố định, nhãn theo phép biến đổi); vẫn là dữ liệu bịa, do một người đặt nhãn; nhãn text phụ thuộc quan điểm \"hai tên lệch "
         "1 dấu có phải cùng người không\". Cách chốt ở đây là **chặt**: phải soát lại.")
     add("- Mọi chuỗi đều bịa; không có PII, không suy ra hành vi trên dữ liệu thật.")
     add("- Chưa đo tốc độ và chưa đo trường hợp chuỗi rất dài (difflib có `autojunk`).")
@@ -337,7 +363,7 @@ def build_report(
     add("## Chạy lại")
     add("")
     add("```bash")
-    add("python3 bench/gen_pairs.py     # sinh lại bench/pairs.jsonl (tất định)")
+    add("python3 bench/gen_extended.py  # sinh lại bench/pairs.jsonl từ pairs_core.jsonl (tất định)")
     add("python3 bench/run_bench.py    # ghi bench/RESULTS.md + bench/results.jsonl")
     add("```")
     add("")
@@ -353,12 +379,70 @@ def build_report(
     return "\n".join(lines)
 
 
+def fe_key(r: Row) -> str:
+    return f"{r['kind']}\t{r['a']}\t{r['b']}"
+
+
+def gate_check(pairs_path: Path, vi_rows: list[Row], baseline: Path, update: bool) -> int:
+    """CI gate: fail on any vi_textmatch false-equal that is not already known.
+
+    Keyed by the pair itself (not a count), so adding pairs never trips it by
+    accident, and fixing a known false-equal is allowed (it is just reported).
+    """
+    current = sorted(fe_key(r) for r in vi_rows if r["pred"] and not r["expected_equal"])
+    digest = hashlib.sha256(pairs_path.read_bytes()).hexdigest()
+    if update:
+        baseline.write_text(json.dumps({"pairs_sha256": digest, "false_equal": current},
+                                       ensure_ascii=False, indent=1) + "\n", "utf-8")
+        print(f"\nbaseline updated: {len(current)} known false-equal")
+        return 0
+    if not baseline.exists():
+        print(f"\nno baseline at {baseline}")
+        return 1
+    base = json.loads(baseline.read_text("utf-8"))
+    known = set(base["false_equal"])
+    new = [k for k in current if k not in known]
+    fixed = [k for k in known if k not in set(current)]
+    print(f"\ngate: {len(current)} false-equal, {len(known)} in baseline, "
+          f"{len(new)} NEW, {len(fixed)} fixed")
+    if base.get("pairs_sha256") != digest:
+        print("  note: pairs.jsonl changed since baseline — run --update-baseline if intended")
+    for k in new:
+        print("  NEW false-equal:", k.replace("\t", " | "))
+    return 1 if new else 0
+
+
+def build_summary(pairs: list[Row], results: dict[str, list[Row]],
+                  variants: dict[str, list[Row]]) -> str:
+    lines = ["<!-- generated by bench/run_bench.py --summary; do not edit -->",
+             f"Pairs: **{len(pairs)}** (fabricated) · commit `{git_commit()}` · "
+             f"rapidfuzz {rapidfuzz.__version__}", "",
+             "| matcher | accuracy | false-equal ⚠ | false-diff | ERR |", "|---|---|---|---|---|"]
+    for name, rows in list(results.items()) + list(variants.items()):
+        s = summarize(rows)
+        lines.append(f"| `{name}` | {pct(s['accuracy'])} | **{s['false_equal']}** | "
+                     f"{s['false_diff']} | {s['errors']} |")
+    lines += ["", "| matcher | " + " | ".join(KIND_ORDER) + " |",
+              "|" + "---|" * (len(KIND_ORDER) + 1)]
+    for name, rows in results.items():
+        vals = [summarize([r for r in rows if r["kind"] == k]) for k in KIND_ORDER]
+        lines.append(f"| `{name}` | " + " | ".join(
+            f"{pct(v['accuracy'])} (FE {v['false_equal']})" for v in vals) + " |")
+    return "\n".join(lines) + "\n"
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--pairs", default=str(HERE / "pairs.jsonl"))
     ap.add_argument("--out", default=str(HERE / "RESULTS.md"))
     ap.add_argument("--json", default=str(HERE / "results.jsonl"))
     ap.add_argument("--no-write", action="store_true")
+    ap.add_argument("--baseline", default=str(HERE / "baseline.json"))
+    ap.add_argument("--check", action="store_true",
+                    help="exit 1 if vi_textmatch has a false-equal not listed in --baseline")
+    ap.add_argument("--update-baseline", action="store_true")
+    ap.add_argument("--badge", help="write a shields.io endpoint JSON here")
+    ap.add_argument("--summary", help="write a short Markdown summary table here (docs)")
     args = ap.parse_args()
 
     pairs_path = Path(args.pairs)
@@ -393,6 +477,19 @@ def main() -> int:
         s = summarize(rows)
         print(f"{name:<22}{pct(s['accuracy']):>8}{s['correct']:>6}/{s['n']:<3}"
               f"{s['false_equal']:>5}{s['false_diff']:>5}{s['errors']:>5}")
+
+    gate = gate_check(pairs_path, results["vi_textmatch"], Path(args.baseline),
+                      args.update_baseline)
+    if args.badge:
+        s = summarize(results["vi_textmatch"])
+        Path(args.badge).write_text(json.dumps({
+            "schemaVersion": 1, "label": f"bench ({s['n']} cặp)",
+            "message": f"{pct(s['accuracy'])} · false-equal {s['false_equal']}",
+            "color": "green" if gate == 0 else "red"}, ensure_ascii=False) + "\n", "utf-8")
+    if args.summary:
+        Path(args.summary).write_text(build_summary(pairs, results, variants), "utf-8")
+    if args.check and gate:
+        return gate
 
     report = build_report(pairs, results, variants, pairs_path)
     if args.no_write:

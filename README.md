@@ -1,6 +1,10 @@
 # vi-textmatch
 
 [![test](https://github.com/nightskat/vi-textmatch/actions/workflows/test.yml/badge.svg)](https://github.com/nightskat/vi-textmatch/actions/workflows/test.yml)
+[![bench](https://img.shields.io/endpoint?url=https%3A%2F%2Fnightskat.github.io%2Fvi-textmatch%2Fbadge.json)](https://nightskat.github.io/vi-textmatch/benchmark/)
+[![bench gate](https://github.com/nightskat/vi-textmatch/actions/workflows/bench.yml/badge.svg)](https://github.com/nightskat/vi-textmatch/actions/workflows/bench.yml)
+
+Docs (Tiếng Việt / English): https://nightskat.github.io/vi-textmatch/
 
 Vietnamese text normalization and **type-aware** comparison. Zero dependencies, standard library only.
 
