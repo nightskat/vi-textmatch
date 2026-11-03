@@ -10,6 +10,8 @@ matcher: "do these two strings denote the same entity / value?"
 
 Conventions used to keep the labels unambiguous (this matters — a benchmark
 whose truth is arguable only measures the author):
+  - name        : person names (compared with Kind.NAME); labels follow the
+    text rules below.
   - text, True  : same name/address/org, differing only in encoding (NFC/NFD),
     tone-mark position, whitespace, case — or a mechanical slip that does not
     produce another valid word (doubled letter, truncated final letter).
@@ -48,27 +50,27 @@ def nfd(s: str) -> str:
 PAIRS: list[tuple[str, str, str, bool, str]] = [
     # ================================================================== TEXT
     # -- same record, different encoding / typing -------------------------
-    ("Nguyễn Thị Hòa", nfd("Nguyễn Thị Hòa"), "text", True,
+    ("Nguyễn Thị Hòa", nfd("Nguyễn Thị Hòa"), "name", True,
      "NFC vs NFD: cùng tên, khác byte"),
     ("Đinh Tiên Hoàng", nfd("Đinh Tiên Hoàng"), "text", True,
      "NFD trên địa danh có ký tự Đ"),
-    ("Hoà Văn Bình", "Hòa Văn Bình", "text", True,
+    ("Hoà Văn Bình", "Hòa Văn Bình", "name", True,
      "vị trí dấu thanh oà/òa, âm tiết mở"),
-    ("Thuỳ Dương", "Thùy Dương", "text", True,
+    ("Thuỳ Dương", "Thùy Dương", "name", True,
      "uỳ/ùy, âm tiết mở"),
-    ("Hoè Thị Lan", "Hòe Thị Lan", "text", True,
+    ("Hoè Thị Lan", "Hòe Thị Lan", "name", True,
      "oè/òe, âm tiết mở"),
-    ("Nguyễn Thị Hòa", "Nguyễn  Thị   Hòa", "text", True,
+    ("Nguyễn Thị Hòa", "Nguyễn  Thị   Hòa", "name", True,
      "khoảng trắng thừa"),
-    (f"Nguyễn{NBSP}Thị Hòa", "Nguyễn Thị Hòa", "text", True,
+    (f"Nguyễn{NBSP}Thị Hòa", "Nguyễn Thị Hòa", "name", True,
      "nbsp U+00A0 do Word/Excel chèn"),
-    (f"Bùi Minh{ZWSP} Châu", "Bùi Minh Châu", "text", True,
+    (f"Bùi Minh{ZWSP} Châu", "Bùi Minh Châu", "name", True,
      "zero-width space U+200B"),
-    ("Nguyễn Thị Hòa", "nguyễn thị hòa", "text", True,
+    ("Nguyễn Thị Hòa", "nguyễn thị hòa", "name", True,
      "chỉ khác hoa/thường"),
-    ("Vũ Hoàng Nam ", "Vũ Hoàng Nam", "text", True,
+    ("Vũ Hoàng Nam ", "Vũ Hoàng Nam", "name", True,
      "khoảng trắng cuối"),
-    ("Lý\tThị\tMai", "Lý Thị Mai", "text", True,
+    ("Lý\tThị\tMai", "Lý Thị Mai", "name", True,
      "tab thay dấu cách"),
     ("CÔNG TY TNHH THƯƠNG MẠI BÌNH AN",
      "Công ty TNHH Thương mại Bình An", "text", True,
@@ -79,22 +81,22 @@ PAIRS: list[tuple[str, str, str, bool, str]] = [
     ("Xã Hoà Bình, Huyện Quỳnh Lưu", "Xã Hòa Bình, Huyện Quỳnh Lưu", "text", True,
      "hoà→hòa trong địa danh; quỳnh phải giữ nguyên"),
     # -- mechanical slips (không tạo ra từ khác) ---------------------------
-    ("Trịnh Công Sơnn", "Trịnh Công Sơn", "text", True,
+    ("Trịnh Công Sơnn", "Trịnh Công Sơn", "name", True,
      "lặp 1 ký tự cuối (gõ/OCR)"),
-    ("Lương Thị Ánh Tuyế", "Lương Thị Ánh Tuyết", "text", True,
+    ("Lương Thị Ánh Tuyế", "Lương Thị Ánh Tuyết", "name", True,
      "nuốt ký tự cuối (OCR)"),
-    ("Hoàng Văn Quag", "Hoàng Văn Quang", "text", True,
+    ("Hoàng Văn Quag", "Hoàng Văn Quang", "name", True,
      "rơi 1 phụ âm cuối"),
     # -- different records -------------------------------------------------
-    ("Nguyễn Thị Hòa", "Trần Văn Bình", "text", False,
+    ("Nguyễn Thị Hòa", "Trần Văn Bình", "name", False,
      "hai người khác nhau"),
-    ("Lê Văn Hoàn", "Lê Văn Hòa", "text", False,
+    ("Lê Văn Hoàn", "Lê Văn Hòa", "name", False,
      "âm tiết đóng 'hoàn' KHÔNG được đổi thành 'hòa' — hai từ khác nhau"),
-    ("Phạm Quốc Khánh", "Phạm Quốc Kháng", "text", False,
+    ("Phạm Quốc Khánh", "Phạm Quốc Kháng", "name", False,
      "lệch 1 dấu, mỗi dạng đều là tên hợp lệ → phải soát lại"),
-    ("Phạm Minh Khôi", "Bùi Minh Khôi", "text", False,
+    ("Phạm Minh Khôi", "Bùi Minh Khôi", "name", False,
      "họ khác — hai người, chuỗi gần như giống hệt"),
-    ("Nguyễn Thị Hòa", "Nguyễn Thị Hồng", "text", False,
+    ("Nguyễn Thị Hòa", "Nguyễn Thị Hồng", "name", False,
      "cùng họ + đệm, khác tên gọi"),
     ("Số 12 Ngõ 34 Phố Hoa Ban, Phường 5",
      "Số 21 Ngõ 34 Phố Hoa Ban, Phường 5", "text", False,
@@ -103,15 +105,15 @@ PAIRS: list[tuple[str, str, str, bool, str]] = [
      "khác loại hình doanh nghiệp = khác pháp nhân"),
     ("Phòng giao dịch Lê Chân", "Phòng giao dịch Hồng Bàng", "text", False,
      "cùng mẫu, khác địa danh"),
-    ("Nguyễn Hoàng Nam", "Nguyễn Hoàng Ninh", "text", False,
+    ("Nguyễn Hoàng Nam", "Nguyễn Hoàng Ninh", "name", False,
      "tên gọi khác — hai người"),
-    ("Trần Thị Bích Ngọc", "Trần Thị Bích Ngà", "text", False,
+    ("Trần Thị Bích Ngọc", "Trần Thị Bích Ngà", "name", False,
      "tên gọi khác — hai người"),
-    ("Lê Quang Dũng", "Lê Quang Hùng", "text", False,
+    ("Lê Quang Dũng", "Lê Quang Hùng", "name", False,
      "tên gọi khác — hai người"),
-    ("Vũ Hoàng Nam", "Vũ Hoàng Nga", "text", False,
+    ("Vũ Hoàng Nam", "Vũ Hoàng Nga", "name", False,
      "tên gọi khác — hai người"),
-    ("Nguyễn Thị Thu Hà", "Nguyễn Thị Thu Hằng", "text", False,
+    ("Nguyễn Thị Thu Hà", "Nguyễn Thị Thu Hằng", "name", False,
      "tên gọi khác — hai người, chuỗi gần như giống hệt"),
 
     # ================================================================= MONEY
@@ -269,7 +271,7 @@ PAIRS: list[tuple[str, str, str, bool, str]] = [
      "lệch chữ số đầu"),
 ]
 
-KINDS = ("money", "date", "id", "text")
+KINDS = ("money", "date", "id", "name", "text")
 EXPECTED_TOTAL = 100
 
 
